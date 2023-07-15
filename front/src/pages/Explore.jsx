@@ -15,7 +15,7 @@ const Explore04 = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Explore 4</h1>
+                <h1 className="heading text-center">Explore</h1>
               </div>
               <div className="breadcrumbs style2">
                 <ul>
@@ -25,7 +25,7 @@ const Explore04 = () => {
                   <li>
                     <Link to="#">Explore</Link>
                   </li>
-                  <li>Explore 4</li>
+                  <li>Explore</li>
                 </ul>
               </div>
             </div>

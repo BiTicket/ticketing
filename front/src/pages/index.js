@@ -1,6 +1,6 @@
 import Home from "./Home";
 import Explore from "./Explore";
-import ItemDetails from "./ItemDetails02";
+import ItemDetails from "./ItemDetails";
 import Activity01 from "./Activity01";
 import HelpCenter from "./HelpCenter";
 import Authors02 from "./Authors02";
@@ -16,7 +16,7 @@ import Contact02 from "./Contact02";
 const routes = [
   { path: "/", component: <Home /> },
   { path: "/explore", component: <Explore /> },
-  { path: "/item-detail-02", component: <ItemDetails /> },
+  { path: "/item-details", component: <ItemDetails /> },
   { path: "/activity-01", component: <Activity01 /> },
   { path: "/help-center", component: <HelpCenter /> },
   { path: "/authors-02", component: <Authors02 /> },

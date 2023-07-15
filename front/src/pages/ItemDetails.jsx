@@ -70,7 +70,7 @@ const ItemDetails02 = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Item Details 2</h1>
+                <h1 className="heading text-center">Item Details</h1>
               </div>
               <div className="breadcrumbs style2">
                 <ul>
@@ -80,7 +80,7 @@ const ItemDetails02 = () => {
                   <li>
                     <Link to="#">Explore</Link>
                   </li>
-                  <li>Item Details 2</li>
+                  <li>Item Details</li>
                 </ul>
               </div>
             </div>
