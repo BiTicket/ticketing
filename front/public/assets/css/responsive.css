@@ -104,14 +104,6 @@
   .mainslider .swiper-button-next {
     display: none !important;
   }
-  .home-5 .flat-slider .content {
-    padding-left: 0;
-    z-index: 99;
-    padding-top: 0;
-  }
-  .home-5 .flat-title-page .flat-slider .sub-heading {
-    padding-right: 0;
-  }
 }
 
 @media only screen and (max-width: 1450px) {
@@ -440,25 +432,7 @@
   .tf-soft .soft-left {
     margin-bottom: 20px;
   }
-  .home-3 .flat-title-page {
-    padding: 111px 0 111px;
-  }
-  .home-3 .tf-section.live-auctions {
-    padding: 81px 0 81px;
-  }
-  .home-3 .tf-section.top-seller {
-    padding: 61px 0 50px;
-  }
-  .home-3 .flat-title-page .themesflat-container {
-    padding-left: 0;
-  }
   .tf-section.live-auctions.style4.home5 {
-    padding: 80px 0 40px;
-  }
-  .home-5 .tf-box-icon.create {
-    padding: 75px 0 60px;
-  }
-  .home-6 .tf-section.top-seller.home5 {
     padding: 80px 0 40px;
   }
   .home-7 .tf-section.top-seller {
@@ -475,9 +449,6 @@
   }
   .flat-title-page.style3 {
     padding: 140px 0;
-  }
-  .home-5 .swiper.swiper-initialized.swiper-vertical.swiper-pointer-events {
-    height: 600px;
   }
   .mainslider.home .wrap-heading .content {
     width: 100%;
@@ -502,13 +473,6 @@
   }
   .flat-title-page.home5 .flat-slider .sub-heading {
     padding-right: 0;
-  }
-  .home-5 .live-auctions .sc-card-product,
-  .home-5 .sc-card-collection.style-2.home5 {
-    margin-bottom: 0;
-  }
-  .home-6 .flat-cart-item {
-    padding: 190px 0 73px;
   }
   .is_dark .main-nav.active {
     background-color: #14141f;
@@ -769,9 +733,6 @@
   }
   .live-auctions .sc-card-product,
   .live-auctions .sc-card-product,
-  .home-6 .live-auctions .sc-card-product {
-    margin-bottom: 0;
-  }
   .auctions .live-auctions .sc-card-product {
     margin-bottom: 30px;
   }
@@ -865,10 +826,7 @@
     width: 100%;
     margin-top: 0;
   }
-  .home-8 .side-bar.item {
-    height: 100%;
-  }
-
+  
   .right .mainslider.home .wrap-heading .content {
     text-align: center;
     padding-right: 0;
@@ -887,38 +845,16 @@
   .explore .seclect-box .dropdown ul {
     bottom: 47px;
   }
-  .home-5 .flat-slider .content {
-    width: 100%;
-  }
-  .home-5 .flat-title-page .swiper {
-    display: none;
-  }
-  .home-5 .flat-title-page .flat-slider {
-    padding: 120px 0 140px;
-  }
-
   .mainslider.home .wrap-heading .content {
     padding-top: 70px;
   }
-  .home-4 .flat-cart-item {
-    padding: 185px 0 20px;
-  }
-  .home-4 .tf-section.top-seller {
-    padding: 0;
-  }
-  .home-4 .tf-section.live-auctions .sc-card-product,
+
   .sc-card-collection.style-2,
   .sc-box-icon-inner .sc-box-icon:last-child {
     margin-bottom: 0;
   }
   .home-7 .sc-card-collection.style-2 {
     margin-bottom: 30px;
-  }
-  .home-6 .flat-cart-item {
-    padding: 190px 0 45px;
-  }
-  .home-6 .live-auctions .sc-card-product {
-    margin-bottom: 0;
   }
   .tf-section.brow-category {
     padding: 80px 0;
@@ -928,14 +864,8 @@
     right: auto;
     left: 15px;
   }
-  .home-6 .sc-card-collection {
-    margin-bottom: 50px;
-  }
   .tf-section.top-seller.home5 .react-tabs .content-tab {
     margin-top: 60px;
-  }
-  .home-5 .tf-box-icon.create {
-    padding: 75px 0 79px;
   }
   .top-seller.home5 .box-item {
     width: 100%;

@@ -1108,9 +1108,6 @@ label.error {
 .is_dark .bg-style3 {
   background-color: #1f1f2c !important;
 }
-.home-3 .bg-home-3 {
-  background-color: var(--primary-color5) !important;
-}
 .mg-t-42 {
   margin-top: 42px;
 }
@@ -2182,17 +2179,7 @@ header {
 #footer.style-2 {
   background-color: #ffffff;
 }
-.home-5 #footer,
-.home-3 #footer {
-  background: #fff !important;
-}
-.home-6 #footer {
-  background: var(--bg-section) !important;
-}
-.is_dark .home-5 #footer,
-.is_dark .home-3 #footer {
-  background: #0d0d11 !important;
-}
+
 .is_dark #footer.style-2 {
   background-color: #14141f;
 }
