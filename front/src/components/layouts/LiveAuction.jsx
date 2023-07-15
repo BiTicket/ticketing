@@ -23,7 +23,7 @@ const LiveAuction = (props) => {
             <div className="col-md-12">
               <div className="heading-live-auctions">
                 <h2 className="tf-title pb-20">Live Auctions</h2>
-                <Link to="/explore-03" className="exp style2">
+                <Link to="/explore" className="exp style2">
                   EXPLORE MORE
                 </Link>
               </div>
@@ -58,7 +58,7 @@ const LiveAuction = (props) => {
                           <div className="slider-item">
                             <div className="sc-card-product">
                               <div className="card-media">
-                                <Link to="/item-details-01">
+                                <Link to="/item-details">
                                   <img src={item.img} alt="ticketing" />
                                 </Link>
                                 <Link
@@ -86,9 +86,7 @@ const LiveAuction = (props) => {
                               </div>
                               <div className="card-title">
                                 <h5>
-                                  <Link to="/item-details-01">
-                                    "{item.title}"
-                                  </Link>
+                                  <Link to="/item-details">"{item.title}"</Link>
                                 </h5>
                                 <div className="tags">{item.tags}</div>
                               </div>
@@ -101,7 +99,7 @@ const LiveAuction = (props) => {
                                     <span>Creator</span>
                                     <h6>
                                       {" "}
-                                      <Link to="/authors-02">
+                                      <Link to="/authors">
                                         {item.nameAuthor}
                                       </Link>{" "}
                                     </h6>

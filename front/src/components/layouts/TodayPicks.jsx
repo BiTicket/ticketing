@@ -19,7 +19,7 @@ const TodayPicks = (props) => {
             <div className="col-md-12">
               <div className="heading-live-auctions mg-bt-21">
                 <h2 className="tf-title pad-l-7">Today's Picks</h2>
-                <Link to="/explore-03" className="exp style2">
+                <Link to="/explore" className="exp style2">
                   EXPLORE MORE
                 </Link>
               </div>
@@ -32,7 +32,7 @@ const TodayPicks = (props) => {
                   } `}
                 >
                   <div className="card-media">
-                    <Link to="/item-details-01">
+                    <Link to="/item-details">
                       <img src={item.img} alt="ticketing" />
                     </Link>
                     <Link to="/login" className="wishlist-button heart">
@@ -42,7 +42,7 @@ const TodayPicks = (props) => {
                   </div>
                   <div className="card-title">
                     <h5 className="style2">
-                      <Link to="/item-details-01">"{item.title}"</Link>
+                      <Link to="/item-details">"{item.title}"</Link>
                     </h5>
                     <div className="tags">{item.tags}</div>
                   </div>
@@ -55,7 +55,7 @@ const TodayPicks = (props) => {
                         <span>Owned By</span>
                         <h6>
                           {" "}
-                          <Link to="/authors-02">{item.nameAuthor}</Link>{" "}
+                          <Link to="/authors">{item.nameAuthor}</Link>{" "}
                         </h6>
                       </div>
                     </div>
@@ -71,7 +71,7 @@ const TodayPicks = (props) => {
                     >
                       <span>Place Bid</span>
                     </button>
-                    <Link to="/activity-01" className="view-history reload">
+                    <Link to="/activity" className="view-history reload">
                       View History
                     </Link>
                   </div>

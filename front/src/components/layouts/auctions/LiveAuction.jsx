@@ -49,7 +49,7 @@ const LiveAuctionItem = (props) => (
   <div className="fl-item col-xl-3 col-lg-6 col-md-6">
     <div className="sc-card-product">
       <div className="card-media">
-        <Link to="/item-details-01">
+        <Link to="/item-details">
           <img src={props.item.img} alt="ticketing" />
         </Link>
         <Link to="/login" className="wishlist-button heart">
@@ -72,7 +72,7 @@ const LiveAuctionItem = (props) => (
       </div>
       <div className="card-title">
         <h5>
-          <Link to="/item-details-01">{props.item.title}</Link>
+          <Link to="/item-details">{props.item.title}</Link>
         </h5>
         <div className="tags">{props.item.tags}</div>
       </div>
@@ -85,7 +85,7 @@ const LiveAuctionItem = (props) => (
             <span>Creator</span>
             <h6>
               {" "}
-              <Link to="/authors-02">{props.item.nameAuthor}</Link>{" "}
+              <Link to="/authors">{props.item.nameAuthor}</Link>{" "}
             </h6>
           </div>
         </div>

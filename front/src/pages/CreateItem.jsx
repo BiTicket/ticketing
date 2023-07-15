@@ -42,7 +42,7 @@ const CreateItem = () => {
               <h4 className="title-create-item">Preview item</h4>
               <div className="sc-card-product">
                 <div className="card-media">
-                  <Link to="/item-details-01">
+                  <Link to="/item-details">
                     <img src={img1} alt="Ticketing" />
                   </Link>
                   <Link to="/login" className="wishlist-button heart">
@@ -57,7 +57,7 @@ const CreateItem = () => {
                 </div>
                 <div className="card-title">
                   <h5>
-                    <Link to="/item-details-01">"Cyber Doberman #766”</Link>
+                    <Link to="/item-details">"Cyber Doberman #766”</Link>
                   </h5>
                   <div className="tags">bsc</div>
                 </div>
@@ -70,7 +70,7 @@ const CreateItem = () => {
                       <span>Owned By</span>
                       <h6>
                         {" "}
-                        <Link to="/author-02">Freddie Carpenter</Link>
+                        <Link to="/author">Freddie Carpenter</Link>
                       </h6>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ const CreateItem = () => {
                   >
                     <span>Place Bid</span>
                   </Link>
-                  <Link to="/activity-01" className="view-history reload">
+                  <Link to="/activity" className="view-history reload">
                     View History
                   </Link>
                 </div>
