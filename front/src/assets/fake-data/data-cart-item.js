@@ -1,13 +1,11 @@
-import img1 from '../images/box-item/img_cart_item.jpg';
-
+import img1 from "../images/box-item/img_cart_item.jpg";
 
 const cartItemData = [
-    {
-        img : "",
-        title: "",
-        position: ""
-    },
-
-]
+  {
+    img: "",
+    title: "",
+    position: "",
+  },
+];
 
 export default cartItemData;
