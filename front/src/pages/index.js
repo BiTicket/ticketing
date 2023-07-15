@@ -1,4 +1,4 @@
-import Home from "./Home07";
+import Home from "./Home";
 import Explore from "./Explore04";
 import ItemDetails from "./ItemDetails02";
 import Activity01 from "./Activity01";
