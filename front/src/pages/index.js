@@ -1,5 +1,5 @@
 import Home from "./Home";
-import Explore from "./Explore04";
+import Explore from "./Explore";
 import ItemDetails from "./ItemDetails02";
 import Activity01 from "./Activity01";
 import HelpCenter from "./HelpCenter";

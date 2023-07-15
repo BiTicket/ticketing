@@ -18,7 +18,7 @@ const menus = [
     namesub: [      
       {
         id: 4,
-        sub: "Explore 04",
+        sub: "Explore",
         links: "/explore",
       },
       {
