@@ -44,7 +44,7 @@ const BlogDetails = () => {
       name: "Bitcoin",
     },
     {
-      name: "NFT",
+      name: "Ticket",
     },
     {
       name: "Bids",

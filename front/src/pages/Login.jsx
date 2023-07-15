@@ -34,7 +34,7 @@ const Login = () => {
         <div className="themesflat-container">
           <div className="row">
             <div className="col-12">
-              <h2 className="tf-title-heading ct style-1">Login To NFTs</h2>
+              <h2 className="tf-title-heading ct style-1">Login To Tickets</h2>
 
               <div className="flat-form box-login-social">
                 <div className="box-title-login">

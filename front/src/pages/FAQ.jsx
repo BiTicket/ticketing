@@ -9,8 +9,8 @@ const FAQ = () => {
     {
       key: "0",
       show: "show",
-      title: "What is an NFT?",
-      text: "NFTs or non-fungible tokens, are cryptographic assets on blockchain with unique identification codes and metadata that distinguish them from each other. NFTs are unique and not mutually interchangeable, which means no two NFTs are the same.",
+      title: "What is an Ticket?",
+      text: "Tickets or non-fungible tokens, are cryptographic assets on blockchain with unique identification codes and metadata that distinguish them from each other. Tickets are unique and not mutually interchangeable, which means no two Tickets are the same.",
     },
     {
       key: "1",

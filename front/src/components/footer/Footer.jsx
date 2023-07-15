@@ -120,13 +120,13 @@ const Footer = () => {
                       className="logo-dark"
                       id="logo_footer"
                       src={logodark}
-                      alt="nft-gaming"
+                      alt="ticket-gaming"
                     />
                     <img
                       className="logo-light"
                       id="logo_footer"
                       src={logofooter}
-                      alt="nft-gaming"
+                      alt="ticket-gaming"
                     />
                   </Link>
                 </div>

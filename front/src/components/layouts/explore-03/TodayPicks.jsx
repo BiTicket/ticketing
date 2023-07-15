@@ -15,7 +15,7 @@ const TodayPicks = (props) => {
           <div className="row">
             <div className="col-12">
               <h2 className="tf-title-heading ct style-2 mg-bt-13">
-                NFTs Marketplace
+                Tickets Marketplace
               </h2>
               <p className="sub-title ct small mg-bt-20 pad-420">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.

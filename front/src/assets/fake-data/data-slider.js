@@ -7,9 +7,9 @@ const heroSliderData = [
   {
     title_1: "Discover, find,",
     title_2: "Sell extraordinary",
-    title_3: "Monster NFTs",
+    title_3: "Monster Tickets",
     description:
-      "Marketplace for monster character cllections non fungible token NFTs",
+      "Marketplace for monster character cllections non fungible token Tickets",
     img: img1,
     imgbg: imgbg1,
     class: "left",
@@ -17,9 +17,9 @@ const heroSliderData = [
   {
     title_1: "Discover, find,",
     title_2: "Sell extraordinary",
-    title_3: "Monster NFTs",
+    title_3: "Monster Tickets",
     description:
-      "Marketplace for monster character cllections non fungible token NFTs",
+      "Marketplace for monster character cllections non fungible token Tickets",
     img: img2,
     imgbg: imgbg2,
     class: "center",
@@ -27,9 +27,9 @@ const heroSliderData = [
   {
     title_1: "Discover, find,",
     title_2: "Sell extraordinary",
-    title_3: "Monster NFTs",
+    title_3: "Monster Tickets",
     description:
-      "Marketplace for monster character cllections non fungible token NFTs",
+      "Marketplace for monster character cllections non fungible token Tickets",
     img: img2,
     imgbg: imgbg2,
     class: "right",

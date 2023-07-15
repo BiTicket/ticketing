@@ -8,7 +8,7 @@ import icon4 from "../../../assets/images/icon/Bookmark.png";
 const Create = () => {
   const data = [
     {
-      title: "Add Your NFTs",
+      title: "Add Your Tickets",
       description:
         "Sed ut perspiciatis un de omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.",
       icon: icon3,
@@ -17,21 +17,21 @@ const Create = () => {
     {
       title: "Create Your Collection",
       description:
-        "Setting up your NFT collection and creating NFTs on NFTs is easy! This guide explains how to set up your first collection",
+        "Setting up your Ticket collection and creating Tickets on Tickets is easy! This guide explains how to set up your first collection",
       icon: icon2,
       colorbg: "icon-color2",
     },
     {
       title: "Set Up Your Wallet",
       description:
-        "Wallet that is functional for NFT purchasing. You may have a Coinbase account at this point, but very few are actually set up to buy an NFT.",
+        "Wallet that is functional for Ticket purchasing. You may have a Coinbase account at this point, but very few are actually set up to buy an Ticket.",
       icon: icon1,
       colorbg: "icon-color1",
     },
     {
       title: "List Them For Sale",
       description:
-        "Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs!",
+        "Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your Tickets!",
       icon: icon4,
       colorbg: "icon-color4",
     },
@@ -42,9 +42,9 @@ const Create = () => {
         <div className="row">
           <div className="col-xl-4 col-lg-12 col-md-12">
             <div className="heading-live-auctions style2 mg-t-3 mg-bt-22">
-              <h3 className="heading-fill mg-bt-16">Creat NFT</h3>
+              <h3 className="heading-fill mg-bt-16">Create Ticket</h3>
               <h2 className="tf-title text-left pb-15">
-                Create And Sell Your NFTs
+                Create And Sell Your Tickets
               </h2>
               <p className="content">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.

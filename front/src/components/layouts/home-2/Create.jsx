@@ -10,7 +10,7 @@ const Create = () => {
     {
       title: "Set Up Your Wallet",
       description:
-        "Once you’ve set up your wallet of choice, connect it to OpenSeaby clicking the NFT Marketplacein the top right corner.",
+        "Once you’ve set up your wallet of choice, connect it to OpenSeaby clicking the Ticket Marketplacein the top right corner.",
       icon: icon1,
       colorbg: "icon-color1",
     },
@@ -22,16 +22,16 @@ const Create = () => {
       colorbg: "icon-color2",
     },
     {
-      title: "Add Your NFTs",
+      title: "Add Your Tickets",
       description:
-        "Upload your work (image, video, audio, or 3D art), add a title and description, and customize your NFTs with properties, stats",
+        "Upload your work (image, video, audio, or 3D art), add a title and description, and customize your Tickets with properties, stats",
       icon: icon3,
       colorbg: "icon-color3",
     },
     {
       title: "List Them For Sale",
       description:
-        "Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs!",
+        "Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your Tickets!",
       icon: icon4,
       colorbg: "icon-color4",
     },
