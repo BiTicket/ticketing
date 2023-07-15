@@ -8,7 +8,7 @@ import img3 from "../assets/images/box-item/image-box-11.jpg";
 import img4 from "../assets/images/box-item/image-box-21.jpg";
 import img5 from "../assets/images/box-item/image-box-6.jpg";
 
-const Activity01 = () => {
+const Activity = () => {
   const [dataBox] = useState([
     {
       img: img1,
@@ -235,4 +235,4 @@ const Activity01 = () => {
   );
 };
 
-export default Activity01;
+export default Activity;

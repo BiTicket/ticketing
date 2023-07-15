@@ -146,7 +146,7 @@
   }
 }
 @media only screen and (max-width: 1430px) {
-  .authors-2 .react-tabs__tab-list {
+  .authors .react-tabs__tab-list {
     padding: 0 2% 0 4.5%;
   }
   .tab-authors .author-profile {
@@ -384,7 +384,7 @@
   .sc-explore-2 .react-tabs__tab-panel .sc-card-product {
     width: calc(33.33% - 30px);
   }
-  .authors-2 .react-tabs__tab {
+  .authors .react-tabs__tab {
     padding: 2.2% 54px 2.5%;
   }
   .col-box-17 {
@@ -644,9 +644,6 @@
   .content-left .media {
     margin-bottom: 30px;
   }
-  .authors .sc-author-box {
-    padding-bottom: 20px;
-  }
 
   .style-2 .sc-box-icon,
   .explore-tab .content-tab .content-inner .sc-card-product {
@@ -776,7 +773,7 @@
   .sc-explore-2 .react-tabs__tab-panel .sc-card-product {
     width: calc(50% - 30px);
   }
-  .authors-2 .react-tabs__tab {
+  .authors .react-tabs__tab {
     padding: 2.2% 33px 2.5%;
   }
 }
@@ -834,7 +831,7 @@
   .right .mainslider.home .wrap-heading .content .flat-bt-slider.style2 {
     justify-content: center;
   }
-  .authors-2 .react-tabs__tab {
+  .authors .react-tabs__tab {
     padding: 4.2% 35px 4.5%;
     width: 100%;
     text-align: center;
@@ -903,9 +900,6 @@
   }
   .accordion-item .accordion-button::after {
     right: 0;
-  }
-  .authors .sc-author-box {
-    padding-bottom: 0;
   }
   .tf-section.live-auctions.style2,
   .tf-section,
@@ -1250,7 +1244,7 @@
   .flat-accordion2 .accordion-item {
     padding: 20px 30px 4.5px 30px;
   }
-  .authors-2 .react-tabs__tab.react-tabs__tab--selected::after {
+  .authors .react-tabs__tab.react-tabs__tab--selected::after {
     display: none;
   }
 

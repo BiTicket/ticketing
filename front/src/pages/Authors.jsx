@@ -32,7 +32,7 @@ import img8 from "../assets/images/box-item/image-box-11.jpg";
 import imga8 from "../assets/images/avatar/avt-3.jpg";
 import imgCollection8 from "../assets/images/avatar/avt-18.jpg";
 
-const Authors02 = () => {
+const Authors = () => {
   const [menuTab] = useState([
     {
       class: "active",
@@ -504,7 +504,7 @@ const Authors02 = () => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="authors-2">
+    <div className="authors">
       <Header />
       <section className="flat-title-page inner">
         <div className="overlay"></div>
@@ -700,4 +700,4 @@ const Authors02 = () => {
   );
 };
 
-export default Authors02;
+export default Authors;

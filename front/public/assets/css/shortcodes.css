@@ -688,10 +688,6 @@
   margin-bottom: 30px;
   background: var(--primary-color);
 }
-.authors .sc-author-box {
-  padding: 0;
-  padding-bottom: 52px;
-}
 .sc-author-box .author-avatar .avatar {
   width: 74px;
   height: 74px;
@@ -3107,7 +3103,7 @@ section.today-picks {
 }
 
 .sc-explore-2 .react-tabs__tab-panel--selected,
-.authors-2 .react-tabs__tab-panel--selected {
+.authors .react-tabs__tab-panel--selected {
   display: flex;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3413,12 +3409,6 @@ section.today-picks {
   padding: 0 0px 23px 0;
   width: 132px;
 }
-.authors .top-seller .sc-author-box.style-2 {
-  padding: 0 0px 55px 0;
-}
-.authors .tf-section.live-auctions {
-  padding: 81px 0 0px;
-}
 
 .top-seller .sc-author-box.style-2 .author-avatar {
   margin: 0 0 20px 0;
@@ -3591,7 +3581,7 @@ section.today-picks {
 }
 
 /* title */
-.authors-2 .react-tabs__tab-list {
+.authors .react-tabs__tab-list {
   padding: 0 2% 0 24.5%;
   -webkit-border-radius: 0 0 12px 12px;
   -ms-border-radius: 0 0 12px 12px;
@@ -3602,20 +3592,20 @@ section.today-picks {
   border: none;
 }
 
-.authors-2 .react-tabs__tab {
+.authors .react-tabs__tab {
   font-size: 20px;
   line-height: 26px;
   font-weight: 700;
   padding: 2.2% 67px 2.5%;
 }
 
-.authors-2 .react-tabs__tab.react-tabs__tab--selected {
+.authors .react-tabs__tab.react-tabs__tab--selected {
   color: var(--primary-color3);
   position: relative;
   background: transparent;
   border: none;
 }
-.authors-2 .react-tabs__tab.react-tabs__tab--selected::after {
+.authors .react-tabs__tab.react-tabs__tab--selected::after {
   content: "";
   position: absolute;
   bottom: -7.5px;
@@ -3626,7 +3616,7 @@ section.today-picks {
   background-color: var(--bg-section);
   margin: 0 -7.5px;
 }
-.authors-2 .react-tabs__tab:focus {
+.authors .react-tabs__tab:focus {
   box-shadow: none;
   border: none;
 }

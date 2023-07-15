@@ -9,7 +9,7 @@ import TodayPicks from "../components/layouts/home/TodayPicks";
 import Create from "../components/layouts/home/Create";
 import PopularCollection from "../components/layouts/home/PopularCollection";
 
-const Home07 = () => {
+const Home = () => {
   return (
     <div className="home">
       <HeaderStyle2 />
@@ -25,4 +25,4 @@ const Home07 = () => {
   );
 };
 
-export default Home07;
+export default Home;
