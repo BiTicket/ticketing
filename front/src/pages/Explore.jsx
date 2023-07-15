@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import Explore from "../components/layouts/explore/Explore";
+import ExploreLayout from "../components/layouts/explore/Explore";
 import widgetSidebarData from "../assets/fake-data/data-widget-sidebar";
 
-const Explore04 = () => {
+const Explore = () => {
   return (
     <div>
       <Header />
@@ -32,10 +32,10 @@ const Explore04 = () => {
           </div>
         </div>
       </section>
-      <Explore data={widgetSidebarData} />
+      <ExploreLayout data={widgetSidebarData} />
       <Footer />
     </div>
   );
 };
 
-export default Explore04;
+export default Explore;
