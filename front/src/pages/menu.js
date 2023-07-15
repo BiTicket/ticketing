@@ -59,7 +59,7 @@ const menus = [
     namesub: [
       {
         id: 2,
-        sub: "Authors 02",
+        sub: "Authors",
         links: "/authors",
       },
       {
@@ -106,7 +106,7 @@ const menus = [
     namesub: [
       {
         id: 2,
-        sub: "Contact 2",
+        sub: "Contact",
         links: "/contact",
       },
     ],

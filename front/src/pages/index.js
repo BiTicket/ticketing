@@ -3,7 +3,7 @@ import Explore from "./Explore";
 import ItemDetails from "./ItemDetails";
 import Activity from "./Activity";
 import HelpCenter from "./HelpCenter";
-import Authors02 from "./Authors02";
+import Authors from "./Authors";
 import WalletConnect from "./WalletConnect";
 import CreateItem from "./CreateItem";
 import EditProfile from "./EditProfile";
@@ -11,7 +11,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import NoResult from "./NoResult";
 import FAQ from "./FAQ";
-import Contact02 from "./Contact02";
+import Contact02 from "./Contact";
 
 const routes = [
   { path: "/", component: <Home /> },
@@ -19,7 +19,7 @@ const routes = [
   { path: "/item-details", component: <ItemDetails /> },
   { path: "/activity", component: <Activity /> },
   { path: "/help-center", component: <HelpCenter /> },
-  { path: "/authors", component: <Authors02 /> },
+  { path: "/authors", component: <Authors /> },
   { path: "/wallet-connect", component: <WalletConnect /> },
   { path: "/create-item", component: <CreateItem /> },
   { path: "/edit-profile", component: <EditProfile /> },

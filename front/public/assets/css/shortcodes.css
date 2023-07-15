@@ -444,11 +444,6 @@
 .sc-box-icon {
   text-align: center;
 }
-.home-1 .sc-box-icon,
-.home-4 .sc-box-icon,
-.home-6 .sc-box-icon {
-  text-align: left;
-}
 
 .sc-box-icon .image svg {
   -webkit-transition: all 0.8s ease;
@@ -1914,11 +1909,21 @@
 .swiper-slide-active .flat-slider h4 {
   opacity: 1;
   visibility: visible;
-  -webkit-transition: transform 0.5s ease, opacity 0.5s ease;
-  -moz-transition: transform 0.5s ease, opacity 0.5s ease;
-  -ms-transition: transform 0.5s ease, opacity 0.5s ease;
-  -o-transition: transform 0.5s ease, opacity 0.5s ease;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  -webkit-transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+  -moz-transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+  -ms-transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+  -o-transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
   transition-delay: 0.5s;
 }
 
@@ -2509,16 +2514,6 @@ section.today-picks {
 .center .flat-slider .image {
   display: none;
 }
-.home-1 .flat-title-page {
-  height: 618px;
-}
-.home-2 .flat-title-page {
-  height: 470px;
-}
-.home-3 .flat-title-page {
-  height: 412px;
-}
-
 .home-3 .mainslider .wrap-heading .content h1.heading {
   display: inline-block;
 }
@@ -8318,8 +8313,12 @@ button.accordion-button {
 }
 
 .noUi-state-tap .noUi-origin {
-  -webkit-transition: left 0.3s, top 0.3s;
-  transition: left 0.3s, top 0.3s;
+  -webkit-transition:
+    left 0.3s,
+    top 0.3s;
+  transition:
+    left 0.3s,
+    top 0.3s;
 }
 
 .noUi-state-drag * {

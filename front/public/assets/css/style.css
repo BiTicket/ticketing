@@ -1111,10 +1111,6 @@ label.error {
 .home-3 .bg-home-3 {
   background-color: var(--primary-color5) !important;
 }
-.home-1 .bg-home,
-.home-2 .bg-home {
-  background-color: var(--primary-color5) !important;
-}
 .mg-t-42 {
   margin-top: 42px;
 }
