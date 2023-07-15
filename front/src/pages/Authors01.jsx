@@ -56,7 +56,7 @@ const Authors01 = () => {
                         <div className="author-avatar">
                           <img
                             src={item.imgAuthor}
-                            alt="Axies"
+                            alt="Ticketing"
                             className="avatar"
                           />
                           <div className="badge"></div>
@@ -78,15 +78,15 @@ const Authors01 = () => {
                   <Link to="/author-02">
                     <div className="media-images-collection">
                       <div className="box-left">
-                        <img src={item.imgleft} alt="Axies" />
+                        <img src={item.imgleft} alt="Ticketing" />
                       </div>
                       <div className="box-right">
                         <div className="top-img">
-                          <img src={item.imgright1} alt="Axies" />
-                          <img src={item.imgright2} alt="Axies" />
+                          <img src={item.imgright1} alt="Ticketing" />
+                          <img src={item.imgright2} alt="Ticketing" />
                         </div>
                         <div className="bottom-img">
-                          <img src={item.imgright3} alt="Axies" />
+                          <img src={item.imgright3} alt="Ticketing" />
                         </div>
                       </div>
                     </div>

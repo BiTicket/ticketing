@@ -220,7 +220,7 @@ const Ranking = () => {
                     <div className="item flex">
                       <div className="infor-item flex column1">
                         <div className="media">
-                          <img src={item.img} alt="Axies" />
+                          <img src={item.img} alt="Ticketing" />
                         </div>
                         <div className="content-collection pad-t-4">
                           <h5 className="title mb-15">
@@ -228,7 +228,7 @@ const Ranking = () => {
                           </h5>
                           <div className="author flex">
                             <div className="author-avatar">
-                              <img src={item.imgAuthor} alt="Axies" />
+                              <img src={item.imgAuthor} alt="Ticketing" />
                               <div className="badge">
                                 <i className="ripple"></i>
                               </div>

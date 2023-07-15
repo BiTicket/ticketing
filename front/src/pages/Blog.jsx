@@ -68,13 +68,13 @@ const BlogItem = (props) => (
     <article className="sc-card-article">
       <div className="card-media">
         <Link to="/blog-details">
-          <img src={props.item.img} alt="Axies" />
+          <img src={props.item.img} alt="Ticketing" />
         </Link>
       </div>
       <div className="meta-info">
         <div className="author">
           <div className="avatar">
-            <img src={props.item.imgAuthor} alt="Axies" />
+            <img src={props.item.imgAuthor} alt="Ticketing" />
           </div>
           <div className="info">
             <span>Post owner</span>

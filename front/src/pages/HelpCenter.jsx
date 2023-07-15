@@ -174,7 +174,7 @@ const HelpCenter = () => {
               <div key={index} className={`sc-box-icon ${item.classnone}`}>
                 <div className="icon">
                   <div className="icon-item">
-                    <img src={item.icon} alt="Axies" />
+                    <img src={item.icon} alt="Ticketing" />
                   </div>
                 </div>
                 <h4 className="heading">

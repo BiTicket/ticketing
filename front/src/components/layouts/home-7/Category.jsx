@@ -111,7 +111,7 @@ const CategoryItem = (props) => (
           <div className="sc-categoty">
             <div className="card-media">
               <Link to="#">
-                <img src={props.item.img} alt="Axies" />
+                <img src={props.item.img} alt="Ticketing" />
               </Link>
             </div>
             <div className="card-title">

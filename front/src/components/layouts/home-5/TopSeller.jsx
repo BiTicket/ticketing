@@ -151,7 +151,7 @@ const TopSeller = () => {
                                 <Link to="/authors-02">
                                   <img
                                     src={item.img}
-                                    alt="Axies"
+                                    alt="Ticketing"
                                     className="avatar"
                                   />
                                 </Link>
@@ -194,7 +194,7 @@ const TopSeller = () => {
                                 <Link to="#">
                                   <img
                                     src={item.img}
-                                    alt="Axies"
+                                    alt="Ticketing"
                                     className="avatar"
                                   />
                                 </Link>

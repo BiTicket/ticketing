@@ -581,7 +581,7 @@ const TodayPicks = () => {
                         >
                           <div className="card-media">
                             <Link to="/item-details-01">
-                              <img src={item.img} alt="Axies" />
+                              <img src={item.img} alt="Ticketing" />
                             </Link>
                             <div className="button-place-bid">
                               <button
@@ -606,7 +606,7 @@ const TodayPicks = () => {
                           <div className="meta-info">
                             <div className="author">
                               <div className="avatar">
-                                <img src={item.imgAuthor} alt="Axies" />
+                                <img src={item.imgAuthor} alt="Ticketing" />
                               </div>
                               <div className="info">
                                 <span>Creator</span>

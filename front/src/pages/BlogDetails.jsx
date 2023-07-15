@@ -123,7 +123,7 @@ const BlogDetails = () => {
                   </div>
                 </div>
                 <div className="image">
-                  <img src={imgblog1} alt="Axies" />
+                  <img src={imgblog1} alt="Ticketing" />
                 </div>
                 <div className="inner-post mg-t-40">
                   <h3 className="heading mg-bt-16">
@@ -140,8 +140,8 @@ const BlogDetails = () => {
                     culpa qui officia deserunt mollit anim id est laborum
                   </p>
                   <div className="image-box">
-                    <img src={imgblogdetail1} alt="Axies" />
-                    <img src={imgblogdetail2} alt="Axies" />
+                    <img src={imgblogdetail1} alt="Ticketing" />
+                    <img src={imgblogdetail2} alt="Ticketing" />
                   </div>
                 </div>
                 <div className="inner-post mg-t-22">
@@ -159,7 +159,7 @@ const BlogDetails = () => {
                     culpa qui officia deserunt mollit anim id est laborum
                   </p>
                   <div className="image">
-                    <img src={imgblog2} alt="Axies" />
+                    <img src={imgblog2} alt="Ticketing" />
                   </div>
                 </div>
                 <div className="inner-post mg-t-24">
@@ -269,7 +269,7 @@ const BlogDetails = () => {
                     <li key={index} className="box-recent-post">
                       <div className="box-feature">
                         <Link to="/blog-details">
-                          <img src={item.img} alt="Axies" />
+                          <img src={item.img} alt="Ticketing" />
                         </Link>
                       </div>
                       <div className="box-content">

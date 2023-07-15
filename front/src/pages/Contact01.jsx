@@ -36,7 +36,7 @@ const Contact01 = () => {
           <div className="row">
             <div className="col-lg-6 col-md-6 col-12">
               <div className="box-feature-contact">
-                <img src={img1} alt="Axies" />
+                <img src={img1} alt="Ticketing" />
               </div>
             </div>
             <div className="col-lg-6 col-md-6 col-12">

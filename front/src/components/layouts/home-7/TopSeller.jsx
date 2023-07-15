@@ -303,7 +303,7 @@ const TopSeller = () => {
                                     <Link to="#">
                                       <img
                                         src={item.img}
-                                        alt="Axies"
+                                        alt="Ticketing"
                                         className="avatar"
                                       />
                                     </Link>

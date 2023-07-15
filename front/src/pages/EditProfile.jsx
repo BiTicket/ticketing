@@ -39,7 +39,7 @@ const EditProfile = () => {
             <div className="col-xl-3 col-lg-4 col-md-6 col-12">
               <div className="sc-card-profile text-center">
                 <div className="card-media">
-                  <img id="profileimg" src={avt} alt="Axies" />
+                  <img id="profileimg" src={avt} alt="Ticketing" />
                 </div>
                 <div id="upload-profile">
                   <Link to="#" className="btn-upload">
@@ -71,10 +71,10 @@ const EditProfile = () => {
                     </label>
                   </form>
                   <div className="image">
-                    <img src={bg1} alt="Axies" />
+                    <img src={bg1} alt="Ticketing" />
                   </div>
                   <div className="image style2">
-                    <img src={bg2} alt="Axies" />
+                    <img src={bg2} alt="Ticketing" />
                   </div>
                 </div>
 
@@ -94,7 +94,7 @@ const EditProfile = () => {
                         <h4 className="title-infor-account">Custom URL</h4>
                         <input
                           type="text"
-                          placeholder="Axies.Trista Francis.com/"
+                          placeholder="Ticketing.Trista Francis.com/"
                           required
                         />
                       </fieldset>

@@ -62,13 +62,13 @@ const PopularCollectionItem = (props) => (
             <Link to="/authors-02">
               <div className="media-images-box">
                 <div className="top-media">
-                  <img src={props.item.imgleft} alt="Axies" />
-                  <img src={props.item.imgright3} alt="Axies" />
+                  <img src={props.item.imgleft} alt="Ticketing" />
+                  <img src={props.item.imgright3} alt="Ticketing" />
                 </div>
                 <div className="bottom-media">
-                  <img src={props.item.imgright1} alt="Axies" />
-                  <img src={props.item.imgright2} alt="Axies" />
-                  <img src={props.item.imgright4} alt="Axies" />
+                  <img src={props.item.imgright1} alt="Ticketing" />
+                  <img src={props.item.imgright2} alt="Ticketing" />
+                  <img src={props.item.imgright4} alt="Ticketing" />
                 </div>
               </div>
             </Link>

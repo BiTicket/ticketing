@@ -534,7 +534,7 @@ const Authors02 = () => {
           <div className="flat-tabs tab-authors">
             <div className="author-profile flex">
               <div className="feature-profile">
-                <img src={avt} alt="Axies" className="avatar" />
+                <img src={avt} alt="Ticketing" className="avatar" />
               </div>
               <div className="infor-profile">
                 <span>Author Profile</span>
@@ -608,7 +608,7 @@ const Authors02 = () => {
                               <div className="sc-card-product explode ">
                                 <div className="card-media">
                                   <Link to="/item-details-01">
-                                    <img src={data.img} alt="Axies" />
+                                    <img src={data.img} alt="Ticketing" />
                                   </Link>
                                   <div className="button-place-bid ">
                                     <button
@@ -638,7 +638,10 @@ const Authors02 = () => {
                                 <div className="meta-info">
                                   <div className="author">
                                     <div className="avatar">
-                                      <img src={data.imgAuthor} alt="Axies" />
+                                      <img
+                                        src={data.imgAuthor}
+                                        alt="Ticketing"
+                                      />
                                     </div>
                                     <div className="info">
                                       <span>Creator</span>

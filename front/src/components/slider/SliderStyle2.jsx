@@ -54,19 +54,19 @@ const SliderStyle2 = () => {
             speed={2000}
           >
             <SwiperSlide>
-              <img src={img1} alt="Axies" />
+              <img src={img1} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img2} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img2} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
           </Swiper>
           <Swiper
@@ -83,19 +83,19 @@ const SliderStyle2 = () => {
             speed={2100}
           >
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img2} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img1} alt="Axies" />
+              <img src={img1} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img1} alt="Axies" />
+              <img src={img1} alt="Ticketing" />
             </SwiperSlide>
           </Swiper>
           <Swiper
@@ -112,19 +112,19 @@ const SliderStyle2 = () => {
             speed={2200}
           >
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img1} alt="Axies" />
+              <img src={img1} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img2} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img1} alt="Axies" />
+              <img src={img1} alt="Ticketing" />
             </SwiperSlide>
           </Swiper>
           <Swiper
@@ -142,19 +142,19 @@ const SliderStyle2 = () => {
             className="end"
           >
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img2} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img3} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img1} alt="Axies" />
+              <img src={img1} alt="Ticketing" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img2} alt="Ticketing" />
             </SwiperSlide>
           </Swiper>
         </div>

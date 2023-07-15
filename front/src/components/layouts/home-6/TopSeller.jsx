@@ -334,7 +334,7 @@ const TopSeller = () => {
 const SliderItem = (props) => (
   <div className="sc-author-box style-2">
     <div className="author-avatar">
-      <img src={props.item.img} alt="Axies" className="avatar" />
+      <img src={props.item.img} alt="Ticketing" className="avatar" />
       <div className="badge"></div>
     </div>
     <div className="author-infor">

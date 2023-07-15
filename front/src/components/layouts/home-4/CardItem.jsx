@@ -18,7 +18,7 @@ const CardItem = () => {
               <div className="cart_item">
                 <div className="inner-cart">
                   <div className="overlay"></div>
-                  <img src={img1} alt="Axies" />
+                  <img src={img1} alt="Ticketing" />
                   <div className="content">
                     <div className="fs-16">
                       <a href="/item-details-01">
@@ -30,7 +30,7 @@ const CardItem = () => {
                 </div>
                 <div className="inner-cart">
                   <div className="overlay"></div>
-                  <img src={img2} alt="Axies" />
+                  <img src={img2} alt="Ticketing" />
                   <div className="content">
                     <div className="fs-16">
                       <a href="/item-details-01">"Hamlet Contemplates ...</a>
@@ -42,7 +42,7 @@ const CardItem = () => {
               <div className="cart_item style2">
                 <div className="inner-cart">
                   <div className="overlay"></div>
-                  <img src={img3} alt="Axies" />
+                  <img src={img3} alt="Ticketing" />
                   <div className="content">
                     <div className="fs-16">
                       <a href="/item-details-01">CYBER ART</a>
@@ -57,7 +57,7 @@ const CardItem = () => {
               <div className="cart_item">
                 <div className="inner-cart">
                   <div className="overlay"></div>
-                  <img src={img4} alt="Axies" />
+                  <img src={img4} alt="Ticketing" />
                   <div className="content">
                     <div className="fs-16">
                       <a href="/item-details-01">"Hamlet Contemplates ...</a>
@@ -67,7 +67,7 @@ const CardItem = () => {
                 </div>
                 <div className="inner-cart">
                   <div className="overlay"></div>
-                  <img src={img5} alt="Axies" />
+                  <img src={img5} alt="Ticketing" />
                   <div className="content">
                     <div className="fs-16">
                       <a href="/item-details-01">"Hamlet Contemplates ...</a>
@@ -79,7 +79,7 @@ const CardItem = () => {
               <div className="cart_item">
                 <div className="inner-cart mg-bt-30">
                   <div className="overlay"></div>
-                  <img src={img6} alt="Axies" />
+                  <img src={img6} alt="Ticketing" />
                   <div className="content">
                     <div className="fs-16">
                       <a href="/item-details-01">"Hamlet Contemplates ...</a>
@@ -89,7 +89,7 @@ const CardItem = () => {
                 </div>
                 <div className="inner-cart">
                   <div className="overlay"></div>
-                  <img src={img7} alt="Axies" />
+                  <img src={img7} alt="Ticketing" />
                   <div className="content">
                     <div className="fs-16">
                       <a href="/item-details-01">"Hamlet Contemplates ...</a>

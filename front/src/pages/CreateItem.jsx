@@ -43,7 +43,7 @@ const CreateItem = () => {
               <div className="sc-card-product">
                 <div className="card-media">
                   <Link to="/item-details-01">
-                    <img src={img1} alt="Axies" />
+                    <img src={img1} alt="Ticketing" />
                   </Link>
                   <Link to="/login" className="wishlist-button heart">
                     <span className="number-like"> 100</span>
@@ -64,7 +64,7 @@ const CreateItem = () => {
                 <div className="meta-info">
                   <div className="author">
                     <div className="avatar">
-                      <img src={avt} alt="Axies" />
+                      <img src={avt} alt="Ticketing" />
                     </div>
                     <div className="info">
                       <span>Owned By</span>

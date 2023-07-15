@@ -77,7 +77,7 @@ const BrowCategory = () => {
                         </div>
                         <div className="card-media">
                           <Link to="/item-details-01">
-                            <img src={item.img} alt="Axies" />
+                            <img src={item.img} alt="Ticketing" />
                           </Link>
                         </div>
                       </div>

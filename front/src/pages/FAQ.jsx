@@ -24,7 +24,7 @@ const FAQ = () => {
     },
     {
       key: "3",
-      title: "What are gas fees on Axies?",
+      title: "What are gas fees on Ticketing?",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
     },
     {

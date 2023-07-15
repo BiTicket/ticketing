@@ -138,14 +138,14 @@ const PopularCollectionItem = (props) => (
           <div className="sc-card-collection style-2 home5">
             <div className="media-images-collection">
               <div className="box-left">
-                <img src={props.item.imgleft} alt="Axies" />
+                <img src={props.item.imgleft} alt="Ticketing" />
               </div>
               <div className="box-right">
                 <div className="top-img">
-                  <img src={props.item.imgright1} alt="Axies" />
+                  <img src={props.item.imgright1} alt="Ticketing" />
                 </div>
                 <div className="bottom-img">
-                  <img src={props.item.imgright2} alt="Axies" />
+                  <img src={props.item.imgright2} alt="Ticketing" />
                 </div>
                 <Link to="/login" className="wishlist-button heart">
                   <span className="number-like">{props.item.wishlist}</span>
@@ -156,7 +156,7 @@ const PopularCollectionItem = (props) => (
               <div className="image">
                 <img
                   src={props.item.imgAuthor}
-                  alt="Axies"
+                  alt="Ticketing"
                   className="avatar"
                 />
                 <div className="badge">

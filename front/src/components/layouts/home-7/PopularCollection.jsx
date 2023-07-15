@@ -100,12 +100,12 @@ const PopularCollection = () => {
             >
               <div className="sc-card-collection style-2 sc-card-style7">
                 <div className="card-media-h7">
-                  <img src={item.imgTop} alt="Axies" />
+                  <img src={item.imgTop} alt="Ticketing" />
                 </div>
                 <div className="card-media-h7 style2">
-                  <img src={item.imgBottom1} alt="Axies" />
-                  <img src={item.imgBottom2} alt="Axies" />
-                  <img src={item.imgBottom3} alt="Axies" />
+                  <img src={item.imgBottom1} alt="Ticketing" />
+                  <img src={item.imgBottom2} alt="Ticketing" />
+                  <img src={item.imgBottom3} alt="Ticketing" />
                 </div>
                 <div className="card-bottom">
                   <div className="author">
@@ -130,7 +130,11 @@ const PopularCollection = () => {
                 </div>
                 <div className="sc-author-box style-2">
                   <div className="author-avatar">
-                    <img src={item.imgAuthor} alt="Axies" className="avatar" />
+                    <img
+                      src={item.imgAuthor}
+                      alt="Ticketing"
+                      className="avatar"
+                    />
                     <div className="badge">
                       <i className="ripple"></i>
                     </div>

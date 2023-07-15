@@ -721,7 +721,7 @@ const ItemContent = () => {
                       <div className="meta-info style">
                         <div className="author">
                           <div className="avatar">
-                            <img src={item.imgAuthor} alt="Axies" />
+                            <img src={item.imgAuthor} alt="Ticketing" />
                           </div>
                           <div className="info">
                             <span>Creator</span>
@@ -739,7 +739,7 @@ const ItemContent = () => {
                       </div>
                       <div className="card-media">
                         <Link to="/item-details-01">
-                          <img src={item.img} alt="Axies" />
+                          <img src={item.img} alt="Ticketing" />
                         </Link>
                         <div className="featured-countdown">
                           <span className="slogan"></span>
@@ -795,7 +795,7 @@ const ItemContent = () => {
                       <div className="wrap-media">
                         <div className="card-media">
                           <Link to="/item-details-01">
-                            <img src={item.img} alt="Axies" />
+                            <img src={item.img} alt="Ticketing" />
                           </Link>
                         </div>
                       </div>
@@ -809,7 +809,7 @@ const ItemContent = () => {
                         <p>Creator</p>
                         <div className="author">
                           <div className="avatar">
-                            <img src={item.imgAuthor} alt="Axies" />
+                            <img src={item.imgAuthor} alt="Ticketing" />
                           </div>
                           <div className="info">
                             <h4>
