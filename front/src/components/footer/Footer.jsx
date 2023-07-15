@@ -6,7 +6,7 @@ const Footer = () => {
   const accountList = [
     {
       title: "Authors",
-      link: "/authors-01",
+      link: "/authors",
     },
     {
       title: "Collection",
@@ -32,21 +32,21 @@ const Footer = () => {
     },
     {
       title: "Item Details",
-      link: "/item-details-01",
+      link: "/item-details",
     },
     {
       title: "Activity",
-      link: "/activity-01",
+      link: "/activity",
     },
   ];
   const companyList = [
     {
       title: "Explore",
-      link: "/explore-01",
+      link: "/explore",
     },
     {
       title: "Contact Us",
-      link: "/contact-01",
+      link: "/contact",
     },
     {
       title: "Our Blog",

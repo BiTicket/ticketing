@@ -139,7 +139,7 @@ const Activity01 = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Activity 1</h1>
+                <h1 className="heading text-center">Activity</h1>
               </div>
               <div className="breadcrumbs style2">
                 <ul>
@@ -149,7 +149,7 @@ const Activity01 = () => {
                   <li>
                     <Link to="#">Activity</Link>
                   </li>
-                  <li>Activity 1</li>
+                  <li>Activity</li>
                 </ul>
               </div>
             </div>
@@ -169,7 +169,7 @@ const Activity01 = () => {
                     <div className="infor">
                       <h3>
                         {" "}
-                        <Link to="/item-details-01">{item.title}</Link>
+                        <Link to="/item-details">{item.title}</Link>
                       </h3>
                       <div className="status">
                         {item.status}{" "}

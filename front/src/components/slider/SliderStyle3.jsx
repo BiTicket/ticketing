@@ -93,7 +93,7 @@ const SliderItem = (props) => (
               <img src={props.item.img} alt="Ticketing" />
               <div className="content">
                 <div className="fs-16">
-                  <Link to="/item-details-01">{props.item.title}</Link>
+                  <Link to="/item-details">{props.item.title}</Link>
                 </div>
                 <p>{props.item.category}</p>
               </div>

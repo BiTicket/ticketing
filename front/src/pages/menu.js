@@ -35,8 +35,8 @@ const menus = [
     namesub: [
       {
         id: 1,
-        sub: "Activity 01",
-        links: "/activity-01",
+        sub: "Activity",
+        links: "/activity",
       }
     ],
   },
@@ -60,7 +60,7 @@ const menus = [
       {
         id: 2,
         sub: "Authors 02",
-        links: "/authors-02",
+        links: "/authors",
       },
       {
         id: 3,
@@ -102,12 +102,12 @@ const menus = [
   {
     id: 7,
     name: "Contact",
-    links: "/contact-01",
+    links: "/contact",
     namesub: [
       {
         id: 2,
         sub: "Contact 2",
-        links: "/contact-02",
+        links: "/contact",
       },
     ],
   },

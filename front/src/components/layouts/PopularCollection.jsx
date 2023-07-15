@@ -73,12 +73,12 @@ const PopularCollectionItem = (props) => (
                 </div>
                 <div className="content">
                   <h4>
-                    <Link to="/authors-01">{props.item.title}</Link>
+                    <Link to="/authors">{props.item.title}</Link>
                   </h4>
                   <div className="infor">
                     <span>Created by</span>
                     <span className="name">
-                      <Link to="/authors-02">{props.item.name}</Link>
+                      <Link to="/authors">{props.item.name}</Link>
                     </span>
                   </div>
                 </div>
@@ -87,7 +87,7 @@ const PopularCollectionItem = (props) => (
                 <span className="number-like"> 100</span>
               </Link>
             </div>
-            <Link to="/authors-02">
+            <Link to="/authors">
               <div className="media-images-collection">
                 <div className="box-left">
                   <img src={props.item.imgleft} alt="ticketing" />

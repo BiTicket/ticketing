@@ -35,7 +35,7 @@ const SliderStyle4 = () => {
               </p>
               <div className="flat-bt-slider flex style2">
                 <Link
-                  to="/explore-01"
+                  to="/explore"
                   className="sc-button header-slider style style-1 rocket fl-button pri-1"
                 >
                   <span>Explore</span>

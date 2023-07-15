@@ -111,12 +111,12 @@ const PopularCollection = () => {
                   <div className="author">
                     <div className="content">
                       <h5>
-                        <Link to="/authors-01">{item.title}</Link>
+                        <Link to="/authors">{item.title}</Link>
                       </h5>
                       <div className="infor">
                         <span>Created by</span>
                         <span className="name">
-                          <Link to="/author-02">{item.name}</Link>
+                          <Link to="/author">{item.name}</Link>
                         </span>
                       </div>
                     </div>

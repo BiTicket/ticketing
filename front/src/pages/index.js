@@ -1,7 +1,7 @@
 import Home from "./Home";
 import Explore from "./Explore";
 import ItemDetails from "./ItemDetails";
-import Activity01 from "./Activity01";
+import Activity from "./Activity";
 import HelpCenter from "./HelpCenter";
 import Authors02 from "./Authors02";
 import WalletConnect from "./WalletConnect";
@@ -17,9 +17,9 @@ const routes = [
   { path: "/", component: <Home /> },
   { path: "/explore", component: <Explore /> },
   { path: "/item-details", component: <ItemDetails /> },
-  { path: "/activity-01", component: <Activity01 /> },
+  { path: "/activity", component: <Activity /> },
   { path: "/help-center", component: <HelpCenter /> },
-  { path: "/authors-02", component: <Authors02 /> },
+  { path: "/authors", component: <Authors02 /> },
   { path: "/wallet-connect", component: <WalletConnect /> },
   { path: "/create-item", component: <CreateItem /> },
   { path: "/edit-profile", component: <EditProfile /> },
@@ -27,7 +27,7 @@ const routes = [
   { path: "/sign-up", component: <SignUp /> },
   { path: "/no-result", component: <NoResult /> },
   { path: "/faq", component: <FAQ /> },
-  { path: "/contact-02", component: <Contact02 /> },
+  { path: "/contact", component: <Contact02 /> },
 ];
 
 export default routes;

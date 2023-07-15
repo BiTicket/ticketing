@@ -607,7 +607,7 @@ const Authors02 = () => {
                             >
                               <div className="sc-card-product explode ">
                                 <div className="card-media">
-                                  <Link to="/item-details-01">
+                                  <Link to="/item-details">
                                     <img src={data.img} alt="Ticketing" />
                                   </Link>
                                   <div className="button-place-bid ">
@@ -630,7 +630,7 @@ const Authors02 = () => {
                                 </div>
                                 <div className="card-title mg-bt-16">
                                   <h5>
-                                    <Link to="/item-details-01">
+                                    <Link to="/item-details">
                                       "{data.title}"
                                     </Link>
                                   </h5>
@@ -647,7 +647,7 @@ const Authors02 = () => {
                                       <span>Creator</span>
                                       <h6>
                                         {" "}
-                                        <Link to="/author-02">
+                                        <Link to="/author">
                                           {data.nameAuthor}
                                         </Link>{" "}
                                       </h6>
@@ -664,7 +664,7 @@ const Authors02 = () => {
                                     </div>
                                   </div>
                                   <Link
-                                    to="/activity-01"
+                                    to="/activity"
                                     className="view-history reload"
                                   >
                                     View History

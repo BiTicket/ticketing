@@ -121,7 +121,7 @@ const ItemDetails02 = () => {
                           <span>Owned By</span>
                           <h6>
                             {" "}
-                            <Link to="/author-02">Ralph Garraway</Link>{" "}
+                            <Link to="/author">Ralph Garraway</Link>{" "}
                           </h6>
                         </div>
                       </div>
@@ -135,7 +135,7 @@ const ItemDetails02 = () => {
                           <span>Create By</span>
                           <h6>
                             {" "}
-                            <Link to="/author-02">Freddie Carpenter</Link>{" "}
+                            <Link to="/author"> Freddie Carpenter</Link>{" "}
                           </h6>
                         </div>
                       </div>
@@ -220,9 +220,7 @@ const ItemDetails02 = () => {
                                     <div className="author-infor">
                                       <div className="name">
                                         <h6>
-                                          <Link to="/author-02">
-                                            {item.name}{" "}
-                                          </Link>
+                                          <Link to="/author">{item.name} </Link>
                                         </h6>{" "}
                                         <span> place a bid</span>
                                       </div>
@@ -259,7 +257,7 @@ const ItemDetails02 = () => {
                                     <div className="name">
                                       <h6>
                                         {" "}
-                                        <Link to="/author-02">
+                                        <Link to="/author">
                                           Mason Woodward{" "}
                                         </Link>
                                       </h6>{" "}

@@ -551,7 +551,7 @@ const TodayPicks = () => {
                         <span>Creator</span>
                         <h6>
                           {" "}
-                          <Link to="/author-02">{item.nameAuthor}</Link>{" "}
+                          <Link to="/author">{item.nameAuthor}</Link>{" "}
                         </h6>
                       </div>
                     </div>
@@ -560,13 +560,13 @@ const TodayPicks = () => {
                     </Link>
                   </div>
                   <div className="card-media">
-                    <Link to="/item-details-01">
+                    <Link to="/item-details">
                       <img src={item.img} alt="Ticketing" />
                     </Link>
                   </div>
                   <div className="card-title">
                     <h5>
-                      <Link to="/item-details-01">"{item.title}</Link>
+                      <Link to="/item-details">"{item.title}</Link>
                     </h5>
                   </div>
                   <div className="meta-info">
@@ -585,7 +585,7 @@ const TodayPicks = () => {
                     >
                       <span>Place Bid</span>
                     </button>
-                    <Link to="/activity-01" className="view-history reload">
+                    <Link to="/activity" className="view-history reload">
                       View History
                     </Link>
                   </div>

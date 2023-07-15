@@ -32,7 +32,7 @@ const SliderStyle2 = () => {
                 <span>Create</span>
               </a>
               <a
-                href="/explore-01"
+                href="/explore"
                 className="sc-button header-slider style style-1 note fl-button pri-1"
               >
                 <span>Explore</span>
