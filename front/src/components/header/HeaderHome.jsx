@@ -6,7 +6,7 @@ import logodark from "../../assets/images/logo/logo_dark.png";
 import avt from "../../assets/images/avatar/avt-2.jpg";
 import coin from "../../assets/images/logo/coin.svg";
 
-const HeaderStyle2 = () => {
+const HeaderHome = () => {
   const { pathname } = useLocation();
 
   const headerRef = useRef(null);
@@ -240,4 +240,4 @@ const HeaderStyle2 = () => {
   );
 };
 
-export default HeaderStyle2;
+export default HeaderHome;
