@@ -11,7 +11,7 @@ import PopularCollection from "../components/layouts/home/PopularCollection";
 
 const Home07 = () => {
   return (
-    <div className="home-7">
+    <div className="home">
       <HeaderStyle2 />
       <SliderStyle4 />
       <LiveAuction />
