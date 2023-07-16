@@ -6,14 +6,63 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import img1 from "../../assets/images/box-item/img_item1.png";
-import img2 from "../../assets/images/box-item/img_item2.png";
-import img3 from "../../assets/images/box-item/img_item3.png";
 import shape1 from "../../assets/images/backgroup-secsion/bg-gradient1.png";
 import shape2 from "../../assets/images/backgroup-secsion/bg-gradient2.png";
 import shape3 from "../../assets/images/backgroup-secsion/bg-gradient3.png";
+import event_01 from "../../assets/images/events/01.jpg";
+import event_02 from "../../assets/images/events/02.jpg";
+import event_03 from "../../assets/images/events/03.jpg";
+import event_04 from "../../assets/images/events/04.jpg";
+import event_05 from "../../assets/images/events/05.jpg";
+import event_06 from "../../assets/images/events/01.jpg";
+import event_07 from "../../assets/images/events/07.jpg";
+import event_08 from "../../assets/images/events/08.jpg";
+import event_09 from "../../assets/images/events/09.jpg";
+import event_10 from "../../assets/images/events/10.jpg";
+import event_11 from "../../assets/images/events/11.jpg";
+import event_12 from "../../assets/images/events/12.jpg";
+import event_13 from "../../assets/images/events/13.jpg";
 
-const SliderStyle4 = () => {
+const Slider = () => {
+  const images = [
+    event_01,
+    event_02,
+    event_03,
+    event_04,
+    event_05,
+    event_06,
+    event_07,
+    event_08,
+    event_09,
+    event_10,
+    event_11,
+    event_12,
+    event_13,
+  ];
+
+  const shuffleArray = (array) => {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  };
+
+  const randomizedImages_1 = shuffleArray([...images]);
+  const randomizedImages_2 = shuffleArray([...images]);
+
   return (
     <div>
       <section className="flat-title-page style3 mainslider">
@@ -23,7 +72,7 @@ const SliderStyle4 = () => {
         <div className="overlay"></div>
         <div className="themesflat-container ">
           <div className="wrap-heading flat-slider flex">
-            <div className="content">
+            <div className="content col-12 col-lg-6">
               <h2 className="heading mt-15">Discover, find,</h2>
               <h1 className="heading mb-style">
                 <span className="tf-text s1">Sell extraordinary</span>
@@ -52,88 +101,39 @@ const SliderStyle4 = () => {
               modules={[Autoplay]}
               direction={"vertical"}
               spaceBetween={25}
-              slidesPerView={5}
+              slidesPerView={13}
               loop
               autoplay={{
                 delay: 1,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
-              speed={2000}
+              speed={1500}
             >
-              <SwiperSlide>
-                <img src={img1} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img2} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img3} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img2} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img3} alt="Ticketing" />
-              </SwiperSlide>
+              {randomizedImages_1.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img src={image} alt="Ticketing" />
+                </SwiperSlide>
+              ))}
             </Swiper>
             <Swiper
               modules={[Autoplay]}
               direction={"vertical"}
               spaceBetween={25}
-              slidesPerView={5}
+              slidesPerView={13}
               loop
               autoplay={{
                 delay: 1,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
-              speed={1800}
+              speed={1000}
             >
-              <SwiperSlide>
-                <img src={img3} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img2} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img3} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img1} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img2} alt="Ticketing" />
-              </SwiperSlide>
-            </Swiper>
-            <Swiper
-              modules={[Autoplay]}
-              direction={"vertical"}
-              spaceBetween={25}
-              slidesPerView={5}
-              loop
-              autoplay={{
-                delay: 1,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              speed={2200}
-            >
-              <SwiperSlide>
-                <img src={img2} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img1} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img3} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img2} alt="Ticketing" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img1} alt="Ticketing" />
-              </SwiperSlide>
+              {randomizedImages_2.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img src={image} alt="Ticketing" />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </div>
@@ -142,4 +142,4 @@ const SliderStyle4 = () => {
   );
 };
 
-export default SliderStyle4;
+export default Slider;

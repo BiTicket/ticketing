@@ -8,15 +8,15 @@ import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 
-const LiveAuction = (props) => {
+const NextEvents = (props) => {
   const data = props.data;
 
   return (
-    <section className="tf-section live-auctions">
+    <section className="tf-section next-eventss">
       <div className="themesflat-container">
         <div className="row">
           <div className="col-md-12">
-            <h2 className="tf-title style4">Top Seller</h2>
+            <h2 className="tf-title style4">Top Sellerrr</h2>
             <p className="tf-sub-title">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
               obcaecati dignissimos quae quo ad iste ipsum officiis deleniti
@@ -58,7 +58,7 @@ const LiveAuction = (props) => {
   );
 };
 
-LiveAuction.propTypes = {
+NextEvents.propTypes = {
   data: PropTypes.array.isRequired,
 };
 
@@ -85,4 +85,4 @@ const TopSellerItem = (props) => (
   </div>
 );
 
-export default LiveAuction;
+export default NextEvents;

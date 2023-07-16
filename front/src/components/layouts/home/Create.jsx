@@ -37,11 +37,11 @@ const Create = () => {
     },
   ];
   return (
-    <section className="tf-box-icon live-auctions tf-section style7 bg-style">
+    <section className="tf-box-icon next-eventss tf-section style7">
       <div className="themesflat-container">
         <div className="row">
           <div className="col-xl-4 col-lg-12 col-md-12">
-            <div className="heading-live-auctions style2 mg-t-3 mg-bt-22">
+            <div className="heading-next-eventss style2 mg-t-3 mg-bt-22">
               <h3 className="heading-fill mg-bt-16">Create Ticket</h3>
               <h2 className="tf-title text-left pb-15">
                 Create And Sell Your Tickets

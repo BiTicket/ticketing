@@ -17,7 +17,7 @@ const TodayPicks = (props) => {
         <div className="themesflat-container">
           <div className="row">
             <div className="col-md-12">
-              <div className="heading-live-auctions mg-bt-21">
+              <div className="heading-next-eventss mg-bt-21">
                 <h2 className="tf-title pad-l-7">Today's Picks</h2>
                 <Link to="/explore" className="exp style2">
                   EXPLORE MORE
@@ -55,7 +55,7 @@ const TodayPicks = (props) => {
                         <span>Owned By</span>
                         <h6>
                           {" "}
-                          <Link to="/authors">{item.nameAuthor}</Link>{" "}
+                          <Link to="/author">{item.nameAuthor}</Link>{" "}
                         </h6>
                       </div>
                     </div>
@@ -69,7 +69,7 @@ const TodayPicks = (props) => {
                       className="sc-button style bag fl-button pri-3 no-bg"
                       onClick={() => setModalShow(true)}
                     >
-                      <span>Place Bid</span>
+                      <span>Buy now</span>
                     </button>
                     <Link to="/activity" className="view-history reload">
                       View History

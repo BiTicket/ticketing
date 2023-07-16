@@ -84,7 +84,7 @@ const CreateItem = () => {
                     to="/wallet-connect"
                     className="sc-button style bag fl-button pri-3"
                   >
-                    <span>Place Bid</span>
+                    <span>Buy now</span>
                   </Link>
                   <Link to="/activity" className="view-history reload">
                     View History

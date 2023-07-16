@@ -10,7 +10,7 @@ import imgCollection1 from "../images/avatar/avt-18.jpg";
 import imgCollection2 from "../images/avatar/avt-16.jpg";
 import imgCollection3 from "../images/avatar/avt-17.jpg";
 
-const liveAuctionData = [
+const nextEventsData = [
   {
     img: img1,
     title: "Hamlet Contemplates Contemplates ",
@@ -181,4 +181,4 @@ const liveAuctionData = [
   },
 ];
 
-export default liveAuctionData;
+export default nextEventsData;

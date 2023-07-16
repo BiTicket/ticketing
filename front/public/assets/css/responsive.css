@@ -48,17 +48,17 @@
     padding: 0 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-left: 50px;
     padding-right: 50px;
   }
 
-  .tab-authors .author-profile .widget-social,
+  .tab-author .author-profile .widget-social,
   .form-create-item {
     padding-left: 0;
   }
 
-  .tab-authors .author-profile .infor-profile .content {
+  .tab-author .author-profile .infor-profile .content {
     padding-right: 0px;
   }
 
@@ -138,18 +138,15 @@
   .widget-social.style-1 ul li {
     margin-bottom: 10px;
   }
-  .home .today-pick .content-inner .sc-card-product {
-    width: calc(25% - 26px);
-  }
   .sc-box-icon-inner.style3 {
     padding-left: 80px;
   }
 }
 @media only screen and (max-width: 1430px) {
-  .authors .react-tabs__tab-list {
+  .author .react-tabs__tab-list {
     padding: 0 2% 0 4.5%;
   }
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     padding-bottom: 6.5%;
   }
 }
@@ -193,9 +190,6 @@
   }
   .table-ranking .th-title .column1 {
     width: 27%;
-  }
-  .flat-title-page.home5 .flat-slider {
-    padding: 80px 0 40px;
   }
   .sc-box-icon-inner.style3 {
     padding-left: 0;
@@ -270,7 +264,7 @@
     transform: translateX(-50%);
   }
 
-  .tab-authors .author-profile .widget-social {
+  .tab-author .author-profile .widget-social {
     flex-direction: row-reverse;
   }
 
@@ -305,12 +299,12 @@
     padding: 0 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-left: 30px;
     padding-right: 30px;
   }
 
-  .tab-authors .menu-tab {
+  .tab-author .menu-tab {
     padding-left: 0;
     padding-right: 0;
   }
@@ -323,7 +317,7 @@
     padding-left: 0 !important;
   }
 
-  .tab-authors .author-profile .widget-social ul {
+  .tab-author .author-profile .widget-social ul {
     margin-left: 15px;
   }
 
@@ -339,7 +333,7 @@
     margin-bottom: 15px;
   }
 
-  .tab-authors .author-profile .widget-social ul li {
+  .tab-author .author-profile .widget-social ul li {
     margin-bottom: 5px;
   }
 
@@ -348,7 +342,7 @@
     margin-bottom: 0;
   }
 
-  .tab-authors .menu-tab {
+  .tab-author .menu-tab {
     justify-content: center;
   }
 
@@ -356,11 +350,6 @@
     width: 100%;
     margin-right: 0;
     margin-bottom: 15px;
-  }
-
-  .mainslider.home3 .image .img-bg {
-    max-width: 50%;
-    right: 15px;
   }
 
   .sc-btn-top .sc-button {
@@ -375,16 +364,13 @@
   .tablet-30 {
     margin-bottom: 30px !important;
   }
-  .home .today-pick .content-inner .sc-card-product {
-    width: calc(33.33% - 26px);
-  }
   .sc-box-icon-inner.style3 {
     padding-top: 40px;
   }
   .sc-explore-2 .react-tabs__tab-panel .sc-card-product {
     width: calc(33.33% - 30px);
   }
-  .authors .react-tabs__tab {
+  .author .react-tabs__tab {
     padding: 2.2% 54px 2.5%;
   }
   .col-box-17 {
@@ -432,17 +418,11 @@
   .tf-soft .soft-left {
     margin-bottom: 20px;
   }
-  .tf-section.live-auctions.style4.home5 {
-    padding: 80px 0 40px;
-  }
   .home .tf-section.top-seller {
     padding: 76px 0 76px;
   }
   .home .flat-title-page.style3 .mainslider.home .wrap-image {
     display: none;
-  }
-  .home .flat-slider .content {
-    width: 100%;
   }
   .home .flat-slider .swiper {
     display: none;
@@ -455,24 +435,6 @@
   }
   .flat-title-page.style3 .heading {
     margin-top: 0;
-  }
-  .flat-title-page.home5 .bg_h5 {
-    height: 100%;
-    object-fit: cover;
-    bottom: auto;
-    top: 0;
-  }
-  .flat-title-page.home5 .flat-slider {
-    padding: 100px 0 40px;
-  }
-  .flat-title-page.home5 .slider-item .wrap-heading .content {
-    width: 100%;
-  }
-  .flat-title-page.home5 .bg_h5 {
-    left: 0;
-  }
-  .flat-title-page.home5 .flat-slider .sub-heading {
-    padding-right: 0;
   }
   .is_dark .main-nav.active {
     background-color: #14141f;
@@ -608,19 +570,8 @@
     right: 60px !important;
   }
 
-  .mainslider.home3 .image .img-bg {
-    top: 20%;
-  }
-  .mainslider.home3 .image {
-    width: 100%;
-  }
-
   .item-style-2 .item .js-countdown {
     margin: 0 auto;
-  }
-  .mainslider.home3 .image,
-  .mainslider.home .image {
-    margin-top: 50px !important;
   }
 
   .tf-item-details.style-2 .content-right .meta-item-details .countdown__value {
@@ -669,7 +620,7 @@
     padding: 70px 0px !important;
   }
 
-  .tf-section.live-auctions.style2 {
+  .tf-section.next-eventss.style2 {
     padding-top: 15px;
   }
 
@@ -683,7 +634,7 @@
     padding: 0 15px;
   }
 
-  .tab-authors .author-profile .feature-profile {
+  .tab-author .author-profile .feature-profile {
     padding-top: 22px;
   }
 
@@ -728,9 +679,9 @@
   .sc-card-product {
     margin-bottom: 30px;
   }
-  .live-auctions .sc-card-product,
-  .live-auctions .sc-card-product,
-  .auctions .live-auctions .sc-card-product {
+  .next-eventss .sc-card-product,
+  .next-eventss .sc-card-product,
+  .auctions .next-eventss .sc-card-product {
     margin-bottom: 30px;
   }
 
@@ -773,7 +724,7 @@
   .sc-explore-2 .react-tabs__tab-panel .sc-card-product {
     width: calc(50% - 30px);
   }
-  .authors .react-tabs__tab {
+  .author .react-tabs__tab {
     padding: 2.2% 33px 2.5%;
   }
 }
@@ -794,21 +745,18 @@
   .sc-card-product .card-bottom .sc-button {
     padding: 10px 25px;
   }
-  .home .today-pick .content-inner .sc-card-product {
-    width: calc(50% - 26px);
-  }
 }
 @media only screen and (max-width: 767px) {
   .form-infor-profile,
   .form-upload-profile .option-profile,
-  .tab-authors .author-profile .widget-social ul,
+  .tab-author .author-profile .widget-social ul,
   .client-infor.sc-card-product,
   .sc-widget.style-1,
   .meta-item-details.style2,
   #site-header-inner .wrap-box.flex,
   .wrap-flex-box .inner-content .meta-post,
   .widget-category .title-wg-category i,
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     display: block !important;
   }
   .col-box-83,
@@ -831,7 +779,7 @@
   .right .mainslider.home .wrap-heading .content .flat-bt-slider.style2 {
     justify-content: center;
   }
-  .authors .react-tabs__tab {
+  .author .react-tabs__tab {
     padding: 4.2% 35px 4.5%;
     width: 100%;
     text-align: center;
@@ -856,15 +804,15 @@
   .tf-section.brow-category {
     padding: 80px 0;
   }
-  .top-seller.home5 .react-tabs__tab-list {
+  .top-seller.home .react-tabs__tab-list {
     top: 60px;
     right: auto;
     left: 15px;
   }
-  .tf-section.top-seller.home5 .react-tabs .content-tab {
+  .tf-section.top-seller.home .react-tabs .content-tab {
     margin-top: 60px;
   }
-  .top-seller.home5 .box-item {
+  .top-seller.home .box-item {
     width: 100%;
   }
   .tf-soft .soft-left {
@@ -891,17 +839,13 @@
     width: 100%;
   }
 
-  .tf-box-icon.tf-section.home3 {
-    padding-top: 70px;
-  }
-
   .modal {
     padding: 0 10px;
   }
   .accordion-item .accordion-button::after {
     right: 0;
   }
-  .tf-section.live-auctions.style2,
+  .tf-section.next-eventss.style2,
   .tf-section,
   .tf-section.our-creater,
   .tf-section.sc-explore-1,
@@ -911,15 +855,13 @@
   .flat-title-page.style2,
   .flat-title-page.style-3,
   .tf-box-icon.tf-section,
-  section.tf-section.live-auctions.home3,
-  .tf-section.live-auctions.style1,
-  .tf-section.live-auctions.style3,
+  .tf-section.next-eventss.style1,
+  .tf-section.next-eventss.style3,
   .tf-section.top-seller,
-  .tf-section.top-seller.home3.s2,
-  .tf-section.live-auctions.pad-b-74 {
+  .tf-section.next-eventss.pad-b-74 {
     padding: 70px 0px;
   }
-  .home .tf-box-icon.tf-section.live-auctions.style7 {
+  .home .tf-box-icon.tf-section.next-eventss.style7 {
     padding: 81px 0 80px;
   }
   .tf-section.tf-item-details,
@@ -965,7 +907,7 @@
     margin-right: 0;
   }
 
-  .tab-authors .author-profile .widget-social .btn-profile,
+  .tab-author .author-profile .widget-social .btn-profile,
   .widget-social.style-3 ul li a {
     margin-left: auto;
   }
@@ -1043,23 +985,22 @@
     display: none;
   }
 
-  .tab-authors .author-profile .avatar {
+  .tab-author .author-profile .avatar {
     position: relative;
   }
 
-  .tab-authors .author-profile .avatar {
+  .tab-author .author-profile .avatar {
     max-width: 50%;
   }
 
   #comments fieldset.name,
   #comments fieldset.email,
   .form-upload-profile .option-profile form,
-  .mainslider.home3 .wrap-heading.flat-slider,
   .client-infor.sc-card-product .meta-info,
   .meta-item-details .item.meta-price,
   .meta-item-details .item.count-down,
-  .tab-authors .author-profile .feature-profile,
-  .tab-authors .author-profile .infor-profile,
+  .tab-author .author-profile .feature-profile,
+  .tab-author .author-profile .infor-profile,
   .box-epxlore .sc-card-product,
   .mainslider.home .image,
   .mainslider.home .wrap-heading .content,
@@ -1091,25 +1032,25 @@
   .flat-form .pad-0-15,
   #comments fieldset.name,
   #comments fieldset.email,
-  .tab-authors .author-profile .feature-profile,
-  .tab-authors .author-profile .widget-social {
+  .tab-author .author-profile .feature-profile,
+  .tab-author .author-profile .widget-social {
     padding: 0 0;
   }
 
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     padding: 30px 15px;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .tab-authors .author-profile .infor-profile {
+  .tab-author .author-profile .infor-profile {
     padding-left: 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-right: 20px;
   }
 
@@ -1141,7 +1082,7 @@
     margin-bottom: 20px !important;
   }
 
-  .tab-authors .author-profile .widget-social .btn-profile,
+  .tab-author .author-profile .widget-social .btn-profile,
   .widget.widget-tag.style-2,
   .meta-post .box:first-child {
     margin-bottom: 15px;
@@ -1182,7 +1123,7 @@
     line-height: 40px;
   }
 
-  .tab-authors .author-profile .widget-social {
+  .tab-author .author-profile .widget-social {
     position: absolute;
     top: 30px;
     right: 15px;
@@ -1199,24 +1140,13 @@
     padding-bottom: 70px !important;
   }
 
-  .tf-section.top-seller.home3.mobie-style {
-    padding-top: 40px !important;
-  }
-
-  .tf-section.top-seller.home3 {
-    padding-top: 70px;
-  }
-
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     padding: 20px;
   }
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     font-size: 15px;
     padding-left: 12px;
     padding-right: 12px;
-  }
-  .home .today-pick .content-inner .sc-card-product {
-    width: 100%;
   }
   .home .sc-box-icon-inner.style3 .sc-box-icon {
     width: 100%;
@@ -1224,7 +1154,7 @@
   .home .sc-card-product {
     margin-bottom: 0;
   }
-  .home .top-seller.home5 .react-tabs__tab-list {
+  .home .top-seller.home .react-tabs__tab-list {
     left: auto;
     top: 60px;
   }
@@ -1244,7 +1174,7 @@
   .flat-accordion2 .accordion-item {
     padding: 20px 30px 4.5px 30px;
   }
-  .authors .react-tabs__tab.react-tabs__tab--selected::after {
+  .author .react-tabs__tab.react-tabs__tab--selected::after {
     display: none;
   }
 
@@ -1286,7 +1216,7 @@
   }
 
   .uploadFile input[type="file"],
-  .tab-authors .menu-tab .tablinks.active::after {
+  .tab-author .menu-tab .tablinks.active::after {
     display: none;
   }
 
@@ -1307,7 +1237,7 @@
     padding: 0 15px;
   }
 
-  .tab-authors .menu-tab {
+  .tab-author .menu-tab {
     padding: 15px;
   }
 
@@ -1334,7 +1264,7 @@
     margin-bottom: 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     text-align: center;
   }
 
@@ -1376,7 +1306,7 @@
   .sc-card-activity .button-active.icon {
     margin: 10px auto 0;
   }
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;

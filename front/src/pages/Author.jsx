@@ -32,7 +32,7 @@ import img8 from "../assets/images/box-item/image-box-11.jpg";
 import imga8 from "../assets/images/avatar/avt-3.jpg";
 import imgCollection8 from "../assets/images/avatar/avt-18.jpg";
 
-const Authors = () => {
+const Author = () => {
   const [menuTab] = useState([
     {
       class: "active",
@@ -504,7 +504,7 @@ const Authors = () => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="authors">
+    <div className="author">
       <Header />
       <section className="flat-title-page inner">
         <div className="overlay"></div>
@@ -529,9 +529,9 @@ const Authors = () => {
           </div>
         </div>
       </section>
-      <section className="tf-section authors">
+      <section className="tf-section author">
         <div className="themesflat-container">
-          <div className="flat-tabs tab-authors">
+          <div className="flat-tabs tab-author">
             <div className="author-profile flex">
               <div className="feature-profile">
                 <img src={avt} alt="Ticketing" className="avatar" />
@@ -615,7 +615,7 @@ const Authors = () => {
                                       onClick={() => setModalShow(true)}
                                       className="sc-button style-place-bid style bag fl-button pri-3"
                                     >
-                                      <span>Place Bid</span>
+                                      <span>Buy now</span>
                                     </button>
                                   </div>
                                   <Link
@@ -700,4 +700,4 @@ const Authors = () => {
   );
 };
 
-export default Authors;
+export default Author;

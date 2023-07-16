@@ -9,87 +9,92 @@ import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 
-import img1 from "../../../assets/images/box-item/image-box-32.jpg";
-import imga1 from "../../../assets/images/avatar/avt-1.jpg";
-import img2 from "../../../assets/images/box-item/image-box-33.jpg";
-import imga2 from "../../../assets/images/avatar/avt-3.jpg";
-import img3 from "../../../assets/images/box-item/image-box-34.jpg";
-import imga3 from "../../../assets/images/avatar/avt-27.jpg";
-import img4 from "../../../assets/images/box-item/image-box-35.jpg";
-import imga4 from "../../../assets/images/avatar/avt-10.jpg";
-import img5 from "../../../assets/images/box-item/image-box-36.jpg";
-import imga5 from "../../../assets/images/avatar/avt-5.jpg";
+import img_01 from "../../../assets/images/events/01.jpg";
+import img_02 from "../../../assets/images/events/02.jpg";
+import img_03 from "../../../assets/images/events/03.jpg";
+import img_04 from "../../../assets/images/events/04.jpg";
+import img_05 from "../../../assets/images/events/05.jpg";
+import img_06 from "../../../assets/images/events/06.jpg";
+import img_07 from "../../../assets/images/events/07.jpg";
+import img_08 from "../../../assets/images/events/08.jpg";
 
-const LiveAuction = () => {
+import img_people_01 from "../../../assets/images/people/01.jpg";
+import img_people_02 from "../../../assets/images/people/02.jpg";
+import img_people_03 from "../../../assets/images/people/03.jpg";
+import img_people_04 from "../../../assets/images/people/04.jpg";
+import img_people_05 from "../../../assets/images/people/05.jpg";
+import img_people_06 from "../../../assets/images/people/06.jpg";
+
+const NextEvents = () => {
   const [data] = useState([
     {
-      img: img1,
+      imgCard: img_01,
+      imgAuthor: img_people_01,
       title: "Flame Dress' by Balmain... ",
-      tags: "bsc",
-      imgAuthor: imga1,
+      tags: "spo",
       nameAuthor: "Tyler Covington",
-      price: "4.89 ETH",
+      price: "1.89 ETH",
       wishlist: "100",
     },
     {
-      img: img2,
+      imgCard: img_02,
+      imgAuthor: img_people_02,
       title: "Hamlet Contemplates Contemplates ",
-      tags: "bsc",
-      imgAuthor: imga2,
+      tags: "con",
       nameAuthor: "Freddie Carpeter",
-      price: "4.89 ETH",
+      price: "4.02 ETH",
       wishlist: "100",
     },
     {
-      img: img3,
+      imgCard: img_03,
+      imgAuthor: img_people_03,
       title: "Loving Vase 01 by Lanza...",
-      tags: "bsc",
-      imgAuthor: imga3,
+      tags: "the",
       nameAuthor: "Tyler Covington",
-      price: "4.89 ETH",
+      price: "3.87 ETH",
       wishlist: "100",
     },
     {
-      img: img4,
+      imgCard: img_04,
+      imgAuthor: img_people_01,
       title: "Triumphant awakening...",
-      tags: "bsc",
-      imgAuthor: imga4,
+      tags: "spo",
       nameAuthor: "Tyler Covington",
       price: "4.89 ETH",
       wishlist: "100",
     },
     {
-      img: img5,
+      imgCard: img_05,
+      imgAuthor: img_people_02,
       title: "Flame Dress' by Balmain...",
-      tags: "bsc",
-      imgAuthor: imga5,
+      tags: "liv",
       nameAuthor: "Tyler Covington",
       price: "4.89 ETH",
       wishlist: "100",
     },
     {
-      img: img1,
+      imgCard: img_06,
+      imgAuthor: img_people_04,
       title: "Flame Dress' by Balmain... ",
-      tags: "bsc",
-      imgAuthor: imga1,
+      tags: "the",
       nameAuthor: "Tyler Covington",
       price: "4.89 ETH",
       wishlist: "100",
     },
     {
-      img: img2,
+      imgCard: img_07,
+      imgAuthor: img_people_05,
       title: "Hamlet Contemplates Contemplates ",
-      tags: "bsc",
-      imgAuthor: imga2,
+      tags: "cir",
       nameAuthor: "Freddie Carpeter",
       price: "4.89 ETH",
       wishlist: "100",
     },
     {
-      img: img3,
+      imgCard: img_08,
+      imgAuthor: img_people_06,
       title: "Loving Vase 01 by Lanza...",
-      tags: "bsc",
-      imgAuthor: imga3,
+      tags: "sho",
       nameAuthor: "Tyler Covington",
       price: "4.89 ETH",
       wishlist: "100",
@@ -99,12 +104,12 @@ const LiveAuction = () => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <Fragment>
-      <section className="tf-section live-auctions">
+      <section className="tf-section next-eventss">
         <div className="themesflat-container">
           <div className="row">
             <div className="col-md-12">
-              <div className="heading-live-auctions">
-                <h2 className="tf-title pb-23">Live Auctions</h2>
+              <div className="heading-next-eventss">
+                <h2 className="tf-title pb-23">Next Events</h2>
                 <Link to="/explore" className="exp style2">
                   EXPLORE MORE
                 </Link>
@@ -165,12 +170,12 @@ const LiveAuction = () => {
                               </div>
                               <div className="card-media">
                                 <Link to="/item-details">
-                                  <img src={item.img} alt="Ticketing" />
+                                  <img src={item.imgCard} alt="Ticketing" />
                                 </Link>
                                 <div className="featured-countdown">
                                   <span className="slogan"></span>
                                   <Countdown date={Date.now() + 500000000}>
-                                    <span>You are good to go!</span>
+                                    <span>Expired!</span>
                                   </Countdown>
                                 </div>
                                 <div className="button-place-bid">
@@ -178,7 +183,7 @@ const LiveAuction = () => {
                                     onClick={() => setModalShow(true)}
                                     className="sc-button style-place-bid style bag fl-button pri-3"
                                   >
-                                    <span>Place Bid</span>
+                                    <span>Buy now</span>
                                   </button>
                                 </div>
                               </div>
@@ -190,7 +195,7 @@ const LiveAuction = () => {
                               <div className="meta-info">
                                 <div className="author">
                                   <div className="info">
-                                    <span>Current Bid</span>
+                                    <span>Price</span>
                                     <span className="pricing">
                                       {item.price}
                                     </span>
@@ -215,4 +220,4 @@ const LiveAuction = () => {
   );
 };
 
-export default LiveAuction;
+export default NextEvents;

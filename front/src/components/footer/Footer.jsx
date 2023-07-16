@@ -5,10 +5,6 @@ import logofooter from "../../assets/images/logo/logo2.png";
 const Footer = () => {
   const accountList = [
     {
-      title: "Authors",
-      link: "/authors",
-    },
-    {
       title: "Collection",
       link: "/wallet-connect",
     },
@@ -25,10 +21,6 @@ const Footer = () => {
     {
       title: "Help & Support",
       link: "/help-center",
-    },
-    {
-      title: "Live Auctions",
-      link: "/live-auctions",
     },
     {
       title: "Item Details",
