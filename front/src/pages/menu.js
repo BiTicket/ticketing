@@ -46,6 +46,16 @@ const menus = [
     links: "#",
     namesub: [
       {
+        id: 1,
+        sub: "Author",
+        links: "/author",
+      },
+      {
+        id: 2,
+        sub: "My Profile",
+        links: "/my-profile",
+      },
+      {
         id: 3,
         sub: "Help Center",
         links: "/help-center",

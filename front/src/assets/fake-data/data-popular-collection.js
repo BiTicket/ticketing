@@ -61,7 +61,7 @@ const popularCollectionData = [
   {
     title: "Modern Art Collection",
     imgAuthor: imgAuthor3,
-    name: "Freddie Carpenter",
+    name: "Kurt Cobain",
     imgleft: img3left,
     imgright1: img3right1,
     imgright2: img3right2,
@@ -100,7 +100,7 @@ const popularCollectionData = [
   {
     title: "Modern Art Collection",
     imgAuthor: imgAuthor3,
-    name: "Freddie Carpenter",
+    name: "Kurt Cobain",
     imgleft: img6left,
     imgright1: img6right1,
     imgright2: img6right2,
@@ -139,7 +139,7 @@ const popularCollectionData = [
   {
     title: "Modern Art Collection",
     imgAuthor: imgAuthor3,
-    name: "Freddie Carpenter",
+    name: "Kurt Cobain",
     imgleft: img3left,
     imgright1: img3right1,
     imgright2: img3right2,
@@ -178,7 +178,7 @@ const popularCollectionData = [
   {
     title: "Modern Art Collection",
     imgAuthor: imgAuthor3,
-    name: "Freddie Carpenter",
+    name: "Kurt Cobain",
     imgleft: img6left,
     imgright1: img6right1,
     imgright2: img6right2,

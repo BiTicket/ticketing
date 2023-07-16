@@ -133,7 +133,7 @@ const ItemDetails02 = () => {
                         <span>Created By</span>
                         <h6>
                           {" "}
-                          <Link to="/author"> Freddie Carpenter</Link>{" "}
+                          <Link to="/author"> Kurt Cobain</Link>{" "}
                         </h6>
                       </div>
                     </div>

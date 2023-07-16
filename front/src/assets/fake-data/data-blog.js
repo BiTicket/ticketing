@@ -15,7 +15,7 @@ const blogData = [
     img: img1,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga1,
-    nameAuthor: "SalvadorDali",
+    nameAuthor: "FIFA",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -24,7 +24,7 @@ const blogData = [
     img: img2,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga2,
-    nameAuthor: "Tyler Covington",
+    nameAuthor: "Travis Pastrana",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -33,7 +33,7 @@ const blogData = [
     img: img3,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga3,
-    nameAuthor: "Freddie Carpenter",
+    nameAuthor: "Kurt Cobain",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -42,7 +42,7 @@ const blogData = [
     img: img4,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga4,
-    nameAuthor: "SalvadorDali",
+    nameAuthor: "FIFA",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -51,7 +51,7 @@ const blogData = [
     img: img5,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga5,
-    nameAuthor: "Tyler Covington",
+    nameAuthor: "Travis Pastrana",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -60,7 +60,7 @@ const blogData = [
     img: img6,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga6,
-    nameAuthor: "Freddie Carpenter",
+    nameAuthor: "Kurt Cobain",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -69,7 +69,7 @@ const blogData = [
     img: img1,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga1,
-    nameAuthor: "SalvadorDali",
+    nameAuthor: "FIFA",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -78,7 +78,7 @@ const blogData = [
     img: img2,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga2,
-    nameAuthor: "Tyler Covington",
+    nameAuthor: "Travis Pastrana",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -87,7 +87,7 @@ const blogData = [
     img: img3,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga3,
-    nameAuthor: "Freddie Carpenter",
+    nameAuthor: "Kurt Cobain",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -96,7 +96,7 @@ const blogData = [
     img: img4,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga4,
-    nameAuthor: "SalvadorDali",
+    nameAuthor: "FIFA",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -105,7 +105,7 @@ const blogData = [
     img: img5,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga5,
-    nameAuthor: "Tyler Covington",
+    nameAuthor: "Travis Pastrana",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",
@@ -114,7 +114,7 @@ const blogData = [
     img: img6,
     title: "The Next Big Trend In Crypto",
     imgAuthor: imga6,
-    nameAuthor: "Freddie Carpenter",
+    nameAuthor: "Kurt Cobain",
     time: "Feb 19, 2021",
     content:
       "Dolore officia sint incididunt non excepteur ea mollit commodo ut enim reprehenderit cupidatat labore ad laborum consectetur consequat...",

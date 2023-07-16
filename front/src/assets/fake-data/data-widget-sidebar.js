@@ -36,7 +36,7 @@ const widgetSidebarData = [
         field: "Trading  Cards",
       },
       {
-        field: "Collectibles",
+        field: "Family",
         checked: "checked",
       },
       {

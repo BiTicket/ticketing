@@ -65,17 +65,13 @@ const EditProfile = () => {
                       <h4 className="title-create-item">Account info</h4>
                       <fieldset>
                         <h4 className="title-infor-account">Display name</h4>
-                        <input
-                          type="text"
-                          placeholder="Trista Francis"
-                          required
-                        />
+                        <input type="text" placeholder="Bon Jovi" required />
                       </fieldset>
                       <fieldset>
                         <h4 className="title-infor-account">Custom URL</h4>
                         <input
                           type="text"
-                          placeholder="Ticketing.Trista Francis.com/"
+                          placeholder="Ticketing.Bon Jovi.com/"
                           required
                         />
                       </fieldset>

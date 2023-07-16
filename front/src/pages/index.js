@@ -12,6 +12,7 @@ import SignUp from "./SignUp";
 import NoResult from "./NoResult";
 import FAQ from "./FAQ";
 import Contact from "./Contact";
+import MyProfile from "./MyProfile";
 
 const routes = [
   { path: "/", component: <Home /> },
@@ -20,6 +21,7 @@ const routes = [
   { path: "/activity", component: <Activity /> },
   { path: "/help-center", component: <HelpCenter /> },
   { path: "/author", component: <Author /> },
+  { path: "/my-profile", component: <MyProfile /> },
   { path: "/wallet-connect", component: <WalletConnect /> },
   { path: "/create-item", component: <CreateItem /> },
   { path: "/edit-profile", component: <EditProfile /> },
