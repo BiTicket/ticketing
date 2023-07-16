@@ -58,11 +58,6 @@ const menus = [
     links: "#",
     namesub: [
       {
-        id: 2,
-        sub: "Authors",
-        links: "/authors",
-      },
-      {
         id: 3,
         sub: "Wallet Connect",
         links: "/wallet-connect",

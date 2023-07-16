@@ -3006,7 +3006,7 @@ section.today-picks {
 }
 
 .sc-explore-2 .react-tabs__tab-panel--selected,
-.authors .react-tabs__tab-panel--selected {
+.author .react-tabs__tab-panel--selected {
   display: flex;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3356,8 +3356,8 @@ section.today-picks {
 }
 
 /* author-tab -----------------------------------------*/
-.tab-authors .author-profile {
-  background: url("../images/item-background/bg-authors.jpg") no-repeat center;
+.tab-author .author-profile {
+  background: url("../images/item-background/bg-author.jpg") no-repeat center;
   background-size: cover;
   -webkit-border-radius: 12px 12px 0 0;
   -ms-border-radius: 12px 12px 0 0;
@@ -3368,8 +3368,8 @@ section.today-picks {
   position: relative;
 }
 
-.is_dark .tab-authors .author-profile {
-  background: url("../images/item-background/bg-authors2.jpg") no-repeat center;
+.is_dark .tab-author .author-profile {
+  background: url("../images/item-background/bg-author2.jpg") no-repeat center;
   background-size: cover;
   -webkit-border-radius: 12px 12px 0 0;
   -ms-border-radius: 12px 12px 0 0;
@@ -3379,7 +3379,7 @@ section.today-picks {
   position: relative;
 }
 
-.tab-authors .author-profile .avatar {
+.tab-author .author-profile .avatar {
   -webkit-border-radius: 21px;
   -ms-border-radius: 21px;
   -o-border-radius: 21px;
@@ -3388,28 +3388,28 @@ section.today-picks {
   position: absolute;
 }
 
-.tab-authors .author-profile .infor-profile {
+.tab-author .author-profile .infor-profile {
   width: 54.2%;
   padding-top: 22px;
   padding-left: 38px;
 }
 
-.tab-authors .author-profile .feature-profile {
+.tab-author .author-profile .feature-profile {
   width: 20.8%;
   position: relative;
 }
 
-.tab-authors .author-profile .infor-profile .title {
+.tab-author .author-profile .infor-profile .title {
   color: #fff;
   margin: 6px 0 12px 0;
 }
 
-.tab-authors .author-profile .infor-profile form {
+.tab-author .author-profile .infor-profile form {
   position: relative;
   width: 190px;
 }
 
-.tab-authors .author-profile .widget-social {
+.tab-author .author-profile .widget-social {
   width: 25%;
   padding-top: 20px;
   padding-left: 9px;
@@ -3421,18 +3421,18 @@ section.today-picks {
   justify-content: space-between;
 }
 
-.tab-authors .author-profile .widget-social ul,
-.tab-authors .author-profile .widget-social .btn-profile {
+.tab-author .author-profile .widget-social ul,
+.tab-author .author-profile .widget-social .btn-profile {
   float: right;
 }
 
-.tab-authors .author-profile .infor-profile span {
+.tab-author .author-profile .infor-profile span {
   color: #ebebeb;
   font-size: 18px;
   line-height: 28px;
 }
 
-.tab-authors .author-profile .infor-profile .content {
+.tab-author .author-profile .infor-profile .content {
   color: #f8f8f8;
   font-size: 14px;
   line-height: 22px;
@@ -3440,7 +3440,7 @@ section.today-picks {
   margin-bottom: 22px;
 }
 
-.tab-authors .author-profile .infor-profile input {
+.tab-author .author-profile .infor-profile input {
   width: 190px;
   height: 36px;
   font-size: 13px;
@@ -3457,7 +3457,7 @@ section.today-picks {
   background-color: #f8f8f8;
 }
 
-.tab-authors .author-profile .infor-profile button {
+.tab-author .author-profile .infor-profile button {
   position: absolute;
   background: transparent;
   border: none;
@@ -3466,25 +3466,25 @@ section.today-picks {
   color: #7a798a;
 }
 
-.tab-authors .author-profile .infor-profile button:hover {
+.tab-author .author-profile .infor-profile button:hover {
   color: #5142fc;
 }
 
-.tab-authors .author-profile .btn-profile a.sc-button {
+.tab-author .author-profile .btn-profile a.sc-button {
   font-size: 13px;
   letter-spacing: 0.7px;
   padding: 12px 27px;
   border: 1.5px solid #fff;
 }
 
-.tab-authors .author-profile .btn-profile a.sc-button:hover {
+.tab-author .author-profile .btn-profile a.sc-button:hover {
   color: #fff;
   background-color: #5142fc;
   border: 1.5px solid #5142fc;
 }
 
 /* title */
-.authors .react-tabs__tab-list {
+.author .react-tabs__tab-list {
   padding: 0 2% 0 24.5%;
   -webkit-border-radius: 0 0 12px 12px;
   -ms-border-radius: 0 0 12px 12px;
@@ -3495,20 +3495,20 @@ section.today-picks {
   border: none;
 }
 
-.authors .react-tabs__tab {
+.author .react-tabs__tab {
   font-size: 20px;
   line-height: 26px;
   font-weight: 700;
   padding: 2.2% 67px 2.5%;
 }
 
-.authors .react-tabs__tab.react-tabs__tab--selected {
+.author .react-tabs__tab.react-tabs__tab--selected {
   color: var(--primary-color3);
   position: relative;
   background: transparent;
   border: none;
 }
-.authors .react-tabs__tab.react-tabs__tab--selected::after {
+.author .react-tabs__tab.react-tabs__tab--selected::after {
   content: "";
   position: absolute;
   bottom: -7.5px;
@@ -3519,25 +3519,25 @@ section.today-picks {
   background-color: var(--bg-section);
   margin: 0 -7.5px;
 }
-.authors .react-tabs__tab:focus {
+.author .react-tabs__tab:focus {
   box-shadow: none;
   border: none;
 }
 
 /* content */
-.tab-authors .content-tab {
+.tab-author .content-tab {
   margin-top: 60px;
 }
 
-.tab-authors .content-tab .card-media {
+.tab-author .content-tab .card-media {
   margin-bottom: 21px;
 }
 
-.tab-authors .content-tab .card-title {
+.tab-author .content-tab .card-title {
   margin-bottom: 18px;
 }
 
-.tab-authors .content-tab .sc-card-product.explode {
+.tab-author .content-tab .sc-card-product.explode {
   padding-bottom: 14px;
 }
 

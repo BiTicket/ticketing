@@ -5,10 +5,6 @@ import logofooter from "../../assets/images/logo/logo2.png";
 const Footer = () => {
   const accountList = [
     {
-      title: "Authors",
-      link: "/authors",
-    },
-    {
       title: "Collection",
       link: "/wallet-connect",
     },

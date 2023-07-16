@@ -178,7 +178,7 @@ const NextEvents = () => {
                                     onClick={() => setModalShow(true)}
                                     className="sc-button style-place-bid style bag fl-button pri-3"
                                   >
-                                    <span>Place Bid</span>
+                                    <span>Buy now</span>
                                   </button>
                                 </div>
                               </div>

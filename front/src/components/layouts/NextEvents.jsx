@@ -80,7 +80,7 @@ const NextEvents = (props) => {
                                     onClick={() => setModalShow(true)}
                                     className="sc-button style-place-bid style bag fl-button pri-3"
                                   >
-                                    <span>Place Bid</span>
+                                    <span>Buy now</span>
                                   </button>
                                 </div>
                               </div>
@@ -99,7 +99,7 @@ const NextEvents = (props) => {
                                     <span>Creator</span>
                                     <h6>
                                       {" "}
-                                      <Link to="/authors">
+                                      <Link to="/author">
                                         {item.nameAuthor}
                                       </Link>{" "}
                                     </h6>

@@ -67,7 +67,7 @@ const TopSellerItem = (props) => (
             </div>
             <div className="author-infor">
               <h5>
-                <Link to="/authors">{props.item.name}</Link>
+                <Link to="/author">{props.item.name}</Link>
               </h5>
               <span className="price">{props.item.price}</span>
             </div>

@@ -55,7 +55,7 @@ const TodayPicks = (props) => {
                         <span>Owned By</span>
                         <h6>
                           {" "}
-                          <Link to="/authors">{item.nameAuthor}</Link>{" "}
+                          <Link to="/author">{item.nameAuthor}</Link>{" "}
                         </h6>
                       </div>
                     </div>
@@ -69,7 +69,7 @@ const TodayPicks = (props) => {
                       className="sc-button style bag fl-button pri-3 no-bg"
                       onClick={() => setModalShow(true)}
                     >
-                      <span>Place Bid</span>
+                      <span>Buy now</span>
                     </button>
                     <Link to="/activity" className="view-history reload">
                       View History

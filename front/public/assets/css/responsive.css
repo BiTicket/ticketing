@@ -48,17 +48,17 @@
     padding: 0 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-left: 50px;
     padding-right: 50px;
   }
 
-  .tab-authors .author-profile .widget-social,
+  .tab-author .author-profile .widget-social,
   .form-create-item {
     padding-left: 0;
   }
 
-  .tab-authors .author-profile .infor-profile .content {
+  .tab-author .author-profile .infor-profile .content {
     padding-right: 0px;
   }
 
@@ -146,10 +146,10 @@
   }
 }
 @media only screen and (max-width: 1430px) {
-  .authors .react-tabs__tab-list {
+  .author .react-tabs__tab-list {
     padding: 0 2% 0 4.5%;
   }
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     padding-bottom: 6.5%;
   }
 }
@@ -267,7 +267,7 @@
     transform: translateX(-50%);
   }
 
-  .tab-authors .author-profile .widget-social {
+  .tab-author .author-profile .widget-social {
     flex-direction: row-reverse;
   }
 
@@ -302,12 +302,12 @@
     padding: 0 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-left: 30px;
     padding-right: 30px;
   }
 
-  .tab-authors .menu-tab {
+  .tab-author .menu-tab {
     padding-left: 0;
     padding-right: 0;
   }
@@ -320,7 +320,7 @@
     padding-left: 0 !important;
   }
 
-  .tab-authors .author-profile .widget-social ul {
+  .tab-author .author-profile .widget-social ul {
     margin-left: 15px;
   }
 
@@ -336,7 +336,7 @@
     margin-bottom: 15px;
   }
 
-  .tab-authors .author-profile .widget-social ul li {
+  .tab-author .author-profile .widget-social ul li {
     margin-bottom: 5px;
   }
 
@@ -345,7 +345,7 @@
     margin-bottom: 0;
   }
 
-  .tab-authors .menu-tab {
+  .tab-author .menu-tab {
     justify-content: center;
   }
 
@@ -376,7 +376,7 @@
   .sc-explore-2 .react-tabs__tab-panel .sc-card-product {
     width: calc(33.33% - 30px);
   }
-  .authors .react-tabs__tab {
+  .author .react-tabs__tab {
     padding: 2.2% 54px 2.5%;
   }
   .col-box-17 {
@@ -640,7 +640,7 @@
     padding: 0 15px;
   }
 
-  .tab-authors .author-profile .feature-profile {
+  .tab-author .author-profile .feature-profile {
     padding-top: 22px;
   }
 
@@ -730,7 +730,7 @@
   .sc-explore-2 .react-tabs__tab-panel .sc-card-product {
     width: calc(50% - 30px);
   }
-  .authors .react-tabs__tab {
+  .author .react-tabs__tab {
     padding: 2.2% 33px 2.5%;
   }
 }
@@ -758,14 +758,14 @@
 @media only screen and (max-width: 767px) {
   .form-infor-profile,
   .form-upload-profile .option-profile,
-  .tab-authors .author-profile .widget-social ul,
+  .tab-author .author-profile .widget-social ul,
   .client-infor.sc-card-product,
   .sc-widget.style-1,
   .meta-item-details.style2,
   #site-header-inner .wrap-box.flex,
   .wrap-flex-box .inner-content .meta-post,
   .widget-category .title-wg-category i,
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     display: block !important;
   }
   .col-box-83,
@@ -788,7 +788,7 @@
   .right .mainslider.home .wrap-heading .content .flat-bt-slider.style2 {
     justify-content: center;
   }
-  .authors .react-tabs__tab {
+  .author .react-tabs__tab {
     padding: 4.2% 35px 4.5%;
     width: 100%;
     text-align: center;
@@ -916,7 +916,7 @@
     margin-right: 0;
   }
 
-  .tab-authors .author-profile .widget-social .btn-profile,
+  .tab-author .author-profile .widget-social .btn-profile,
   .widget-social.style-3 ul li a {
     margin-left: auto;
   }
@@ -994,11 +994,11 @@
     display: none;
   }
 
-  .tab-authors .author-profile .avatar {
+  .tab-author .author-profile .avatar {
     position: relative;
   }
 
-  .tab-authors .author-profile .avatar {
+  .tab-author .author-profile .avatar {
     max-width: 50%;
   }
 
@@ -1008,8 +1008,8 @@
   .client-infor.sc-card-product .meta-info,
   .meta-item-details .item.meta-price,
   .meta-item-details .item.count-down,
-  .tab-authors .author-profile .feature-profile,
-  .tab-authors .author-profile .infor-profile,
+  .tab-author .author-profile .feature-profile,
+  .tab-author .author-profile .infor-profile,
   .box-epxlore .sc-card-product,
   .mainslider.home .image,
   .mainslider.home .wrap-heading .content,
@@ -1041,25 +1041,25 @@
   .flat-form .pad-0-15,
   #comments fieldset.name,
   #comments fieldset.email,
-  .tab-authors .author-profile .feature-profile,
-  .tab-authors .author-profile .widget-social {
+  .tab-author .author-profile .feature-profile,
+  .tab-author .author-profile .widget-social {
     padding: 0 0;
   }
 
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     padding: 30px 15px;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .tab-authors .author-profile .infor-profile {
+  .tab-author .author-profile .infor-profile {
     padding-left: 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     padding-right: 20px;
   }
 
@@ -1091,7 +1091,7 @@
     margin-bottom: 20px !important;
   }
 
-  .tab-authors .author-profile .widget-social .btn-profile,
+  .tab-author .author-profile .widget-social .btn-profile,
   .widget.widget-tag.style-2,
   .meta-post .box:first-child {
     margin-bottom: 15px;
@@ -1132,7 +1132,7 @@
     line-height: 40px;
   }
 
-  .tab-authors .author-profile .widget-social {
+  .tab-author .author-profile .widget-social {
     position: absolute;
     top: 30px;
     right: 15px;
@@ -1149,10 +1149,10 @@
     padding-bottom: 70px !important;
   }
 
-  .tab-authors .author-profile {
+  .tab-author .author-profile {
     padding: 20px;
   }
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     font-size: 15px;
     padding-left: 12px;
     padding-right: 12px;
@@ -1186,7 +1186,7 @@
   .flat-accordion2 .accordion-item {
     padding: 20px 30px 4.5px 30px;
   }
-  .authors .react-tabs__tab.react-tabs__tab--selected::after {
+  .author .react-tabs__tab.react-tabs__tab--selected::after {
     display: none;
   }
 
@@ -1228,7 +1228,7 @@
   }
 
   .uploadFile input[type="file"],
-  .tab-authors .menu-tab .tablinks.active::after {
+  .tab-author .menu-tab .tablinks.active::after {
     display: none;
   }
 
@@ -1249,7 +1249,7 @@
     padding: 0 15px;
   }
 
-  .tab-authors .menu-tab {
+  .tab-author .menu-tab {
     padding: 15px;
   }
 
@@ -1276,7 +1276,7 @@
     margin-bottom: 0;
   }
 
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     text-align: center;
   }
 
@@ -1318,7 +1318,7 @@
   .sc-card-activity .button-active.icon {
     margin: 10px auto 0;
   }
-  .tab-authors .menu-tab .tablinks {
+  .tab-author .menu-tab .tablinks {
     font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
