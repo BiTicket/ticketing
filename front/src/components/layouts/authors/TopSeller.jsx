@@ -16,7 +16,7 @@ const NextEvents = (props) => {
       <div className="themesflat-container">
         <div className="row">
           <div className="col-md-12">
-            <h2 className="tf-title style4">Top Seller</h2>
+            <h2 className="tf-title style4">Top Sellerrr</h2>
             <p className="tf-sub-title">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
               obcaecati dignissimos quae quo ad iste ipsum officiis deleniti
