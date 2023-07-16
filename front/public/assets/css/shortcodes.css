@@ -2214,8 +2214,7 @@
 }
 
 .seller .swiper-pagination-bullet,
-.live-auctions .swiper-pagination-bullet,
-.flat-cart-item.home6 .swiper-pagination-bullet {
+.live-auctions .swiper-pagination-bullet {
   border: 1px solid var(--primary-color6);
   background: transparent;
   width: 8px;
@@ -2232,8 +2231,7 @@
 
 .seller-slider .swiper-pagination-bullet.swiper-pagination-bullet-active,
 .live-auctions .swiper-pagination-bullet.swiper-pagination-bullet-active,
-.flat-cart-item.home6
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
   position: relative;
   background: var(--primary-color6);
 }
@@ -2241,8 +2239,6 @@
 .seller-slider
   .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
 .live-auctions
-  .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
-.flat-cart-item.home6
   .swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -5953,10 +5949,6 @@ button.accordion-button {
 /* Home 6 Update
 -------------------------------------------------------------- */
 
-.flat-cart-item.home6 .themesflat-container {
-  width: 1812px;
-}
-
 .wrap-cart .cart_item.style2.style3 {
   width: calc(100% - 30px);
   margin-left: 30px;
@@ -6048,14 +6040,6 @@ button.accordion-button {
   margin-top: -90px;
 }
 
-.tf-section.top-seller.home6 {
-  padding: 80px 0 40px;
-}
-
-.tf-section.live-auctions.style4.home6 {
-  padding: 80px 0 80px;
-}
-
 .sc-card-collection.style-2 .card-media-h6 {
   border-radius: 12px;
   overflow: hidden;
@@ -6068,26 +6052,6 @@ button.accordion-button {
 
 .sc-card-collection.style-2 {
   border-radius: 20px;
-}
-
-.tf-box-icon.live-auctions.style1.home6 {
-  padding: 78px 0 79px;
-}
-
-.home6 .sc-box-icon-inner.style2 .sc-box-icon .image {
-  margin-bottom: 25px;
-}
-
-.flat-cart-item.home6
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: #fff;
-  border-color: #fff;
-}
-.flat-cart-item.home6 .seller .swiper-pagination-bullet,
-.flat-cart-item.home6 .swiper-pagination-bullet,
-.flat-cart-item.home6
-  .swiper-pagination-bullet.swiper-pagination-bullet-active::before {
-  border-color: #fff;
 }
 
 /* Home 7 Update
