@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import avt from "../assets/images/people/profile.jpg";
-import bg1 from "../assets/images/backgroup-secsion/option1_bg_profile.jpg";
-import bg2 from "../assets/images/backgroup-secsion/option2_bg_profile.jpg";
 
 const EditProfile = () => {
   return (

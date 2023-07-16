@@ -74,7 +74,7 @@ const menus = [
       },
       {
         id: 4,
-        sub: "Create Item",
+        sub: "Create Event",
         links: "/create-item",
       },
       {
