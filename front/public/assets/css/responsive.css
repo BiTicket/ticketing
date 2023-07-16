@@ -194,9 +194,6 @@
   .table-ranking .th-title .column1 {
     width: 27%;
   }
-  .flat-title-page.home5 .flat-slider {
-    padding: 80px 0 40px;
-  }
   .sc-box-icon-inner.style3 {
     padding-left: 0;
   }
@@ -427,9 +424,6 @@
   .tf-soft .soft-left {
     margin-bottom: 20px;
   }
-  .tf-section.live-auctions.style4.home5 {
-    padding: 80px 0 40px;
-  }
   .home .tf-section.top-seller {
     padding: 76px 0 76px;
   }
@@ -447,24 +441,6 @@
   }
   .flat-title-page.style3 .heading {
     margin-top: 0;
-  }
-  .flat-title-page.home5 .bg_h5 {
-    height: 100%;
-    object-fit: cover;
-    bottom: auto;
-    top: 0;
-  }
-  .flat-title-page.home5 .flat-slider {
-    padding: 100px 0 40px;
-  }
-  .flat-title-page.home5 .slider-item .wrap-heading .content {
-    width: 100%;
-  }
-  .flat-title-page.home5 .bg_h5 {
-    left: 0;
-  }
-  .flat-title-page.home5 .flat-slider .sub-heading {
-    padding-right: 0;
   }
   .is_dark .main-nav.active {
     background-color: #14141f;
