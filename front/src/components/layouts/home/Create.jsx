@@ -37,7 +37,7 @@ const Create = () => {
     },
   ];
   return (
-    <section className="tf-box-icon next-eventss tf-section style7 bg-style">
+    <section className="tf-box-icon next-eventss tf-section style7">
       <div className="themesflat-container">
         <div className="row">
           <div className="col-xl-4 col-lg-12 col-md-12">

@@ -3,7 +3,7 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Link } from "react-router-dom";
 import CardModal from "../components/layouts/CardModal";
-import PopularCollection from "../components/layouts/home/PopularCollection";
+import PopularCollection from "../components/layouts/PopularCollection";
 
 const NoResult = () => {
   const [modalShow, setModalShow] = useState(false);

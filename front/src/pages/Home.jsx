@@ -6,7 +6,6 @@ import NextEvents from "../components/layouts/home/NextEvents";
 import TopSeller from "../components/layouts/home/TopSeller";
 import Slider from "../components/slider/Slider";
 import Create from "../components/layouts/home/Create";
-import PopularCollection from "../components/layouts/home/PopularCollection";
 
 const Home = () => {
   useEffect(() => {
@@ -39,7 +38,6 @@ const Home = () => {
       <Category />
       <TopSeller />
       <Create />
-      <PopularCollection />
       <Footer />
     </div>
   );

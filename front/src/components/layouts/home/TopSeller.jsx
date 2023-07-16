@@ -107,76 +107,71 @@ const TopSeller = () => {
   ];
 
   return (
-    <div>
-      <section className="tf-section top-seller home bg-style">
-        <div className="themesflat-container">
-          <div className="row">
-            <div className="col-xl-12 col-lg-12">
-              <div className="heading-next-eventss">
-                <h2 className="tf-title pb-16">Top Sellers</h2>
-                <a href="/explore" className="exp style2 see-all">
-                  SEE ALL
-                </a>
-              </div>
-              <div className="flat-tabs seller-tab">
-                <Tabs>
-                  <TabList>
-                    {dataTopSellerTab.map((item, index) => (
-                      <Tab key={index}>{item.title}</Tab>
-                    ))}
-                  </TabList>
+    <section className="tf-section top-seller home bg-style">
+      <div className="themesflat-container">
+        <div className="row">
+          <div className="col-xl-12 col-lg-12">
+            <div className="heading-next-eventss">
+              <h2 className="tf-title pb-16">Top Sellers</h2>
+              <a href="/explore" className="exp style2 see-all">
+                SEE ALL
+              </a>
+            </div>
+            <div className="flat-tabs seller-tab">
+              <Tabs>
+                <TabList>
+                  {dataTopSellerTab.map((item, index) => (
+                    <Tab key={index}>{item.title}</Tab>
+                  ))}
+                </TabList>
 
-                  <div className="content-tab mg-t-24">
-                    {dataTopSellerPanel.map((item) => (
-                      <TabPanel key={item.id}>
-                        {item.dataTopSellerContent.map((item, index) => (
-                          <div
-                            key={index}
-                            className="col-xl-3 col-lg-4 col-md-6"
-                          >
-                            <div className="box-item">
-                              <div className="sc-author-box style-3">
-                                <div className="author-style2 flex">
-                                  <div className="author-avatar">
-                                    <Link to="#">
-                                      <img
-                                        src={item.img}
-                                        alt="Ticketing"
-                                        className="avatar"
-                                      />
-                                    </Link>
-                                    <div className="badge">
-                                      <i className="ripple"></i>
-                                    </div>
-                                  </div>
-                                  <div className="author-infor">
-                                    <h5>
-                                      <Link to="#">{item.name}</Link>
-                                    </h5>
-                                    <div className="tag">{item.mail}</div>
-                                    <span className="price">{item.price}</span>
+                <div className="content-tab mg-t-24">
+                  {dataTopSellerPanel.map((item) => (
+                    <TabPanel key={item.id}>
+                      {item.dataTopSellerContent.map((item, index) => (
+                        <div key={index} className="col-xl-3 col-lg-4 col-md-6">
+                          <div className="box-item">
+                            <div className="sc-author-box style-3">
+                              <div className="author-style2 flex">
+                                <div className="author-avatar">
+                                  <Link to="#">
+                                    <img
+                                      src={item.img}
+                                      alt="Ticketing"
+                                      className="avatar"
+                                    />
+                                  </Link>
+                                  <div className="badge">
+                                    <i className="ripple"></i>
                                   </div>
                                 </div>
-                                <div className="action">
-                                  <div className="number">#{item.top}</div>
-                                  <div className="btn-follow">
-                                    <Link to="/login">Follow</Link>
-                                  </div>
+                                <div className="author-infor">
+                                  <h5>
+                                    <Link to="#">{item.name}</Link>
+                                  </h5>
+                                  <div className="tag">{item.mail}</div>
+                                  <span className="price">{item.price}</span>
+                                </div>
+                              </div>
+                              <div className="action">
+                                <div className="number">#{item.top}</div>
+                                <div className="btn-follow">
+                                  <Link to="/login">Follow</Link>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        ))}
-                      </TabPanel>
-                    ))}
-                  </div>
-                </Tabs>
-              </div>
+                        </div>
+                      ))}
+                    </TabPanel>
+                  ))}
+                </div>
+              </Tabs>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
