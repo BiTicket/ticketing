@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import avt from "../assets/images/avatar/avata_profile.jpg";
+import avt from "../assets/images/people/profile.jpg";
 import bg1 from "../assets/images/backgroup-secsion/option1_bg_profile.jpg";
 import bg2 from "../assets/images/backgroup-secsion/option2_bg_profile.jpg";
 
@@ -59,25 +59,6 @@ const EditProfile = () => {
             </div>
             <div className="col-xl-9 col-lg-8 col-md-12 col-12">
               <div className="form-upload-profile">
-                <h4 className="title-create-item">Choice your Cover image</h4>
-                <div className="option-profile clearfix">
-                  <form action="#">
-                    <label className="uploadFile">
-                      <input
-                        type="file"
-                        className="inputfile form-control"
-                        name="file"
-                      />
-                    </label>
-                  </form>
-                  <div className="image">
-                    <img src={bg1} alt="Ticketing" />
-                  </div>
-                  <div className="image style2">
-                    <img src={bg2} alt="Ticketing" />
-                  </div>
-                </div>
-
                 <form action="#" className="form-profile">
                   <div className="form-infor-profile">
                     <div className="info-account">
@@ -146,6 +127,17 @@ const EditProfile = () => {
                         <Link to="#" className="connect">
                           <i className="icon-fl-vt"></i>Connect to Discord
                         </Link>
+                      </fieldset>
+                      <fieldset>
+                        <h4 className="title-infor-account">
+                          Registered Wallet (show only)
+                        </h4>
+                        <input
+                          type="text"
+                          disabled
+                          placeholder="0x6b4eyPy46b4yx2327ye46b4oe46b4e4"
+                          required
+                        />
                       </fieldset>
                     </div>
                   </div>
