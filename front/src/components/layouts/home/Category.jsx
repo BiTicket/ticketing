@@ -6,62 +6,38 @@ import { Navigation, Scrollbar, A11y } from "swiper";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import img1 from "../../../assets/images/box-item/img_category1.jpg";
-import img2 from "../../../assets/images/box-item/img_category2.jpg";
-import img3 from "../../../assets/images/box-item/img_category3.jpg";
-import img4 from "../../../assets/images/box-item/img_category4.jpg";
-import img5 from "../../../assets/images/box-item/img_category5.jpg";
-import img6 from "../../../assets/images/box-item/img_category6.jpg";
+import art from "../../../assets/images/categories/art.png";
+import concert from "../../../assets/images/categories/concert.png";
+import kids from "../../../assets/images/categories/kids.png";
+import sports from "../../../assets/images/categories/sports.png";
+import theatre from "../../../assets/images/categories/theatre.png";
+import tech from "../../../assets/images/categories/tech.png";
 
 const Category = () => {
   const [data] = useState([
     {
-      title: "Digital Art",
-      img: img1,
+      title: "Art",
+      img: art,
     },
     {
-      title: "Style",
-      img: img2,
-    },
-    {
-      title: "Music",
-      img: img3,
-    },
-    {
-      title: "Domain Name",
-      img: img4,
+      title: "Concert",
+      img: concert,
     },
     {
       title: "Sports",
-      img: img5,
+      img: sports,
     },
     {
-      title: "Utilities",
-      img: img6,
+      title: "Theatre",
+      img: theatre,
     },
     {
-      title: "Digital Art",
-      img: img1,
+      title: "Kids",
+      img: kids,
     },
     {
-      title: "Style",
-      img: img2,
-    },
-    {
-      title: "Music",
-      img: img3,
-    },
-    {
-      title: "Domain Name",
-      img: img4,
-    },
-    {
-      title: "Sports",
-      img: img5,
-    },
-    {
-      title: "Utilities",
-      img: img6,
+      title: "Tech Talk",
+      img: tech,
     },
   ]);
   return (
@@ -70,7 +46,7 @@ const Category = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="heading-next-eventss">
-              <h2 className="tf-title pb-39">All Catergories</h2>
+              <h2 className="tf-title pb-39">Catergories</h2>
             </div>
           </div>
           <div className="col-md-12">
