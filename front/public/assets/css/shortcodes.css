@@ -3540,8 +3540,12 @@ section.today-picks {
   overflow: hidden;
 }
 
+.tf-item-details .content-left .media img {
+  width: 100%;
+  margin-bottom: 100px;
+}
+
 .tf-item-details .content-right {
-  padding-left: 10%;
   margin-top: 5px;
 }
 
