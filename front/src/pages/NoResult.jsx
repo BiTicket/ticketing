@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Link } from "react-router-dom";
-import liveAuctionData from "../assets/fake-data/data-live-auction";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import Countdown from "react-countdown";
 import CardModal from "../components/layouts/CardModal";
+import PopularCollection from "../components/layouts/home/PopularCollection";
 
 const NoResult = () => {
-  const [data] = useState(liveAuctionData);
   const [modalShow, setModalShow] = useState(false);
   return (
     <div>
@@ -126,6 +122,7 @@ const NoResult = () => {
           </div>
         </div>
       </section>
+      <PopularCollection />
       <CardModal show={modalShow} onHide={() => setModalShow(false)} />
       <Footer />
     </div>
