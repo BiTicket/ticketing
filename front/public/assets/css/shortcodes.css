@@ -5583,22 +5583,22 @@ button.accordion-button {
 
 /* seller-tab  */
 
-.top-seller.home5 .react-tabs__tab-panel.react-tabs__tab-panel--selected {
+.top-seller.home .react-tabs__tab-panel.react-tabs__tab-panel--selected {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.top-seller.home5 .box-item {
+.top-seller.home .box-item {
   width: 48%;
 }
-.home .top-seller.home5 .box-item {
+.home .top-seller.home .box-item {
   width: 100%;
 }
 .home .top-seller .content-tab {
   margin-left: -15px;
   margin-right: -15px;
 }
-.top-seller.home5 .react-tabs__tab-list {
+.top-seller.home .react-tabs__tab-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -5609,7 +5609,7 @@ button.accordion-button {
   border: none;
 }
 
-.top-seller.home5 .react-tabs__tab-list li {
+.top-seller.home .react-tabs__tab-list li {
   padding: 7px 31px;
   border-radius: 100px;
   -webkit-transition: all 0.3s ease;
@@ -5621,26 +5621,26 @@ button.accordion-button {
   border: none;
 }
 
-.is_dark .top-seller.home5 .react-tabs__tab-list li {
+.is_dark .top-seller.home .react-tabs__tab-list li {
   background-color: transparent;
 }
 
-.top-seller.home5 .react-tabs__tab-list li:hover,
-.top-seller.home5 .react-tabs__tab-list li.react-tabs__tab--selected {
+.top-seller.home .react-tabs__tab-list li:hover,
+.top-seller.home .react-tabs__tab-list li.react-tabs__tab--selected {
   background-color: #5142fc;
 }
 
-.top-seller.home5 .react-tabs__tab-list li:hover,
-.top-seller.home5 .react-tabs__tab-list li.react-tabs__tab--selected {
+.top-seller.home .react-tabs__tab-list li:hover,
+.top-seller.home .react-tabs__tab-list li.react-tabs__tab--selected {
   color: #fff;
 }
 
-.is_dark .top-seller.home5 .react-tabs__tab-list li:hover,
-.is_dark .top-seller.home5 .react-tabs__tab-list li.react-tabs__tab--selected {
+.is_dark .top-seller.home .react-tabs__tab-list li:hover,
+.is_dark .top-seller.home .react-tabs__tab-list li.react-tabs__tab--selected {
   background-color: #343444;
 }
 
-.top-seller.home5 .react-tabs__tab-list li {
+.top-seller.home .react-tabs__tab-list li {
   font-size: 18px;
   line-height: 26px;
   font-weight: 700;
@@ -5652,27 +5652,27 @@ button.accordion-button {
   transition: all 0.3s ease;
 }
 
-.is_dark .top-seller.home5 .react-tabs__tab-list li {
+.is_dark .top-seller.home .react-tabs__tab-list li {
   color: #fff;
 }
 
-.top-seller.home5 .sc-author-box.style-3 .author-avatar .avatar {
+.top-seller.home .sc-author-box.style-3 .author-avatar .avatar {
   width: 74px;
   height: 74px;
   border-radius: 50%;
 }
 
-.top-seller.home5 .sc-author-box.style-3 .author-avatar .badge {
+.top-seller.home .sc-author-box.style-3 .author-avatar .badge {
   width: 18px;
   height: 18px;
   line-height: 18px;
 }
 
-.top-seller.home5 .sc-author-box.style-3 .author-avatar .badge::after {
+.top-seller.home .sc-author-box.style-3 .author-avatar .badge::after {
   font-size: 10px;
 }
 
-.top-seller.home5 .sc-author-box .author-infor .price {
+.top-seller.home .sc-author-box .author-infor .price {
   color: #1f1f2c;
 }
 
@@ -5680,34 +5680,34 @@ button.accordion-button {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.top-seller.home5 .sc-author-box.style-3 {
+.top-seller.home .sc-author-box.style-3 {
   background-color: #fff;
   border-radius: 14px;
   margin-bottom: 23px;
   box-shadow: 0px 3px 16px rgb(47 83 109 / 12%);
 }
 
-.is_dark .top-seller.home5 .sc-author-box.style-3 {
+.is_dark .top-seller.home .sc-author-box.style-3 {
   background-color: #343444;
 }
 
-.home .top-seller.home5 .sc-author-box.style-3 {
+.home .top-seller.home .sc-author-box.style-3 {
   justify-content: space-between;
 }
 
 /* today-pick-tab */
-.tf-section.live-auctions.style3.home5 {
+.tf-section.live-auctions.style3.home {
   padding: 80px 0 79px;
 }
 
-.top-seller.home5 .react-tabs__tab-list {
+.top-seller.home .react-tabs__tab-list {
   display: flex;
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
 }
 
-.top-seller.home5 .content-tab .content-inner {
+.top-seller.home .content-tab .content-inner {
   display: flex;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5716,12 +5716,12 @@ button.accordion-button {
   margin-left: -30px;
 }
 
-.top-seller.home5 .content-tab .content-inner .sc-card-product {
+.top-seller.home .content-tab .content-inner .sc-card-product {
   width: calc(25% - 30px);
   margin-left: 30px;
 }
 
-.top-seller.home5 .menu-tab li {
+.top-seller.home .menu-tab li {
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -5740,16 +5740,16 @@ button.accordion-button {
   transition: all 0.3s ease;
 }
 
-.is_dark .top-seller.home5 .menu-tab li {
+.is_dark .top-seller.home .menu-tab li {
   background-color: transparent;
 }
-.top-seller.home5 .menu-tab li.item-title.active,
-.top-seller.home5 .menu-tab li:hover {
+.top-seller.home .menu-tab li.item-title.active,
+.top-seller.home .menu-tab li:hover {
   background-color: #5142fc;
   border-color: #5142fc;
 }
 
-.top-seller.home5 .menu-tab li span {
+.top-seller.home .menu-tab li span {
   font-size: 16px;
   line-height: 26px;
   font-weight: 700;
@@ -6459,13 +6459,13 @@ button.accordion-button {
   margin-right: 25px;
 }
 
-.home .top-seller.home5 .react-tabs__tab-list {
+.home .top-seller.home .react-tabs__tab-list {
   left: 210px;
   top: 10px;
   right: auto;
 }
 
-.home .top-seller.home5 .react-tabs__tab-list li {
+.home .top-seller.home .react-tabs__tab-list li {
   padding: 4px 25px;
   font-size: 16px;
   line-height: 26px;

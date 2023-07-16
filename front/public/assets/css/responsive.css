@@ -813,15 +813,15 @@
   .tf-section.brow-category {
     padding: 80px 0;
   }
-  .top-seller.home5 .react-tabs__tab-list {
+  .top-seller.home .react-tabs__tab-list {
     top: 60px;
     right: auto;
     left: 15px;
   }
-  .tf-section.top-seller.home5 .react-tabs .content-tab {
+  .tf-section.top-seller.home .react-tabs .content-tab {
     margin-top: 60px;
   }
-  .top-seller.home5 .box-item {
+  .top-seller.home .box-item {
     width: 100%;
   }
   .tf-soft .soft-left {
@@ -1166,7 +1166,7 @@
   .home .sc-card-product {
     margin-bottom: 0;
   }
-  .home .top-seller.home5 .react-tabs__tab-list {
+  .home .top-seller.home .react-tabs__tab-list {
     left: auto;
     top: 60px;
   }

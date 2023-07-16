@@ -270,7 +270,7 @@ const TopSeller = () => {
   ]);
   return (
     <div>
-      <section className="tf-section top-seller home5 bg-style">
+      <section className="tf-section top-seller home bg-style">
         <div className="themesflat-container">
           <div className="row">
             <div className="col-xl-12 col-lg-12">
