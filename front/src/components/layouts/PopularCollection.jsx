@@ -60,7 +60,7 @@ const PopularCollectionItem = (props) => (
     <div className="swiper-wrapper">
       <div className="swiper-slide">
         <div className="slider-item">
-          <div className="sc-card-collection style-2 home2">
+          <div className="sc-card-collection style-2">
             <div className="card-bottom">
               <div className="author">
                 <div className="sc-author-box style-2">

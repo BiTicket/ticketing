@@ -27,10 +27,6 @@ const Footer = () => {
       link: "/help-center",
     },
     {
-      title: "Live Auctions",
-      link: "/live-auctions",
-    },
-    {
       title: "Item Details",
       link: "/item-details",
     },

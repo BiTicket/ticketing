@@ -82,7 +82,7 @@ const PopularCollection = () => {
     setVisible((prevValue) => prevValue + 3);
   };
   return (
-    <section className="tf-section live-auctions style4 home4 live-auctions-style7">
+    <section className="tf-section live-auctions style4 live-auctions-style7">
       <div className="themesflat-container">
         <div className="row">
           <div className="col-box-12">

@@ -104,7 +104,7 @@ const LiveAuction = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="heading-live-auctions">
-                <h2 className="tf-title pb-23">Live Auctions</h2>
+                <h2 className="tf-title pb-23">Next Events</h2>
                 <Link to="/explore" className="exp style2">
                   EXPLORE MORE
                 </Link>

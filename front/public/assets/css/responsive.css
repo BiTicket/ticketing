@@ -358,11 +358,6 @@
     margin-bottom: 15px;
   }
 
-  .mainslider.home3 .image .img-bg {
-    max-width: 50%;
-    right: 15px;
-  }
-
   .sc-btn-top .sc-button {
     padding: 0 !important;
     width: 48px;
@@ -605,19 +600,8 @@
     right: 60px !important;
   }
 
-  .mainslider.home3 .image .img-bg {
-    top: 20%;
-  }
-  .mainslider.home3 .image {
-    width: 100%;
-  }
-
   .item-style-2 .item .js-countdown {
     margin: 0 auto;
-  }
-  .mainslider.home3 .image,
-  .mainslider.home .image {
-    margin-top: 50px !important;
   }
 
   .tf-item-details.style-2 .content-right .meta-item-details .countdown__value {
@@ -888,10 +872,6 @@
     width: 100%;
   }
 
-  .tf-box-icon.tf-section.home3 {
-    padding-top: 70px;
-  }
-
   .modal {
     padding: 0 10px;
   }
@@ -908,11 +888,9 @@
   .flat-title-page.style2,
   .flat-title-page.style-3,
   .tf-box-icon.tf-section,
-  section.tf-section.live-auctions.home3,
   .tf-section.live-auctions.style1,
   .tf-section.live-auctions.style3,
   .tf-section.top-seller,
-  .tf-section.top-seller.home3.s2,
   .tf-section.live-auctions.pad-b-74 {
     padding: 70px 0px;
   }
@@ -1051,7 +1029,6 @@
   #comments fieldset.name,
   #comments fieldset.email,
   .form-upload-profile .option-profile form,
-  .mainslider.home3 .wrap-heading.flat-slider,
   .client-infor.sc-card-product .meta-info,
   .meta-item-details .item.meta-price,
   .meta-item-details .item.count-down,
@@ -1194,14 +1171,6 @@
 
   .pad-b-54.mobie-pb-70 {
     padding-bottom: 70px !important;
-  }
-
-  .tf-section.top-seller.home3.mobie-style {
-    padding-top: 40px !important;
-  }
-
-  .tf-section.top-seller.home3 {
-    padding-top: 70px;
   }
 
   .tab-authors .author-profile {
