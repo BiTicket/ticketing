@@ -5,7 +5,6 @@ import Category from "../components/layouts/home/Category";
 import NextEvents from "../components/layouts/home/NextEvents";
 import TopSeller from "../components/layouts/home/TopSeller";
 import Slider from "../components/slider/Slider";
-import TodayPicks from "../components/layouts/home/TodayPicks";
 import Create from "../components/layouts/home/Create";
 import PopularCollection from "../components/layouts/home/PopularCollection";
 
@@ -39,7 +38,6 @@ const Home = () => {
       <NextEvents />
       <Category />
       <TopSeller />
-      <TodayPicks />
       <Create />
       <PopularCollection />
       <Footer />
