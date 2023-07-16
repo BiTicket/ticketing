@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import HeaderHome from "../components/header/HeaderHome";
 import Footer from "../components/footer/Footer";
 import Category from "../components/layouts/home/Category";
-import NextEvents from "../components/layouts/home/NextEvents";
+import NextEvents from "../components/layouts/NextEvents";
 import TopSeller from "../components/layouts/home/TopSeller";
 import Slider from "../components/slider/Slider";
 import Create from "../components/layouts/home/Create";

@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -10,11 +9,99 @@ import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 
-const NextEvents = (props) => {
-  const data = props.data;
+import img_01 from "../../assets/images/events/01.jpg";
+import img_02 from "../../assets/images/events/02.jpg";
+import img_03 from "../../assets/images/events/03.jpg";
+import img_04 from "../../assets/images/events/04.jpg";
+import img_05 from "../../assets/images/events/05.jpg";
+import img_06 from "../../assets/images/events/06.jpg";
+import img_07 from "../../assets/images/events/07.jpg";
+import img_08 from "../../assets/images/events/08.jpg";
+
+import img_people_01 from "../../assets/images/people/01.jpg";
+import img_people_02 from "../../assets/images/people/02.jpg";
+import img_people_03 from "../../assets/images/people/03.jpg";
+import img_people_04 from "../../assets/images/people/04.jpg";
+import img_people_05 from "../../assets/images/people/05.jpg";
+import img_people_06 from "../../assets/images/people/06.jpg";
+
+const NextEvents = () => {
+  const [data] = useState([
+    {
+      imgCard: img_01,
+      imgAuthor: img_people_01,
+      title: "Flame Dress' by Balmain... ",
+      tags: "spo",
+      nameAuthor: "Tyler Covington",
+      price: "1.89 ETH",
+      wishlist: "100",
+    },
+    {
+      imgCard: img_02,
+      imgAuthor: img_people_02,
+      title: "Hamlet Contemplates Contemplates ",
+      tags: "con",
+      nameAuthor: "Freddie Carpeter",
+      price: "4.02 ETH",
+      wishlist: "100",
+    },
+    {
+      imgCard: img_03,
+      imgAuthor: img_people_03,
+      title: "Loving Vase 01 by Lanza...",
+      tags: "the",
+      nameAuthor: "Tyler Covington",
+      price: "3.87 ETH",
+      wishlist: "100",
+    },
+    {
+      imgCard: img_04,
+      imgAuthor: img_people_01,
+      title: "Triumphant awakening...",
+      tags: "spo",
+      nameAuthor: "Tyler Covington",
+      price: "4.89 ETH",
+      wishlist: "100",
+    },
+    {
+      imgCard: img_05,
+      imgAuthor: img_people_02,
+      title: "Flame Dress' by Balmain...",
+      tags: "liv",
+      nameAuthor: "Tyler Covington",
+      price: "4.89 ETH",
+      wishlist: "100",
+    },
+    {
+      imgCard: img_06,
+      imgAuthor: img_people_04,
+      title: "Flame Dress' by Balmain... ",
+      tags: "the",
+      nameAuthor: "Tyler Covington",
+      price: "4.89 ETH",
+      wishlist: "100",
+    },
+    {
+      imgCard: img_07,
+      imgAuthor: img_people_05,
+      title: "Hamlet Contemplates Contemplates ",
+      tags: "cir",
+      nameAuthor: "Freddie Carpeter",
+      price: "4.89 ETH",
+      wishlist: "100",
+    },
+    {
+      imgCard: img_08,
+      imgAuthor: img_people_06,
+      title: "Loving Vase 01 by Lanza...",
+      tags: "sho",
+      nameAuthor: "Tyler Covington",
+      price: "4.89 ETH",
+      wishlist: "100",
+    },
+  ]);
 
   const [modalShow, setModalShow] = useState(false);
-
   return (
     <Fragment>
       <section className="tf-section next-eventss">
@@ -22,7 +109,7 @@ const NextEvents = (props) => {
           <div className="row">
             <div className="col-md-12">
               <div className="heading-next-eventss">
-                <h2 className="tf-title pb-20">Next Eventss</h2>
+                <h2 className="tf-title pb-23">Next Events</h2>
                 <Link to="/explore" className="exp style2">
                   EXPLORE MORE
                 </Link>
@@ -31,7 +118,7 @@ const NextEvents = (props) => {
             <div className="col-md-12">
               <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
-                spaceBetween={30}
+                spaceBetween={20}
                 breakpoints={{
                   0: {
                     slidesPerView: 1,
@@ -43,24 +130,35 @@ const NextEvents = (props) => {
                     slidesPerView: 3,
                   },
                   1300: {
-                    slidesPerView: 4,
+                    slidesPerView: 5,
                   },
                 }}
                 navigation
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
               >
-                {data.slice(0, 7).map((item, index) => (
+                {data.map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="swiper-container show-shadow carousel auctions">
                       <div className="swiper-wrapper">
                         <div className="swiper-slide">
                           <div className="slider-item">
-                            <div className="sc-card-product">
-                              <div className="card-media">
-                                <Link to="/item-details">
-                                  <img src={item.img} alt="ticketing" />
-                                </Link>
+                            <div className="sc-card-product menu_card style-h7">
+                              <div className="meta-info style">
+                                <div className="author">
+                                  <div className="avatar">
+                                    <img src={item.imgAuthor} alt="Ticketing" />
+                                  </div>
+                                  <div className="info">
+                                    <span>Creator</span>
+                                    <h6>
+                                      {" "}
+                                      <Link to="/author">
+                                        {item.nameAuthor}
+                                      </Link>{" "}
+                                    </h6>
+                                  </div>
+                                </div>
                                 <Link
                                   to="/login"
                                   className="wishlist-button heart"
@@ -69,10 +167,15 @@ const NextEvents = (props) => {
                                     {item.wishlist}
                                   </span>
                                 </Link>
+                              </div>
+                              <div className="card-media">
+                                <Link to="/item-details">
+                                  <img src={item.imgCard} alt="Ticketing" />
+                                </Link>
                                 <div className="featured-countdown">
                                   <span className="slogan"></span>
                                   <Countdown date={Date.now() + 500000000}>
-                                    <span>You are good to go!</span>
+                                    <span>Expired!</span>
                                   </Countdown>
                                 </div>
                                 <div className="button-place-bid">
@@ -86,29 +189,19 @@ const NextEvents = (props) => {
                               </div>
                               <div className="card-title">
                                 <h5>
-                                  <Link to="/item-details">"{item.title}"</Link>
+                                  <Link to="/item-details">"{item.title}</Link>
                                 </h5>
-                                <div className="tags">{item.tags}</div>
                               </div>
                               <div className="meta-info">
                                 <div className="author">
-                                  <div className="avatar">
-                                    <img src={item.imgAuthor} alt="ticketing" />
-                                  </div>
                                   <div className="info">
-                                    <span>Creator</span>
-                                    <h6>
-                                      {" "}
-                                      <Link to="/author">
-                                        {item.nameAuthor}
-                                      </Link>{" "}
-                                    </h6>
+                                    <span>Price</span>
+                                    <span className="pricing">
+                                      {item.price}
+                                    </span>
                                   </div>
                                 </div>
-                                <div className="price">
-                                  <span>Current Bid</span>
-                                  <h5> {item.price}</h5>
-                                </div>
+                                <div className="tags">{item.tags}</div>
                               </div>
                             </div>
                           </div>
@@ -125,10 +218,6 @@ const NextEvents = (props) => {
       <CardModal show={modalShow} onHide={() => setModalShow(false)} />
     </Fragment>
   );
-};
-
-NextEvents.propTypes = {
-  data: PropTypes.array.isRequired,
 };
 
 export default NextEvents;
