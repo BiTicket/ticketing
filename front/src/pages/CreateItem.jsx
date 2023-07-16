@@ -70,7 +70,7 @@ const CreateItem = () => {
                       <span>Owned By</span>
                       <h6>
                         {" "}
-                        <Link to="/author">Freddie Carpenter</Link>
+                        <Link to="/author">Kurt Cobain</Link>
                       </h6>
                     </div>
                   </div>

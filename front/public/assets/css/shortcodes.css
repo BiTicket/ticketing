@@ -3398,6 +3398,17 @@ section.today-picks {
   float: right;
 }
 
+.tab-author .author-profile .widget-social .btn-profile.edit {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+
+.tab-author .author-profile .widget-social .btn-profile.edit a {
+  font-size: 20px;
+  height: 50px;
+}
+
 .tab-author .author-profile .infor-profile span {
   color: #ebebeb;
   font-size: 18px;

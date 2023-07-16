@@ -6,7 +6,7 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import CardModal from "../components/layouts/CardModal";
 
-import avt from "../assets/images/avatar/avt-author-tab.jpg";
+import avt from "../assets/images/people/profile_2.jpg";
 import img1 from "../assets/images/box-item/card-item-3.jpg";
 import imga1 from "../assets/images/avatar/avt-1.jpg";
 import imgCollection1 from "../assets/images/avatar/avt-18.jpg";
@@ -48,7 +48,7 @@ const Author = () => {
     },
     {
       class: "",
-      name: "COLLECTIBLES",
+      name: "FAMILY",
     },
     {
       class: "",
@@ -64,7 +64,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga1,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -76,7 +76,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga2,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -88,7 +88,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga3,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -100,7 +100,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga4,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -112,7 +112,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga5,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -124,7 +124,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga6,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -136,7 +136,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga7,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -148,7 +148,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga8,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -160,7 +160,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga1,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -172,7 +172,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga2,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -184,7 +184,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga3,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -196,7 +196,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga4,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -208,7 +208,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga5,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -220,7 +220,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga6,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -232,7 +232,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga7,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -244,7 +244,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga8,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -262,7 +262,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga2,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -275,7 +275,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga3,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -288,7 +288,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga4,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -301,7 +301,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga5,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -319,7 +319,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga1,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -332,7 +332,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga3,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -345,7 +345,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga4,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -358,7 +358,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga5,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -376,7 +376,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga1,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -389,7 +389,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga2,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -402,7 +402,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga3,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -415,7 +415,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga5,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -428,7 +428,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga7,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -446,7 +446,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga2,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -459,7 +459,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga3,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -472,7 +472,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga4,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -485,7 +485,7 @@ const Author = () => {
           title: "The RenaiXance Rising the sun ",
           tags: "bsc",
           imgAuthor: imga6,
-          nameAuthor: "SalvadorDali",
+          nameAuthor: "FIFA",
           price: "4.89 ETH",
           priceChange: "$12.246",
           wishlist: "100",
@@ -512,7 +512,9 @@ const Author = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Author</h1>
+                <h1 className="heading text-center">
+                  Author/Creator/Organizer Profile
+                </h1>
               </div>
               <div className="breadcrumbs style2">
                 <ul>
@@ -537,8 +539,8 @@ const Author = () => {
                 <img src={avt} alt="Ticketing" className="avatar" />
               </div>
               <div className="infor-profile">
-                <span>Author Profile</span>
-                <h2 className="title">Trista Francis</h2>
+                <span>Author/Creator/Organizer of events' Profile</span>
+                <h2 className="title">Patti Smith</h2>
                 <p className="content">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
