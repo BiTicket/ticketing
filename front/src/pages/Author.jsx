@@ -669,7 +669,7 @@ const Author = () => {
                                     to="/activity"
                                     className="view-history reload"
                                   >
-                                    View History
+                                    View Data
                                   </Link>
                                 </div>
                               </div>

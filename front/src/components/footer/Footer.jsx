@@ -13,7 +13,7 @@ const Footer = () => {
       link: "/edit-profile",
     },
     {
-      title: "Create Item",
+      title: "Create Event",
       link: "/create-item",
     },
   ];

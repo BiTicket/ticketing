@@ -68,7 +68,7 @@ const ExploreItem = (props) => {
                   </div>
                 </div>
                 <Link to="/activity" className="view-history reload">
-                  View History
+                  View Data
                 </Link>
               </div>
             </div>

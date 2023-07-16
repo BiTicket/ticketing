@@ -11,6 +11,11 @@
 .tf-connect-wallet.tf-section {
   padding: 80px 0 50px;
 }
+
+.tf-section.tf-create-item {
+  padding-top: 40px;
+}
+
 /* Tf-Title
 -------------------------------------------------------------- */
 .tf-title {
@@ -3106,6 +3111,29 @@ section.today-picks {
   margin-bottom: 30px;
 }
 
+.row-form .select-row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+}
+
+.row-form .select-row .inner-row-form {
+  width: -webkit-fill-available;
+}
+
+.row-form .select-row .inner-row-form span {
+  font-size: large;
+  line-height: 30px;
+}
+
+.row-form .select-row .inner-row-form:not(:last-child),
+.row-form.style-1.social-media-group input:not(:last-child) {
+  margin-right: 20px;
+}
+
 .row-form.style-2 {
   position: relative;
 }
@@ -4239,6 +4267,7 @@ section.today-picks {
 .title-create-item {
   line-height: 26px;
   margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .uploadFile {

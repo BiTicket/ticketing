@@ -72,7 +72,7 @@ const TodayPicks = (props) => {
                       <span>Buy now</span>
                     </button>
                     <Link to="/activity" className="view-history reload">
-                      View History
+                      View Data
                     </Link>
                   </div>
                 </div>
