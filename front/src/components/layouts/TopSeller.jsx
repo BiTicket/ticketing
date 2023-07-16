@@ -14,7 +14,7 @@ const TopSeller = (props) => {
       <div className="themesflat-container">
         <div className="row">
           <div className="col-md-12">
-            <div className="heading-live-auctions">
+            <div className="heading-next-eventss">
               <h2 className="tf-title">Top Seller</h2>
             </div>
           </div>

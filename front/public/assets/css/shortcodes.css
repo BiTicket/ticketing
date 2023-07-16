@@ -2144,14 +2144,14 @@
 
 /* Page Index
 -------------------------------------------------------------- */
-/* Live Auctions */
-.tf-section.live-auctions {
+/* Next Eventss */
+.tf-section.next-eventss {
   padding: 77px 0 70px;
 }
-.auctions .tf-section.live-auctions {
+.auctions .tf-section.next-eventss {
   padding: 81px 0 79px;
 }
-.item-details .tf-section.live-auctions {
+.item-details .tf-section.next-eventss {
   padding: 65px 0 75px;
 }
 .tf-help-center.tf-section {
@@ -2159,8 +2159,8 @@
 }
 .seller .swiper-button-next,
 .seller .swiper-button-prev,
-.live-auctions .swiper-button-next,
-.live-auctions .swiper-button-prev {
+.next-eventss .swiper-button-next,
+.next-eventss .swiper-button-prev {
   position: absolute;
   bottom: -8px;
   opacity: 1;
@@ -2178,11 +2178,11 @@
   right: 43.9%;
 }
 
-.live-auctions .swiper-button-next {
+.next-eventss .swiper-button-next {
   right: 43.8%;
 }
 .seller .swiper-button-prev,
-.live-auctions .swiper-button-prev {
+.next-eventss .swiper-button-prev {
   left: 44.5%;
 }
 
@@ -2197,15 +2197,15 @@
 
 .seller .swiper-button-next::after,
 .seller .swiper-button-prev::after,
-.live-auctions .swiper-button-next::after,
-.live-auctions .swiper-button-prev::after {
+.next-eventss .swiper-button-next::after,
+.next-eventss .swiper-button-prev::after {
   color: var(--primary-color2);
   font-size: 16px;
   font-weight: bold;
 }
 
 .seller .swiper-pagination-bullets,
-.live-auctions .swiper-pagination-bullets {
+.next-eventss .swiper-pagination-bullets {
   margin-top: 5px;
   display: flex;
   justify-content: center;
@@ -2214,7 +2214,7 @@
 }
 
 .seller .swiper-pagination-bullet,
-.live-auctions .swiper-pagination-bullet {
+.next-eventss .swiper-pagination-bullet {
   border: 1px solid var(--primary-color6);
   background: transparent;
   width: 8px;
@@ -2230,7 +2230,7 @@
 }
 
 .seller-slider .swiper-pagination-bullet.swiper-pagination-bullet-active,
-.live-auctions .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.next-eventss .swiper-pagination-bullet.swiper-pagination-bullet-active,
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   position: relative;
   background: var(--primary-color6);
@@ -2238,7 +2238,7 @@
 
 .seller-slider
   .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
-.live-auctions
+.next-eventss
   .swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -2252,17 +2252,17 @@
   overflow: visible;
 }
 
-.heading-live-auctions {
+.heading-next-eventss {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.heading-live-auctions .tf-title::before {
+.heading-next-eventss .tf-title::before {
   display: none;
 }
 
-.heading-live-auctions .exp {
+.heading-next-eventss .exp {
   position: relative;
   font-weight: bold;
   font-size: 14px;
@@ -2271,7 +2271,7 @@
   margin-top: -20px;
 }
 
-.heading-live-auctions .exp::after {
+.heading-next-eventss .exp::after {
   content: "";
   position: absolute;
   left: 0;
@@ -2281,7 +2281,7 @@
   background: linear-gradient(216.56deg, #e250e5 5.32%, #4b50e6 94.32%);
 }
 
-.live-auctions .heading-live-auctions .exp.style2::after {
+.next-eventss .heading-next-eventss .exp.style2::after {
   background: linear-gradient(216.56deg, #e250e5 5.32%, #4b50e6 94.32%);
 }
 
@@ -2581,8 +2581,8 @@ section.today-picks {
   left: 2px;
 }
 
-/* tf-section live-auctions */
-.tf-section.live-auctions.style2 {
+/* tf-section next-eventss */
+.tf-section.next-eventss.style2 {
   padding-top: 16px;
 }
 
@@ -2662,7 +2662,7 @@ section.today-picks {
   left: auto;
 }
 
-.tf-section.live-auctions.style2 {
+.tf-section.next-eventss.style2 {
   padding-bottom: 0px;
 }
 
@@ -2676,11 +2676,11 @@ section.today-picks {
   align-items: center;
   justify-content: center;
 }
-.live-auctions.style3 .sc-card-product {
+.next-eventss.style3 .sc-card-product {
   margin-bottom: 44px;
 }
 
-.tf-section.live-auctions.style4 {
+.tf-section.next-eventss.style4 {
   padding: 27px 0 30px;
 }
 
@@ -4941,7 +4941,7 @@ button.accordion-button {
   padding: 80px 0 0;
 }
 
-.tf-section.live-auctions.result {
+.tf-section.next-eventss.result {
   padding: 81px 0 75px;
 }
 
@@ -5692,7 +5692,7 @@ button.accordion-button {
 }
 
 /* today-pick-tab */
-.tf-section.live-auctions.style3.home {
+.tf-section.next-eventss.style3.home {
   padding: 80px 0 79px;
 }
 
@@ -6218,7 +6218,7 @@ button.accordion-button {
   width: 1440px;
 }
 
-.home .heading-live-auctions .exp {
+.home .heading-next-eventss .exp {
   margin-top: -8px;
 }
 
@@ -6317,7 +6317,7 @@ button.accordion-button {
   margin-bottom: 0px;
 }
 
-.home .tf-section.live-auctions {
+.home .tf-section.next-eventss {
   padding: 80px 0 75px;
 }
 
@@ -6419,7 +6419,7 @@ button.accordion-button {
   padding: 76px 0 96px;
 }
 
-.heading-live-auctions .see-all {
+.heading-next-eventss .see-all {
   margin-right: 25px;
 }
 
@@ -6553,11 +6553,11 @@ button.accordion-button {
   line-height: 17px;
 }
 
-.home .tf-section.live-auctions.style3 {
+.home .tf-section.next-eventss.style3 {
   padding: 74px 0 79px;
 }
 
-.home .tf-section.live-auctions.style3 .heading-live-auctions .exp {
+.home .tf-section.next-eventss.style3 .heading-next-eventss .exp {
   margin-top: 3px;
 }
 
@@ -6624,22 +6624,22 @@ button.accordion-button {
   -webkit-text-fill-color: transparent;
 }
 
-.heading-live-auctions.style2 {
+.heading-next-eventss.style2 {
   display: block;
 }
 
-.tf-section.live-auctions.style7 {
+.tf-section.next-eventss.style7 {
   padding: 81px 0 24px;
 }
 
-.heading-live-auctions.style2 .content {
+.heading-next-eventss.style2 .content {
   font-size: 14px;
   line-height: 22px;
   color: #7a798a;
   padding-right: 15px;
 }
 
-.is_dark .heading-live-auctions.style2 .content {
+.is_dark .heading-next-eventss.style2 .content {
   color: #fff;
 }
 
@@ -6696,7 +6696,7 @@ button.accordion-button {
   position: relative;
 }
 
-.tf-section.live-auctions.live-auctions-style7 .themesflat-container {
+.tf-section.next-eventss.next-eventss-style7 .themesflat-container {
   width: 1504px;
 }
 

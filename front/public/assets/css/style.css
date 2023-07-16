@@ -777,17 +777,17 @@ h6 a {
 label.error {
   color: red;
 }
-.live-auctions .swiper-button-next:after,
-.live-auctions .swiper-button-prev:after {
+.next-eventss .swiper-button-next:after,
+.next-eventss .swiper-button-prev:after {
   font-family: "Font Awesome 5 Pro";
   font-size: 20px;
 }
 
-.live-auctions .swiper-button-next:after {
+.next-eventss .swiper-button-next:after {
   content: "\f061";
 }
 
-.live-auctions .swiper-button-prev:after {
+.next-eventss .swiper-button-prev:after {
   content: "\f060";
 }
 

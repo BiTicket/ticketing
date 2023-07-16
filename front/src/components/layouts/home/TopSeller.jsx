@@ -274,7 +274,7 @@ const TopSeller = () => {
         <div className="themesflat-container">
           <div className="row">
             <div className="col-xl-12 col-lg-12">
-              <div className="heading-live-auctions">
+              <div className="heading-next-eventss">
                 <h2 className="tf-title pb-16">Top Seller</h2>
                 <a href="/explore" className="exp style2 see-all">
                   SEE ALL

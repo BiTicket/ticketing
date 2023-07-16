@@ -82,11 +82,11 @@ const PopularCollection = () => {
     setVisible((prevValue) => prevValue + 3);
   };
   return (
-    <section className="tf-section live-auctions style4 live-auctions-style7">
+    <section className="tf-section next-eventss style4 next-eventss-style7">
       <div className="themesflat-container">
         <div className="row">
           <div className="col-box-12">
-            <div className="heading-live-auctions">
+            <div className="heading-next-eventss">
               <h2 className="tf-title pb-40 text-left">Popular Collection</h2>
               <Link to="/explore" className="exp style2 mg-t-23">
                 EXPLORE MORE

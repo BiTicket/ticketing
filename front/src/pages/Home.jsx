@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import HeaderHome from "../components/header/HeaderHome";
 import Footer from "../components/footer/Footer";
 import Category from "../components/layouts/home/Category";
-import LiveAuction from "../components/layouts/home/LiveAuction";
+import NextEvents from "../components/layouts/home/NextEvents";
 import TopSeller from "../components/layouts/home/TopSeller";
 import Slider from "../components/slider/Slider";
 import TodayPicks from "../components/layouts/home/TodayPicks";
@@ -36,7 +36,7 @@ const Home = () => {
     <div className="home">
       <HeaderHome />
       <Slider />
-      <LiveAuction />
+      <NextEvents />
       <Category />
       <TopSeller />
       <TodayPicks />

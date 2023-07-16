@@ -20,7 +20,7 @@ import imga4 from "../../../assets/images/avatar/avt-10.jpg";
 import img5 from "../../../assets/images/box-item/image-box-36.jpg";
 import imga5 from "../../../assets/images/avatar/avt-5.jpg";
 
-const LiveAuction = () => {
+const NextEvents = () => {
   const [data] = useState([
     {
       img: img1,
@@ -99,11 +99,11 @@ const LiveAuction = () => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <Fragment>
-      <section className="tf-section live-auctions">
+      <section className="tf-section next-eventss">
         <div className="themesflat-container">
           <div className="row">
             <div className="col-md-12">
-              <div className="heading-live-auctions">
+              <div className="heading-next-eventss">
                 <h2 className="tf-title pb-23">Next Events</h2>
                 <Link to="/explore" className="exp style2">
                   EXPLORE MORE
@@ -215,4 +215,4 @@ const LiveAuction = () => {
   );
 };
 
-export default LiveAuction;
+export default NextEvents;

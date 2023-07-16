@@ -10,19 +10,19 @@ import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 
-const LiveAuction = (props) => {
+const NextEvents = (props) => {
   const data = props.data;
 
   const [modalShow, setModalShow] = useState(false);
 
   return (
     <Fragment>
-      <section className="tf-section live-auctions">
+      <section className="tf-section next-eventss">
         <div className="themesflat-container">
           <div className="row">
             <div className="col-md-12">
-              <div className="heading-live-auctions">
-                <h2 className="tf-title pb-20">Live Auctions</h2>
+              <div className="heading-next-eventss">
+                <h2 className="tf-title pb-20">Next Eventss</h2>
                 <Link to="/explore" className="exp style2">
                   EXPLORE MORE
                 </Link>
@@ -127,8 +127,8 @@ const LiveAuction = (props) => {
   );
 };
 
-LiveAuction.propTypes = {
+NextEvents.propTypes = {
   data: PropTypes.array.isRequired,
 };
 
-export default LiveAuction;
+export default NextEvents;

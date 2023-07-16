@@ -626,7 +626,7 @@
     padding: 70px 0px !important;
   }
 
-  .tf-section.live-auctions.style2 {
+  .tf-section.next-eventss.style2 {
     padding-top: 15px;
   }
 
@@ -685,9 +685,9 @@
   .sc-card-product {
     margin-bottom: 30px;
   }
-  .live-auctions .sc-card-product,
-  .live-auctions .sc-card-product,
-  .auctions .live-auctions .sc-card-product {
+  .next-eventss .sc-card-product,
+  .next-eventss .sc-card-product,
+  .auctions .next-eventss .sc-card-product {
     margin-bottom: 30px;
   }
 
@@ -854,7 +854,7 @@
   .accordion-item .accordion-button::after {
     right: 0;
   }
-  .tf-section.live-auctions.style2,
+  .tf-section.next-eventss.style2,
   .tf-section,
   .tf-section.our-creater,
   .tf-section.sc-explore-1,
@@ -864,13 +864,13 @@
   .flat-title-page.style2,
   .flat-title-page.style-3,
   .tf-box-icon.tf-section,
-  .tf-section.live-auctions.style1,
-  .tf-section.live-auctions.style3,
+  .tf-section.next-eventss.style1,
+  .tf-section.next-eventss.style3,
   .tf-section.top-seller,
-  .tf-section.live-auctions.pad-b-74 {
+  .tf-section.next-eventss.pad-b-74 {
     padding: 70px 0px;
   }
-  .home .tf-box-icon.tf-section.live-auctions.style7 {
+  .home .tf-box-icon.tf-section.next-eventss.style7 {
     padding: 81px 0 80px;
   }
   .tf-section.tf-item-details,

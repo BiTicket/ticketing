@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import Countdown from "react-countdown";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import liveAuctionData from "../assets/fake-data/data-live-auction";
-import LiveAuction from "../components/layouts/LiveAuction";
+import nextEventsData from "../assets/fake-data/data-next-events";
+import NextEvents from "../components/layouts/NextEvents";
 import img1 from "../assets/images/avatar/avt-3.jpg";
 import img2 from "../assets/images/avatar/avt-11.jpg";
 import img3 from "../assets/images/avatar/avt-1.jpg";
@@ -297,7 +297,7 @@ const ItemDetails02 = () => {
           </div>
         </div>
       </div>
-      <LiveAuction data={liveAuctionData} />
+      <NextEvents data={nextEventsData} />
       <Footer />
     </div>
   );

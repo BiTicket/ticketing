@@ -69,7 +69,7 @@ const Category = () => {
       <div className="themesflat-container">
         <div className="row">
           <div className="col-md-12">
-            <div className="heading-live-auctions">
+            <div className="heading-next-eventss">
               <h2 className="tf-title pb-39">All Catergories</h2>
             </div>
           </div>
