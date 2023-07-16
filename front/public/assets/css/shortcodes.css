@@ -2644,9 +2644,6 @@ section.today-picks {
 .tf-section.today-pick {
   padding: 58px 0 43px;
 }
-.home .tf-section.today-pick {
-  padding: 75px 0 80px;
-}
 .home .flat-slider {
   align-items: center;
   justify-content: center;
@@ -6429,15 +6426,6 @@ button.accordion-button {
 .home .top-seller .content-inner {
   margin-left: -24px;
 }
-.home .today-pick .content-inner {
-  display: flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-  margin-left: -11px;
-  margin-right: 11px;
-}
 
 .home .top-seller .sc-author-box .author-infor .tag {
   color: #8a8aa0;
@@ -6534,12 +6522,6 @@ button.accordion-button {
 
 .home .tf-section.next-eventss.style3 .heading-next-eventss .exp {
   margin-top: 3px;
-}
-
-.home .today-pick .content-inner .sc-card-product {
-  width: calc(20% - 26px);
-  margin-left: 26px;
-  margin-bottom: 22px;
 }
 
 .today-pick-tab.style2 .sc-card-product.menu_card.style-h7 .card-media {

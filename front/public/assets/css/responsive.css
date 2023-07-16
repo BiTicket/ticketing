@@ -138,9 +138,6 @@
   .widget-social.style-1 ul li {
     margin-bottom: 10px;
   }
-  .home .today-pick .content-inner .sc-card-product {
-    width: calc(25% - 26px);
-  }
   .sc-box-icon-inner.style3 {
     padding-left: 80px;
   }
@@ -366,9 +363,6 @@
   }
   .tablet-30 {
     margin-bottom: 30px !important;
-  }
-  .home .today-pick .content-inner .sc-card-product {
-    width: calc(33.33% - 26px);
   }
   .sc-box-icon-inner.style3 {
     padding-top: 40px;
@@ -750,9 +744,6 @@
   }
   .sc-card-product .card-bottom .sc-button {
     padding: 10px 25px;
-  }
-  .home .today-pick .content-inner .sc-card-product {
-    width: calc(50% - 26px);
   }
 }
 @media only screen and (max-width: 767px) {
@@ -1156,9 +1147,6 @@
     font-size: 15px;
     padding-left: 12px;
     padding-right: 12px;
-  }
-  .home .today-pick .content-inner .sc-card-product {
-    width: 100%;
   }
   .home .sc-box-icon-inner.style3 .sc-box-icon {
     width: 100%;
