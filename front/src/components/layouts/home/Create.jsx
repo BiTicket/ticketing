@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import CreateItem from "../CreateItem";
+
 import icon1 from "../../../assets/images/icon/Wallet.png";
 import icon2 from "../../../assets/images/icon/Category.png";
 import icon3 from "../../../assets/images/icon/Image2.png";
@@ -56,7 +57,7 @@ const Create = () => {
             </div>
           </div>
           <div className="col-xl-8 col-lg-12 col-md-12">
-            <div className="sc-box-icon-inner style3">
+            <div className="sc-box-icon-inner style3 home">
               {data.map((item, index) => (
                 <CreateItem key={index} item={item} />
               ))}
@@ -67,21 +68,5 @@ const Create = () => {
     </section>
   );
 };
-
-const CreateItem = (props) => (
-  <div className="sc-box-icon">
-    <div className="image">
-      <div className={`icon-create ${props.item.colorbg}`}>
-        <img src={props.item.icon} alt="" />
-      </div>
-    </div>
-    <div className="wrap-box">
-      <h3 className="heading">
-        <Link to="/wallet-connect">{props.item.title}</Link>
-      </h3>
-      <p className="content">{props.item.description}</p>
-    </div>
-  </div>
-);
 
 export default Create;

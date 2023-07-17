@@ -27,7 +27,7 @@ const Footer = () => {
       link: "/item-details",
     },
     {
-      title: "Activity",
+      title: "Event Activity",
       link: "/activity",
     },
   ];

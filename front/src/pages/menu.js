@@ -8,14 +8,14 @@ const menus = [
         id: 1,
         sub: "Home",
         links: "/",
-      }
+      },
     ],
   },
   {
     id: 2,
     name: "Explore",
     links: "#",
-    namesub: [      
+    namesub: [
       {
         id: 4,
         sub: "Explore",
@@ -30,14 +30,14 @@ const menus = [
   },
   {
     id: 3,
-    name: "Activity",
+    name: "Event Activity",
     links: "#",
     namesub: [
       {
         id: 1,
-        sub: "Activity",
+        sub: "Event Activity",
         links: "/activity",
-      }
+      },
     ],
   },
   {

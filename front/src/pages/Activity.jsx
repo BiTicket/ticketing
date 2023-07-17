@@ -2,129 +2,120 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import img1 from "../assets/images/box-item/card-item-10.jpg";
-import img2 from "../assets/images/box-item/image-box-10.jpg";
-import img3 from "../assets/images/box-item/image-box-11.jpg";
-import img4 from "../assets/images/box-item/image-box-21.jpg";
-import img5 from "../assets/images/box-item/image-box-6.jpg";
+import CreateItem from "../components/layouts/CreateItem";
+
+import img1 from "../assets/images/people/01.jpg";
+import img2 from "../assets/images/people/02.jpg";
+import img3 from "../assets/images/people/03.jpg";
+import img4 from "../assets/images/people/04.jpg";
+import img5 from "../assets/images/people/05.jpg";
+
+import icon1 from "../assets/images/icon/Wallet.png";
+import icon2 from "../assets/images/icon/Category.png";
+import icon3 from "../assets/images/icon/Image2.png";
+import icon4 from "../assets/images/icon/Bookmark.png";
 
 const Activity = () => {
   const [dataBox] = useState([
     {
       img: img1,
-      title: "Monica Lucas",
-      status: "started following",
-      author: "Gayle Hicks",
+      attendee: "Monica Lucas",
+      status: "Purchased ticket",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-1",
     },
     {
       img: img2,
-      title: "Wow! That Brain Is Floating",
-      status: "10 editions listed by",
-      author: "Meowbids",
+      attendee: "Lewis Hamilton",
+      status: "Got NFT",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-2",
     },
     {
       img: img3,
-      title: "Erotic 35mm And Polaroid Photography",
+      attendee: "Jhon Doe",
       status: "started following",
-      author: "Gayle Hicks",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-3",
     },
     {
       img: img4,
-      title: "Our Journey Start",
+      attendee: "Sarah Doe",
       status: "started following",
-      author: "Gayle Hicks",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-4",
     },
     {
       img: img5,
-      title: "Skrrt Cobain Official",
-      status: "started following",
-      author: "Gayle Hicks",
+      attendee: "Alex Doe",
+      status: "Purchased ticket",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-5",
     },
     {
       img: img1,
-      title: "Monica Lucas",
-      status: "started following",
-      author: "Gayle Hicks",
+      attendee: "Monica Lucas",
+      status: "Purchased ticket",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-1",
     },
     {
       img: img2,
-      title: "Wow! That Brain Is Floating",
-      status: "10 editions listed by",
-      author: "Meowbids",
+      attendee: "Alejandro",
+      status: "Transfered ticket",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-2",
     },
     {
       img: img3,
-      title: "Erotic 35mm And Polaroid Photography",
-      status: "started following",
-      author: "Gayle Hicks",
+      attendee: "Calvin Harris",
+      status: "Purchased ticket",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-3",
     },
     {
       img: img4,
-      title: "Our Journey Start",
+      attendee: "Sheila Doe",
       status: "started following",
-      author: "Gayle Hicks",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-4",
     },
     {
       img: img5,
-      title: "Skrrt Cobain Official",
-      status: "started following",
-      author: "Gayle Hicks",
+      attendee: "Wayne Doe",
+      status: "sGot NFT",
       time: "At 2:30 PM on 19th June, 2021",
       icon: "icon-5",
     },
   ]);
-  const [dataFilter] = useState([
+
+  const data = [
     {
-      icon: "icon-fl-sort-filled",
-      name: "Listings",
+      title: "Tickets Sold",
+      description: "People have bought a total of 28983 tickets to the event.",
+      icon: icon3,
+      colorbg: "icon-color3",
     },
     {
-      icon: "icon-fl-heart-filled",
-      name: "Like",
+      title: "NFT claimed",
+      description: "A total of 12390 NFT have been claimed by the attendees.",
+      icon: icon2,
+      colorbg: "icon-color2",
     },
     {
-      icon: "icon-fl-buy",
-      name: "Purchases",
+      title: "Interaction",
+      description:
+        "There has been a total of 1032878 interactions with this event.",
+      icon: icon1,
+      colorbg: "icon-color1",
     },
     {
-      icon: "icon-fl-discount",
-      name: "Sales",
+      title: "Transfered Tickets",
+      description: "There has has been a total of 654 tickets transfered.",
+      icon: icon4,
+      colorbg: "icon-color4",
     },
-    {
-      icon: "icon-fl-logout",
-      name: "Transfer",
-    },
-    {
-      icon: "icon-fl-star",
-      name: "Burns",
-    },
-    {
-      icon: "icon-fl-credit-card",
-      name: "Bids",
-    },
-    {
-      icon: "icon-fl-users-filled",
-      name: "Followings",
-    },
-  ]);
+  ];
 
   const [visible, setVisible] = useState(5);
   const showMoreItems = () => {
@@ -139,7 +130,7 @@ const Activity = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Activity</h1>
+                <h1 className="heading text-center">Formula 1 Singapure GP</h1>
               </div>
               <div className="breadcrumbs style2">
                 <ul>
@@ -147,19 +138,43 @@ const Activity = () => {
                     <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <Link to="#">Activity</Link>
+                    <Link to="#">Event Activity</Link>
                   </li>
-                  <li>Activity</li>
+                  <li>Formula 1 Singapure GP</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <section className="tf-box-icon next-eventss tf-section style7">
+        <div className="themesflat-container">
+          <div className="row">
+            <div className="col-lg-3 col-md-12">
+              <div className="heading-next-eventss style2 mg-t-3 mg-bt-22">
+                <h3 className="heading-fill mg-bt-16">Event general data</h3>
+                <p className="content">
+                  This is the general data of the event so far.
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-9 col-md-12">
+              <div className="sc-box-icon-inner style3">
+                {data.map((item, index) => (
+                  <CreateItem key={index} item={item} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="tf-activity s1 tf-section">
         <div className="themesflat-container">
           <div className="row">
-            <div className="col-lg-8 col-md-8 col-12">
+            <div className="col-12">
+              <h4 class="mg-bt-32">People activity related to the event</h4>
               {dataBox.slice(0, visible).map((item, index) => (
                 <div className="sc-card-activity style1" key={index}>
                   <div className="content">
@@ -169,7 +184,7 @@ const Activity = () => {
                     <div className="infor">
                       <h3>
                         {" "}
-                        <Link to="/item-details">{item.title}</Link>
+                        <Link to="/item-details">{item.attendee}</Link>
                       </h3>
                       <div className="status">
                         {item.status}{" "}
@@ -193,39 +208,6 @@ const Activity = () => {
                   </Link>
                 </div>
               )}
-            </div>
-            <div className="col-lg-4 col-md-4 col-12">
-              <div id="side-bar" className="side-bar style-2">
-                <div className="widget widget-search mgbt-24">
-                  <form action="#">
-                    <input
-                      type="text"
-                      placeholder="Enter your word art"
-                      required
-                    />
-                    <button>
-                      <i className="icon-fl-search-filled"></i>
-                    </button>
-                  </form>
-                </div>
-
-                <div className="widget widget-filter style-2 mgbt-0">
-                  <h3 className="title-widget">Filter</h3>
-                  <ul className="box-check">
-                    {dataFilter.map((item, index) => (
-                      <li key={index}>
-                        <Link to="#" className="box-widget-filter">
-                          <i className={item.icon}></i>
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="#" className="clear-check btn-filter style-2">
-                    Clear All Filters
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
         </div>
