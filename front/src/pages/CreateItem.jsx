@@ -5,8 +5,24 @@ import Footer from "../components/footer/Footer";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Select from "react-select";
+import { Web3Storage } from 'web3.storage';
+import { Event } from "./abi/Events.js";
+import web3 from './utils/web3';
+
+require('dotenv').config();
 
 const CreateItem = () => {
+  const [property, setProperty] = useState({
+    creator: '',
+    eventMetadataUri:'', 
+    NFTMetadataUri: '', 
+    ticketsMetadataUris: [], 
+    ticketsNFTMetadataUris: [], 
+    prices: [],  
+    maxSupplies: [], 
+    deadline: 0
+  });
+
   const options_transferable = [
     { value: false, label: "No, it can not be transfered to others" },
     { value: true, label: "Yes, it can be transfered to others" },
@@ -74,6 +90,37 @@ const CreateItem = () => {
       neutral90: "hsl(0, 0%, 10%)",
     },
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = new FormData();
+
+    await Event.methods.createEvent(property).send(
+      {
+        from: address
+      }
+    )
+
+  }
+
+  const handleImage = async (e) => {
+    e.preventDefault();
+    const client = new Web3Storage({ token: process.env.WEBSTORAGE });
+    const rootCid = await client.put(e.target.files);
+    const info = await client.status(rootCid);
+    const res = await client.get(rootCid);
+    const files = await res.files();
+    setProperty({
+      ...property,
+      eventMetadataUri: 'https://' + files[0].cid + '.ipfs.w3s.link',
+    });
+    setImage('https://' + files[0].cid + '.ipfs.w3s.link');
+    for (const file of files) {
+      console.log(`${file.cid} ${file.name} ${file.size}`)
+    }
+  };
+
   return (
     <div className="create-item">
       <Header />
@@ -117,6 +164,7 @@ const CreateItem = () => {
                       type="file"
                       className="inputfile form-control"
                       name="file"
+                      onChange={handleImage}
                     />
                   </label>
                   <div className="flat-tabs tab-create-item">
