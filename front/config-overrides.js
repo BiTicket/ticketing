@@ -19,7 +19,8 @@ module.exports = function override(config) {
 
   return {
     ...config,
-    // This is needed to not show the warning about this modules don't have src files, only on dist (build)
+    // This is needed to not show the warning about
+    // this modules don't have src files, only on dist (build)
     ignoreWarnings: [
       {
         module: /node_modules\/@walletconnect/,
