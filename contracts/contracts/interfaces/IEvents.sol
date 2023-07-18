@@ -9,6 +9,7 @@ struct Event {
   uint256 deadline;
   string eventMetadataUri;
   string NFTMetadataUri;
+  uint16 platformFee;
 }
 
 struct CreateEventParams {
@@ -24,7 +25,12 @@ struct CreateEventParams {
 }
 
 interface IEvents {
-  function createEvent(CreateEventParams memory createEventParams, address tokenStable, address tokenDOT) external;
+  function createEvent(
+    CreateEventParams memory createEventParams, 
+    address tokenStable, 
+    address tokenDOT, 
+    uint16 platformFee
+  ) external;
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) external;
   function getEventById(uint256 eventId) external view returns (Event memory);
   function cancelEvent(uint256 eventId) external;

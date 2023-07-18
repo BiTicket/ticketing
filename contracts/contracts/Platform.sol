@@ -21,11 +21,16 @@ contract Platform is Ownable {
   error EventDeadlineReached(uint256, uint256);
   error MaxSupplyExceeded();
   error TokenNotSupported();
+  error InvalidFee();
+  error PlatformWalletNotSet();
+  error InvalidAmount();
 
   IEvents eventsContract;
   IUsers usersContract;
-  IERC20 immutable tokenStable; 
-  IERC20 immutable tokenDOT; 
+  address public platformWallet;
+  uint16 public platformFee; // Two decimal places (10% = 1000)
+  IERC20 public immutable tokenStable; 
+  IERC20 public immutable tokenDOT; 
 
   constructor(address tokenStable_, address tokenDOT_) payable {
     tokenStable = IERC20(tokenStable_);
@@ -51,13 +56,16 @@ contract Platform is Ownable {
         createEventParams.percentageWithdraw
       ),
       address(tokenStable),
-      address(tokenDOT)
+      address(tokenDOT),
+      platformFee
     );
   } 
 
   function buyTicket(address user, uint256 eventId, uint256 ticketType, uint256 tokenUsed, uint256 amount) external payable onlyUser {
     if (user == address(0))
-      revert AddressZero();    
+      revert AddressZero();
+    if (amount == 0)
+      revert InvalidAmount();
     Event memory event_ = eventsContract.getEventById(eventId);
     if (event_.cancelled)
       revert EventCancelled();
@@ -68,25 +76,45 @@ contract Platform is Ownable {
     TicketInfo memory ticketInfo = ticketsContract.getTicketByType(ticketType);
 
     if (ticketsContract.getTotalSupply(ticketType) + amount > ticketInfo.maxSupply) 
-      revert MaxSupplyExceeded();    
+      revert MaxSupplyExceeded();
+    
+    if (event_.platformFee != 0 && platformWallet == address(0))
+      revert PlatformWalletNotSet();
 
     if (tokenUsed == 0) { // Stable
-      if (ticketInfo.prices[0] == 0)
+      uint256 price = ticketInfo.prices[0];
+      if (price == 0)
         revert TokenNotSupported();
-      IEscrow(event_.escrow).depositStable(user, ticketInfo.prices[0] * amount);   
+      uint256 fee = price * amount * event_.platformFee / 10000;
+      if (fee > 0)
+        tokenStable.transferFrom(user, platformWallet, fee);
+      IEscrow(event_.escrow).depositStable(user, price * amount);   
     } 
+
     if (tokenUsed == 1) { // DOT
-      if (ticketInfo.prices[1] == 0)
+      uint256 price = ticketInfo.prices[1];
+      if (price == 0)
         revert TokenNotSupported();
-      IEscrow(event_.escrow).depositDOT(user, ticketInfo.prices[1] * amount);   
+      uint256 fee = price * amount * event_.platformFee / 10000;
+      if (fee > 0)
+        tokenDOT.transferFrom(user, platformWallet, fee);
+      IEscrow(event_.escrow).depositDOT(user, price * amount);   
     } 
+
     if (tokenUsed == 2) { // GLMR
-      if (ticketInfo.prices[2] == 0)
+      uint256 price = ticketInfo.prices[2];
+      if (price == 0)
         revert TokenNotSupported();
-      if (msg.value != ticketInfo.prices[2] * amount)
+      uint256 fee = price * amount * event_.platformFee / 10000;
+      if (msg.value != (price * amount) + fee)
         revert IncorrectSentFunds();
-      IEscrow(event_.escrow).depositNative{value: msg.value}(user); 
-    } 
+      if (fee > 0) {
+        (bool sent, ) = platformWallet.call{value: fee}("");
+        if (!sent)
+          revert CannotSendFunds();      
+      }
+      IEscrow(event_.escrow).depositNative{value: msg.value - fee}(user); 
+      } 
     ticketsContract.mint(user, ticketType, amount);
   }
 
@@ -119,14 +147,25 @@ contract Platform is Ownable {
       revert AddressZero();
     usersContract = IUsers(address(_usersContract));
   }
+  function setPlatformFee(uint16 _platformFee) external onlyOwner {
+    if (platformFee >= 3000)
+      revert InvalidFee();
+    platformFee = _platformFee;
+  }
 
-    modifier onlyUser() {
-        _checkIsUser();
-        _;
-    }
+  function setPlatformWallet(address _platformWallet) external onlyOwner {
+    if (_platformWallet == address(0))
+      revert AddressZero();
+    platformWallet = _platformWallet;
+  }
 
-    function _checkIsUser() private view {
-        if (bytes(usersContract.users(msg.sender)).length == 0) 
-          revert NotUser();
-    }
+  modifier onlyUser() {
+      _checkIsUser();
+      _;
+  }
+
+  function _checkIsUser() private view {
+      if (bytes(usersContract.users(msg.sender)).length == 0) 
+        revert NotUser();
+  }
 }

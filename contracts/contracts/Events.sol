@@ -32,7 +32,7 @@ contract Events is ERC721, IEvents, PlatformGated {
   constructor(address platform) ERC721("Events", "EVNT") PlatformGated(platform) payable {
   } 
 
-  function createEvent(CreateEventParams memory createEventParams, address tokenStable, address tokenDOT) public onlyPlatform {
+  function createEvent(CreateEventParams memory createEventParams, address tokenStable, address tokenDOT, uint16 platformFee) public onlyPlatform {
     if (
       createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length || 
       createEventParams.prices.length != createEventParams.maxSupplies.length * 3
@@ -66,7 +66,8 @@ contract Events is ERC721, IEvents, PlatformGated {
       address(escrow),
       createEventParams.deadline, 
       createEventParams.eventMetadataUri, 
-      createEventParams.NFTMetadataUri
+      createEventParams.NFTMetadataUri,
+      platformFee
     );
     events[totalEvents] = newEvent;
     _mint(createEventParams.creator, totalEvents);
@@ -115,25 +116,22 @@ contract Events is ERC721, IEvents, PlatformGated {
     emit TicketUsed(messageSigner, eventId, ticketType);
   }
 
-  function cancelEvent(uint256 eventId) public validEventId(eventId) onlyPlatform {
+  function cancelEvent(uint256 eventId) public onlyPlatform {
+    _checkEventId(eventId);
     Event storage event_ = events[eventId];
     event_.cancelled = true;
     emit CancelEvent(eventId);
   }
 
-  function getEventById(uint256 eventId) public view validEventId(eventId) returns (Event memory) {
+  function getEventById(uint256 eventId) public view returns (Event memory) {
+    _checkEventId(eventId);
     return events[eventId];
   }
 
-   function tokenURI(uint256 eventId) public view validEventId(eventId) override returns (string memory) {
-      Event memory event_ = events[eventId];
-      return event_.NFTMetadataUri;
-   }
-
-
-  modifier validEventId(uint256 eventId) {
-      _checkEventId(eventId);
-      _;
+  function tokenURI(uint256 eventId) public view  override returns (string memory) {
+    _checkEventId(eventId);
+    Event memory event_ = events[eventId];
+    return event_.NFTMetadataUri;
   }
 
   function _checkEventId(uint256 eventId) internal view {
@@ -153,7 +151,4 @@ contract Events is ERC721, IEvents, PlatformGated {
     require(value == 0, "");
     return string(buffer);
   }
-
-
-  
 }
