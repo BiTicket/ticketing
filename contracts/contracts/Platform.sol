@@ -3,10 +3,10 @@ pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./interfaces/IEscrow.sol";
 import "./interfaces/IEvents.sol";
 import "./interfaces/ITickets.sol";
 import "./interfaces/IUsers.sol";
-import "hardhat/console.sol";
 
 contract Platform is Ownable {
   error AddressZero();
@@ -30,29 +30,27 @@ contract Platform is Ownable {
     tokenStable = IERC20(tokenStable_);
   }
 
-  function createEvent(
-    string calldata metadataUri,
-    string calldata NFTMetadataUri, 
-    string[] calldata ticketsMetadataUris, 
-    string[] calldata ticketsNFTMetadataUris, 
-    uint256[] calldata prices, 
-    uint256[] calldata maxSupplies,
-    uint256 deadline
-  ) external onlyUser {
-    if (ticketsMetadataUris.length * 3 != prices.length  || prices.length != maxSupplies.length * 3)
+  function createEvent(CreateEventParams memory createEventParams) external onlyUser {
+    if (
+      createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length  || 
+      createEventParams.prices.length != createEventParams.maxSupplies.length * 3
+    )
       revert InvalidLength();    
     eventsContract.createEvent(
-      msg.sender, 
-      metadataUri, 
-      NFTMetadataUri, 
-      ticketsMetadataUris, 
-      ticketsNFTMetadataUris, 
-      prices, 
-      maxSupplies, 
-      deadline
+      CreateEventParams(
+        createEventParams.creator, 
+        createEventParams.eventMetadataUri, 
+        createEventParams.NFTMetadataUri, 
+        createEventParams.ticketsMetadataUris, 
+        createEventParams.ticketsNFTMetadataUris, 
+        createEventParams.prices, 
+        createEventParams.maxSupplies, 
+        createEventParams.deadline,
+        createEventParams.percentageWithdraw
+      ),
+      address(tokenStable)
     );
   } 
-  
 
   function buyTicket(address user, uint256 eventId, uint256 ticketType, uint256 tokenUsed, uint256 amount) external payable onlyUser {
     if (user == address(0))
@@ -69,12 +67,12 @@ contract Platform is Ownable {
     if (ticketsContract.getTotalSupply(ticketType) + amount > ticketInfo.maxSupply) 
       revert MaxSupplyExceeded();    
 
-    console.log("You pay", ticketInfo.prices[tokenUsed]);
     if (tokenUsed == 0) { // Stable
       if (ticketInfo.prices[0] == 0)
         revert TokenNotSupported();
-      if (!tokenStable.transferFrom(user, event_.creator, ticketInfo.prices[0] * amount))
-        revert CannotSendFunds();
+      IEscrow(event_.escrow).depositStable(user, ticketInfo.prices[0] * amount);   
+      // if (!tokenStable.transferFrom(user, event_.creator, ticketInfo.prices[0] * amount))
+      //   revert CannotSendFunds();
     } 
     if (tokenUsed == 1) { // DOT
       if (ticketInfo.prices[1] == 0)
@@ -86,9 +84,7 @@ contract Platform is Ownable {
         revert TokenNotSupported();
       if (msg.value != ticketInfo.prices[2] * amount)
         revert IncorrectSentFunds();
-      (bool sent, ) = event_.creator.call{value: msg.value}("");
-      if (!sent)
-        revert CannotSendFunds();
+      IEscrow(event_.escrow).depositNative{value: msg.value}(user); 
     } 
     ticketsContract.mint(user, ticketType, amount);
   }
@@ -102,6 +98,13 @@ contract Platform is Ownable {
       revert EmptyMetadata();   
     usersContract.upsertUser(msg.sender, metadataUri); 
   }
+
+  function cancelEvent(uint256 eventId) external onlyUser {
+    Event memory event_ = eventsContract.getEventById(eventId);
+    if (msg.sender != event_.creator)
+      revert NotCreator();
+    eventsContract.cancelEvent(eventId);
+  } 
 
   // OWNER FUNCTIONS
   function setEventsContract(address _eventsContract) external onlyOwner {

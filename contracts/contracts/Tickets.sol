@@ -11,6 +11,8 @@ contract Tickets is ITickets, ERC1155Supply, PlatformGated {
   error MaxSupplyExceeded();
   error AddressZero();
 
+  event TicketsMinted(address to, uint256 ticketType, uint256 amount);
+
   uint256 public totalTicketsType;
   mapping(uint256 id => TicketInfo info) public ticketsType;
 
@@ -46,6 +48,7 @@ contract Tickets is ITickets, ERC1155Supply, PlatformGated {
     if (totalSupply(ticketType) + amount > info.maxSupply)
       revert MaxSupplyExceeded();    
     _mint(to, ticketType, amount, "");
+    emit TicketsMinted(to, ticketType, amount);
   }
 
   function getTicketByType(uint256 ticketType) public view returns (TicketInfo memory) {

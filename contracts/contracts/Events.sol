@@ -4,9 +4,8 @@ pragma solidity ^0.8.18;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./PlatformGated.sol";
 import "./Tickets.sol";
+import "./Escrow.sol";
 import "./interfaces/IEvents.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
-import "hardhat/console.sol";
 
 contract Events is ERC721, IEvents, PlatformGated {
   bytes16 private constant _SYMBOLS = "0123456789abcdef";
@@ -21,7 +20,9 @@ contract Events is ERC721, IEvents, PlatformGated {
   error InvalidDeadline();
   error DeadlineNotReached();
 
-  event NewEvent(uint256 eventId);
+  event NewEvent(Event event_, uint256 eventId);
+  event TicketUsed(address messageSigner, uint256 eventId, uint256 ticketType);
+  event CancelEvent(uint256 eventId);
 
   uint256 public totalEvents;
   mapping (uint256 eventId => Event _event) private events;
@@ -31,29 +32,47 @@ contract Events is ERC721, IEvents, PlatformGated {
   constructor(address platform) ERC721("Events", "EVNT") PlatformGated(platform) payable {
   } 
 
-  function createEvent(
-    address creator,
-    string calldata eventMetadataUri, 
-    string calldata NFTMetadataUri, 
-    string[] calldata ticketsMetadataUris, 
-    string[] calldata ticketsNFTMetadataUris, 
-    uint256[] calldata prices, 
-    uint256[] calldata maxSupplies,
-    uint256 deadline
-  ) public onlyPlatform {
-    if (ticketsMetadataUris.length * 3 != prices.length || prices.length != maxSupplies.length * 3)
+  function createEvent(CreateEventParams memory createEventParams, address tokenStable) public onlyPlatform {
+    if (
+      createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length || 
+      createEventParams.prices.length != createEventParams.maxSupplies.length * 3
+    )
       revert InvalidLength();
-    if (block.timestamp >= deadline)
+    if (block.timestamp >= createEventParams.deadline)
       revert InvalidDeadline();
 
-    Tickets tickets = new Tickets(ticketsMetadataUris, ticketsNFTMetadataUris, prices, maxSupplies, getPlatform());
-    Event memory newEvent = Event(creator, false, address(tickets), deadline, eventMetadataUri, NFTMetadataUri);
+    Tickets tickets = new Tickets(
+      createEventParams.ticketsMetadataUris, 
+      createEventParams.ticketsNFTMetadataUris, 
+      createEventParams.prices, 
+      createEventParams.maxSupplies, 
+      getPlatform()
+    );
+
+    Escrow escrow = new Escrow(
+      totalEvents, 
+      address(this), 
+      createEventParams.creator, 
+      createEventParams.percentageWithdraw, 
+      tokenStable,
+      getPlatform()
+    );
+
+    Event memory newEvent = Event(
+      createEventParams.creator, 
+      false, 
+      address(tickets), 
+      address(escrow),
+      createEventParams.deadline, 
+      createEventParams.eventMetadataUri, 
+      createEventParams.NFTMetadataUri
+    );
     events[totalEvents] = newEvent;
-    _mint(msg.sender, totalEvents);
+    _mint(createEventParams.creator, totalEvents);
     
     ++totalEvents;
     
-    emit NewEvent(totalEvents);
+    emit NewEvent(newEvent, totalEvents);
   }
 
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) public onlyPlatform {
@@ -82,7 +101,6 @@ contract Events is ERC721, IEvents, PlatformGated {
     );
 
     address messageSigner = ecrecover(prefixedMessage, v, r, s);
-    console.log("Using Ticket for EventId/TicketType/User", eventId, ticketType,  messageSigner);
 
     Event memory event_ = events[eventId];
     if (event_.cancelled)
@@ -93,6 +111,13 @@ contract Events is ERC721, IEvents, PlatformGated {
     if (balance <= ticketsUsed[eventId][ticketType][messageSigner])
       revert TicketAlreadyUsed();
     ++ticketsUsed[eventId][ticketType][messageSigner];
+    emit TicketUsed(messageSigner, eventId, ticketType);
+  }
+
+  function cancelEvent(uint256 eventId) public validEventId(eventId) onlyPlatform {
+    Event storage event_ = events[eventId];
+    event_.cancelled = true;
+    emit CancelEvent(eventId);
   }
 
   function getEventById(uint256 eventId) public view validEventId(eventId) returns (Event memory) {
@@ -124,7 +149,7 @@ contract Events is ERC721, IEvents, PlatformGated {
         buffer[i] = _SYMBOLS[value & 0xf];
         value >>= 4;
     }
-    require(value == 0, "Strings: hex length insufficient");
+    require(value == 0, "");
     return string(buffer);
   }
 
