@@ -659,4 +659,4 @@ const CONTRACT_ABI = [
     }
   ];
 
-export default new web3.eth.Contract(CONTRACT_ADDRESS, CONTRACT_ABI);
+export default new web3.eth.Contract(CONTRACT_ABI,CONTRACT_ADDRESS);
