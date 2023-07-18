@@ -25,9 +25,11 @@ contract Platform is Ownable {
   IEvents eventsContract;
   IUsers usersContract;
   IERC20 immutable tokenStable; 
+  IERC20 immutable tokenDOT; 
 
-  constructor(address tokenStable_) payable {
+  constructor(address tokenStable_, address tokenDOT_) payable {
     tokenStable = IERC20(tokenStable_);
+    tokenDOT = IERC20(tokenDOT_);
   }
 
   function createEvent(CreateEventParams memory createEventParams) external onlyUser {
@@ -48,7 +50,8 @@ contract Platform is Ownable {
         createEventParams.deadline,
         createEventParams.percentageWithdraw
       ),
-      address(tokenStable)
+      address(tokenStable),
+      address(tokenDOT)
     );
   } 
 
@@ -71,13 +74,11 @@ contract Platform is Ownable {
       if (ticketInfo.prices[0] == 0)
         revert TokenNotSupported();
       IEscrow(event_.escrow).depositStable(user, ticketInfo.prices[0] * amount);   
-      // if (!tokenStable.transferFrom(user, event_.creator, ticketInfo.prices[0] * amount))
-      //   revert CannotSendFunds();
     } 
     if (tokenUsed == 1) { // DOT
       if (ticketInfo.prices[1] == 0)
         revert TokenNotSupported();
-      revert TokenNotSupported();
+      IEscrow(event_.escrow).depositDOT(user, ticketInfo.prices[1] * amount);   
     } 
     if (tokenUsed == 2) { // GLMR
       if (ticketInfo.prices[2] == 0)

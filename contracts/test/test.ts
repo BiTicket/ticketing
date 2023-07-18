@@ -4,8 +4,8 @@ import { Escrow, Events, Platform, TokenStable, Users } from "../typechain-types
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers"
 
 describe("General", function () {
-  let tokenStable: TokenStable, events: Events, platform: Platform, users: Users;
-  let eventsAddress: string, platformAddress: string, tokenStableAddress: string, usersAddress: string;
+  let tokenStable: TokenStable, tokenDOT: TokenStable, events: Events, platform: Platform, users: Users;
+  let eventsAddress: string, platformAddress: string, tokenStableAddress: string, tokenDOTAddress: string, usersAddress: string;
   let deployer: SignerWithAddress, creator: SignerWithAddress, buyer: SignerWithAddress;
   const ticketsABI = require("../artifacts/contracts/Tickets.sol/Tickets.json")
   const escrowABI = require("../artifacts/contracts/Escrow.sol/Escrow.json")
@@ -27,8 +27,13 @@ describe("General", function () {
     tokenStableAddress = await tokenStable.getAddress()
     console.log("TokenStable deployed to:", tokenStableAddress);
 
+    const TokenDOT = await ethers.getContractFactory("TokenStable");
+    tokenDOT = await TokenDOT.deploy();
+    tokenDOTAddress = await tokenDOT.getAddress()
+    console.log("TokenDOT deployed to:", tokenDOTAddress);
+
     const Platform = await ethers.getContractFactory("Platform");
-    platform = await Platform.deploy(tokenStableAddress);
+    platform = await Platform.deploy(tokenStableAddress, tokenDOTAddress);
     platformAddress = await platform.getAddress();
     console.log("Platform deployed to:", platformAddress);
   
@@ -46,6 +51,7 @@ describe("General", function () {
     await platform.setUsersContract(usersAddress)
 
     await tokenStable.transfer(buyer.address, ethers.parseEther("1000000"))
+    await tokenDOT.transfer(buyer.address, ethers.parseEther("1000000"))
   
   })
 
@@ -100,6 +106,26 @@ describe("General", function () {
     expect(await tokenStable.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
   });
 
+  it("Should Buy Ticket With DOT", async function () {
+    const event = await events.getEventById(0)
+    const balanceBuyerBefore = await tokenDOT.balanceOf(buyer.address)
+    const balanceCreatorBefore = await tokenDOT.balanceOf(creator.address)
+    const balanceEscrowBefore = await tokenDOT.balanceOf(event.escrow)
+    const ticketType = 1
+    const tokenUsed = 1
+    const amount = 1
+
+    await tokenDOT.connect(buyer).approve(event.escrow, ethers.parseEther("1000000"))
+    await platform.connect(buyer).buyTicket(buyer.address, 0, ticketType, tokenUsed, amount)
+    const tickets = new ethers.Contract(event.tickets, ticketsABI.abi, deployer)
+    expect(await tickets.balanceOf(buyer.address, 0)).to.be.equal(amount)
+    const ticketInfo = await tickets.getTicketByType(ticketType);
+    const ticketPrice = ticketInfo.prices[tokenUsed]
+    expect(await tokenDOT.balanceOf(buyer.address)).to.be.equal(balanceBuyerBefore - ticketPrice)
+    expect(await tokenDOT.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore)
+    expect(await tokenDOT.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
+  });
+
   it("Should Buy Ticket With Native", async function () {
     const event = await events.getEventById(0)
     const balanceBuyerBefore = await ethers.provider.getBalance(buyer.address)
@@ -145,6 +171,12 @@ describe("General", function () {
     await expect(escrow.withdrawStable(100)).to.be.revertedWithCustomError(escrow, "MaximumWithdrawalExcedeed")
   });
 
+  it("Should Not Withdraw More Than 50% Of Escrow With DOT", async function () {
+    const event = await events.getEventById(0)
+    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    await expect(escrow.withdrawStable(2000)).to.be.revertedWithCustomError(escrow, "MaximumWithdrawalExcedeed")
+  });
+
   it("Should Not Withdraw More Than 50% Of Escrow With Native", async function () {
     const event = await events.getEventById(0)
     const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
@@ -161,6 +193,18 @@ describe("General", function () {
     await escrow.withdrawStable(amount)
     expect(await tokenStable.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore + amount) 
     expect(await tokenStable.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+  });
+
+  it("Should Withdraw 50% Of Escrow With DOT", async function () {
+    const amount = 1000n
+    const event = await events.getEventById(0)
+    const balanceCreatorBefore = await tokenDOT.balanceOf(creator.address)
+    const balanceEscrowBefore = await tokenDOT.balanceOf(event.escrow)
+
+    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    await escrow.withdrawDOT(amount)
+    expect(await tokenDOT.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore + amount) 
+    expect(await tokenDOT.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
 
   it("Should Withdraw 50% Of Escrow With Native", async function () {
@@ -191,10 +235,19 @@ describe("General", function () {
     expect(await tokenStable.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
 
-  it("Should Withdraw The Rest Of Escrow With Native When Event Is Finished", async function () {
-    await ethers.provider.send("evm_increaseTime", [3600])
-    await ethers.provider.send("evm_mine")
+  it("Should Withdraw The Rest Of Escrow With DOT When Event Is Finished", async function () {
+    const amount = 50n
+    const event = await events.getEventById(0)
+    const balanceCreatorBefore = await tokenDOT.balanceOf(creator.address)
+    const balanceEscrowBefore = await tokenDOT.balanceOf(event.escrow)
 
+    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    await escrow.withdrawDOT(amount)
+    expect(await tokenDOT.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore + amount) 
+    expect(await tokenDOT.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+  });
+
+  it("Should Withdraw The Rest Of Escrow With Native When Event Is Finished", async function () {
     const amount = 10000n
     const event = await events.getEventById(0)
     const balanceCreatorBefore = await ethers.provider.getBalance(creator.address)

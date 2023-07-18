@@ -17,8 +17,10 @@ contract Escrow is IEscrow, PlatformGated {
   error MaximumWithdrawalExcedeed();
 
   event NewDepositStable(address user, uint256 amount);
+  event NewDepositDOT(address user, uint256 amount);
   event NewDepositNative(address user, uint256 amount);
   event NewWithdrawStable(uint256 amount);
+  event NewWithdrawDOT(uint256 amount);
   event NewWithdrawNative(uint256 amount);
   event FundsReturned(address user);
 
@@ -29,7 +31,7 @@ contract Escrow is IEscrow, PlatformGated {
   uint16 private immutable percentageWithdraw; // Two decimal places (20% = 2000)
   uint256 withdrawn;
   IERC20 immutable tokenStable;
-
+  IERC20 immutable tokenDOT;
 
   constructor(
     uint256 _eventId, 
@@ -37,6 +39,7 @@ contract Escrow is IEscrow, PlatformGated {
     address _seller, 
     uint16 _percentageWithdraw,
     address _tokenStable,
+    address _tokenDOT,
     address platform
   ) PlatformGated(platform) payable  {
     if (_eventsContract == address(0) || _seller == address(0) )
@@ -49,6 +52,7 @@ contract Escrow is IEscrow, PlatformGated {
     seller = _seller;      
     percentageWithdraw = _percentageWithdraw;
     tokenStable = IERC20(_tokenStable);
+    tokenDOT = IERC20(_tokenDOT);
   }
 
   function depositStable(address user, uint256 amount) public onlyPlatform {
@@ -58,6 +62,13 @@ contract Escrow is IEscrow, PlatformGated {
     emit NewDepositStable(user, amount);
   }
 
+  function depositDOT(address user, uint256 amount) public onlyPlatform {
+    if (!tokenDOT.transferFrom(user, address(this), amount))
+      revert CannotSendFunds();
+    balances[user][1] += amount;
+    emit NewDepositDOT(user, amount);
+  }
+
   function depositNative(address user) public payable onlyPlatform {
     balances[user][2] += msg.value;
     emit NewDepositNative(user, msg.value);
@@ -65,20 +76,23 @@ contract Escrow is IEscrow, PlatformGated {
 
   function withdrawStable(uint256 amount) external {
     checkWithdraw(amount, 0);
-
     if (!tokenStable.transfer(seller, amount))
       revert CannotSendFunds();
-
     emit NewWithdrawStable(amount);
+  }
+
+  function withdrawDOT(uint256 amount) external {
+    checkWithdraw(amount, 1);
+    if (!tokenDOT.transfer(seller, amount))
+      revert CannotSendFunds();
+    emit NewWithdrawDOT(amount);
   }
 
   function withdrawNative(uint256 amount) external {
     checkWithdraw(amount, 2);
-    
     (bool sent, ) = seller.call{value: amount}("");
     if (!sent)
       revert CannotSendFunds();
-
     emit NewWithdrawNative(amount);
   }
 
@@ -90,6 +104,10 @@ contract Escrow is IEscrow, PlatformGated {
     uint256 balance = balances[msg.sender][0];
     if (balance > 0)
       tokenStable.transfer(msg.sender, balance);
+
+    balance = balances[msg.sender][1];
+    if (balance > 0)
+      tokenDOT.transfer(msg.sender, balance);
 
     balance = balances[msg.sender][2];
     if (balance > 2) {
@@ -112,6 +130,8 @@ contract Escrow is IEscrow, PlatformGated {
     uint256 balance;
     if (tokenUsed == 0)
       balance = tokenStable.balanceOf(address(this));
+    if (tokenUsed == 1)
+      balance = tokenDOT.balanceOf(address(this));
     if (tokenUsed == 2)
       balance = address(this).balance;
 

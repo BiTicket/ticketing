@@ -32,7 +32,7 @@ contract Events is ERC721, IEvents, PlatformGated {
   constructor(address platform) ERC721("Events", "EVNT") PlatformGated(platform) payable {
   } 
 
-  function createEvent(CreateEventParams memory createEventParams, address tokenStable) public onlyPlatform {
+  function createEvent(CreateEventParams memory createEventParams, address tokenStable, address tokenDOT) public onlyPlatform {
     if (
       createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length || 
       createEventParams.prices.length != createEventParams.maxSupplies.length * 3
@@ -55,6 +55,7 @@ contract Events is ERC721, IEvents, PlatformGated {
       createEventParams.creator, 
       createEventParams.percentageWithdraw, 
       tokenStable,
+      tokenDOT,
       getPlatform()
     );
 
