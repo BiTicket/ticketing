@@ -3,9 +3,11 @@ pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./PlatformGated.sol";
-import "./Tickets.sol";
 import "./Escrow.sol";
+import "./Tickets.sol";
 import "./interfaces/IEvents.sol";
+import "./interfaces/IFactory.sol";
+
 
 contract Events is ERC721, IEvents, PlatformGated {
   bytes16 private constant _SYMBOLS = "0123456789abcdef";
@@ -28,11 +30,18 @@ contract Events is ERC721, IEvents, PlatformGated {
   mapping (uint256 eventId => Event _event) private events;
   mapping (uint256 eventId => mapping(uint256 ticketType => mapping(address user => uint256 used))) public ticketsUsed;
   mapping (bytes message => bool used) usedMessages;
+  IFactory public immutable factory;
 
-  constructor(address platform) ERC721("Events", "EVNT") PlatformGated(platform) payable {
+  constructor(address platform, address _factory) ERC721("Events", "EVNT") PlatformGated(platform) payable {
+    factory = IFactory(_factory);
   } 
 
-  function createEvent(CreateEventParams memory createEventParams, address tokenStable, address tokenDOT, uint16 platformFee) public onlyPlatform {
+  function createEvent(
+    CreateEventParams memory createEventParams, 
+    address tokenStable, 
+    address tokenDOT, 
+    uint16 platformFee
+  ) public onlyPlatform {
     if (
       createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length || 
       createEventParams.prices.length != createEventParams.maxSupplies.length * 3
@@ -41,13 +50,20 @@ contract Events is ERC721, IEvents, PlatformGated {
     if (block.timestamp >= createEventParams.deadline)
       revert InvalidDeadline();
 
-    Tickets tickets = new Tickets(
-      createEventParams.ticketsMetadataUris, 
-      createEventParams.ticketsNFTMetadataUris, 
-      createEventParams.prices, 
-      createEventParams.maxSupplies, 
-      getPlatform()
-    );
+    // Tickets tickets = new Tickets(
+    //   createEventParams.ticketsMetadataUris, 
+    //   createEventParams.ticketsNFTMetadataUris, 
+    //   createEventParams.prices, 
+    //   createEventParams.maxSupplies, 
+    //   getPlatform()
+    // );
+      Tickets tickets = factory.createTicketsContract(
+        createEventParams.ticketsMetadataUris, 
+        createEventParams.ticketsNFTMetadataUris, 
+        createEventParams.prices, 
+        createEventParams.maxSupplies, 
+        getPlatform()
+      );
 
     Escrow escrow = new Escrow(
       totalEvents, 

@@ -1,11 +1,13 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { Escrow, Events, Platform, TokenStable, Users } from "../typechain-types"
+import { Escrow, Events, Factory, Platform, TokenStable, Users } from "../typechain-types"
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers"
 
 describe("General", function () {
   let tokenStable: TokenStable, tokenDOT: TokenStable, events: Events, platform: Platform, users: Users;
-  let eventsAddress: string, platformAddress: string, tokenStableAddress: string, tokenDOTAddress: string, usersAddress: string;
+  let factory: Factory;
+  let eventsAddress: string, platformAddress: string, tokenStableAddress: string, tokenDOTAddress: string;
+  let usersAddress: string, factoryAddress: string;
   let deployer: SignerWithAddress, creator: SignerWithAddress, buyer: SignerWithAddress, platformWallet: SignerWithAddress;
   let platformFee: bigint;
   const ticketsABI = require("../artifacts/contracts/Tickets.sol/Tickets.json")
@@ -33,13 +35,18 @@ describe("General", function () {
     tokenDOTAddress = await tokenDOT.getAddress()
     console.log("TokenDOT deployed to:", tokenDOTAddress);
 
+    const Factory = await ethers.getContractFactory("Factory");
+    factory = await Factory.deploy();
+    factoryAddress = await factory.getAddress()
+    console.log("Factory deployed to:", factoryAddress);
+
     const Platform = await ethers.getContractFactory("Platform");
     platform = await Platform.deploy(tokenStableAddress, tokenDOTAddress);
     platformAddress = await platform.getAddress();
     console.log("Platform deployed to:", platformAddress);
   
     const Events = await ethers.getContractFactory("Events");
-    events = await Events.deploy(platformAddress);
+    events = await Events.deploy(platformAddress, factoryAddress);
     eventsAddress = await events.getAddress()
     console.log("Events deployed to:", eventsAddress);
   
@@ -48,6 +55,7 @@ describe("General", function () {
     usersAddress = await users.getAddress()
     console.log("Users deployed to:", usersAddress);
 
+    await factory.transferOwnership(eventsAddress);
     await platform.setEventsContract(eventsAddress);
     await platform.setUsersContract(usersAddress);
     await platform.setPlatformWallet(platformWallet);
