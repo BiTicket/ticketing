@@ -94,68 +94,68 @@ describe("General", function () {
     })
     expect(await events.totalEvents()).to.be.equal(1n);
     expect(await events.balanceOf(creator.address)).to.be.equal(1n);
-    const event = await events.getEventById(0)
-    expect(event.creator).to.be.equal(creator.address)
-    expect(event.eventMetadataUri).to.be.equal("ipfs://eventMetadata")
-    expect(event.NFTMetadataUri).to.be.equal("ipfs://NFTMetadata")
+    const event = await events.getEventByRange(0, 0)
+    expect(event[0].creator).to.be.equal(creator.address)
+    expect(event[0].eventMetadataUri).to.be.equal("ipfs://eventMetadata")
+    expect(event[0].NFTMetadataUri).to.be.equal("ipfs://NFTMetadata")
   });
 
   it("Should Buy Ticket With StableCoin", async function () {
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceBuyerBefore = await tokenStable.balanceOf(buyer.address)
     const balanceCreatorBefore = await tokenStable.balanceOf(creator.address)
-    const balanceEscrowBefore = await tokenStable.balanceOf(event.escrow)
+    const balanceEscrowBefore = await tokenStable.balanceOf(event[0].escrow)
     const balancePlatformBefore = await tokenStable.balanceOf(platformWallet)
     const ticketType = 0
     const tokenUsed = 0
     const amount = 1
 
-    await tokenStable.connect(buyer).approve(event.escrow, ethers.parseEther("1000000"))
+    await tokenStable.connect(buyer).approve(event[0].escrow, ethers.parseEther("1000000"))
     await platform.connect(buyer).buyTicket(buyer.address, 0, ticketType, tokenUsed, amount)
-    const tickets = new ethers.Contract(event[2], ticketsABI.abi, deployer)
+    const tickets = new ethers.Contract(event[0].tickets, ticketsABI.abi, deployer)
     expect(await tickets.balanceOf(buyer.address, 0)).to.be.equal(amount)
     const ticketInfo = await tickets.getTicketByType(ticketType);
     const ticketPrice = ticketInfo.prices[tokenUsed]
     const fee = ticketPrice * platformFee / 10000n
     expect(await tokenStable.balanceOf(buyer.address)).to.be.equal(balanceBuyerBefore - ticketPrice - fee)
     expect(await tokenStable.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore)
-    expect(await tokenStable.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
+    expect(await tokenStable.balanceOf(event[0].escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
     expect(await tokenStable.balanceOf(platformWallet)).to.be.equal(balancePlatformBefore + fee)
   });
 
   it("Should Buy Ticket With DOT", async function () {
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceBuyerBefore = await tokenDOT.balanceOf(buyer.address)
     const balanceCreatorBefore = await tokenDOT.balanceOf(creator.address)
-    const balanceEscrowBefore = await tokenDOT.balanceOf(event.escrow)
+    const balanceEscrowBefore = await tokenDOT.balanceOf(event[0].escrow)
     const balancePlatformBefore = await tokenDOT.balanceOf(platformWallet)
     const ticketType = 1
     const tokenUsed = 1
     const amount = 1
 
-    await tokenDOT.connect(buyer).approve(event.escrow, ethers.parseEther("1000000"))
+    await tokenDOT.connect(buyer).approve(event[0].escrow, ethers.parseEther("1000000"))
     await platform.connect(buyer).buyTicket(buyer.address, 0, ticketType, tokenUsed, amount)
-    const tickets = new ethers.Contract(event.tickets, ticketsABI.abi, deployer)
+    const tickets = new ethers.Contract(event[0].tickets, ticketsABI.abi, deployer)
     expect(await tickets.balanceOf(buyer.address, 0)).to.be.equal(amount)
     const ticketInfo = await tickets.getTicketByType(ticketType);
     const ticketPrice = ticketInfo.prices[tokenUsed]
     const fee = ticketPrice * platformFee / 10000n
     expect(await tokenDOT.balanceOf(buyer.address)).to.be.equal(balanceBuyerBefore - ticketPrice - fee)
     expect(await tokenDOT.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore)
-    expect(await tokenDOT.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
+    expect(await tokenDOT.balanceOf(event[0].escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
     expect(await tokenDOT.balanceOf(platformWallet)).to.be.equal(balancePlatformBefore + fee)
   });
 
   it("Should Buy Ticket With Native", async function () {
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceBuyerBefore = await ethers.provider.getBalance(buyer.address)
     const balanceCreatorBefore = await ethers.provider.getBalance(creator.address)
-    const balanceEscrowBefore = await ethers.provider.getBalance(event.escrow)
+    const balanceEscrowBefore = await ethers.provider.getBalance(event[0].escrow)
     const balancePlatformBefore = await ethers.provider.getBalance(platformWallet)
     const ticketType = 1
     const tokenUsed = 2
     const amount = 1
-    const tickets = new ethers.Contract(event.tickets, ticketsABI.abi, deployer)
+    const tickets = new ethers.Contract(event[0].tickets, ticketsABI.abi, deployer)
     const ticketInfo = await tickets.getTicketByType(ticketType);
     const ticketPrice = ticketInfo.prices[tokenUsed]
     const fee = ticketPrice * platformFee / 10000n
@@ -164,7 +164,7 @@ describe("General", function () {
     expect(await tickets.balanceOf(buyer.address, 0)).to.be.equal(amount)
     expect(await ethers.provider.getBalance(buyer.address)).to.be.equal(balanceBuyerBefore - ticketPrice - gasSpent - fee)
     expect(await ethers.provider.getBalance(creator.address)).to.be.equal(balanceCreatorBefore)
-    expect(await ethers.provider.getBalance(event.escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
+    expect(await ethers.provider.getBalance(event[0].escrow)).to.be.equal(balanceEscrowBefore + ticketPrice)
     expect(await ethers.provider.getBalance(platformWallet)).to.be.equal(balancePlatformBefore + fee)
 
   });
@@ -188,58 +188,58 @@ describe("General", function () {
   });
 
   it("Should Not Withdraw More Than 50% Of Escrow With Stable", async function () {
-    const event = await events.getEventById(0)
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const event = await events.getEventByRange(0, 0)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     await expect(escrow.withdrawStable(100)).to.be.revertedWithCustomError(escrow, "MaximumWithdrawalExcedeed")
   });
 
   it("Should Not Withdraw More Than 50% Of Escrow With DOT", async function () {
-    const event = await events.getEventById(0)
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const event = await events.getEventByRange(0, 0)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     await expect(escrow.withdrawStable(2000)).to.be.revertedWithCustomError(escrow, "MaximumWithdrawalExcedeed")
   });
 
   it("Should Not Withdraw More Than 50% Of Escrow With Native", async function () {
-    const event = await events.getEventById(0)
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const event = await events.getEventByRange(0, 0)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     await expect(escrow.withdrawNative(20000)).to.be.revertedWithCustomError(escrow, "MaximumWithdrawalExcedeed")
   });
 
   it("Should Withdraw 50% Of Escrow With Stable", async function () {
     const amount = 50n
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceCreatorBefore = await tokenStable.balanceOf(creator.address)
-    const balanceEscrowBefore = await tokenStable.balanceOf(event.escrow)
+    const balanceEscrowBefore = await tokenStable.balanceOf(event[0].escrow)
 
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     await escrow.withdrawStable(amount)
     expect(await tokenStable.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore + amount) 
-    expect(await tokenStable.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+    expect(await tokenStable.balanceOf(event[0].escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
 
   it("Should Withdraw 50% Of Escrow With DOT", async function () {
     const amount = 1000n
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceCreatorBefore = await tokenDOT.balanceOf(creator.address)
-    const balanceEscrowBefore = await tokenDOT.balanceOf(event.escrow)
+    const balanceEscrowBefore = await tokenDOT.balanceOf(event[0].escrow)
 
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     await escrow.withdrawDOT(amount)
     expect(await tokenDOT.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore + amount) 
-    expect(await tokenDOT.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+    expect(await tokenDOT.balanceOf(event[0].escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
 
   it("Should Withdraw 50% Of Escrow With Native", async function () {
     const amount = 10000n
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceCreatorBefore = await ethers.provider.getBalance(creator.address)
-    const balanceEscrowBefore = await ethers.provider.getBalance(event.escrow)
+    const balanceEscrowBefore = await ethers.provider.getBalance(event[0].escrow)
 
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     const txMined = await (await escrow.withdrawNative(amount)).wait()
     const gasSpent = BigInt(txMined ? txMined.gasUsed * txMined.gasPrice : 0)
     expect(await ethers.provider.getBalance(creator.address)).to.be.equal(balanceCreatorBefore + amount - gasSpent) 
-    expect(await ethers.provider.getBalance(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+    expect(await ethers.provider.getBalance(event[0].escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
   
   it("Should Withdraw The Rest Of Escrow With Stable When Event Is Finished", async function () {
@@ -247,39 +247,39 @@ describe("General", function () {
     await ethers.provider.send("evm_mine")
 
     const amount = 50n
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceCreatorBefore = await tokenStable.balanceOf(creator.address)
-    const balanceEscrowBefore = await tokenStable.balanceOf(event.escrow)
+    const balanceEscrowBefore = await tokenStable.balanceOf(event[0].escrow)
 
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     await escrow.withdrawStable(amount)
     expect(await tokenStable.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore + amount) 
-    expect(await tokenStable.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+    expect(await tokenStable.balanceOf(event[0].escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
 
   it("Should Withdraw The Rest Of Escrow With DOT When Event Is Finished", async function () {
     const amount = 50n
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceCreatorBefore = await tokenDOT.balanceOf(creator.address)
-    const balanceEscrowBefore = await tokenDOT.balanceOf(event.escrow)
+    const balanceEscrowBefore = await tokenDOT.balanceOf(event[0].escrow)
 
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     await escrow.withdrawDOT(amount)
     expect(await tokenDOT.balanceOf(creator.address)).to.be.equal(balanceCreatorBefore + amount) 
-    expect(await tokenDOT.balanceOf(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+    expect(await tokenDOT.balanceOf(event[0].escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
 
   it("Should Withdraw The Rest Of Escrow With Native When Event Is Finished", async function () {
     const amount = 10000n
-    const event = await events.getEventById(0)
+    const event = await events.getEventByRange(0, 0)
     const balanceCreatorBefore = await ethers.provider.getBalance(creator.address)
-    const balanceEscrowBefore = await ethers.provider.getBalance(event.escrow)
+    const balanceEscrowBefore = await ethers.provider.getBalance(event[0].escrow)
 
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, creator)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, creator)
     const txMined = await (await escrow.withdrawNative(amount)).wait()
     const gasSpent = BigInt(txMined ? txMined.gasUsed * txMined.gasPrice : 0)
     expect(await ethers.provider.getBalance(creator.address)).to.be.equal(balanceCreatorBefore + amount - gasSpent) 
-    expect(await ethers.provider.getBalance(event.escrow)).to.be.equal(balanceEscrowBefore - amount)
+    expect(await ethers.provider.getBalance(event[0].escrow)).to.be.equal(balanceEscrowBefore - amount)
   });
  
   it("Should Cancel Event And Return Founds When Event Is Cancelled", async function () {
@@ -295,7 +295,7 @@ describe("General", function () {
       percentageWithdraw: 5000
     })
 
-    const event = await events.getEventById(1)
+    const event = await events.getEventByRange(1, 1)
     const eventId = 1
     
     const ticketType = 0
@@ -303,8 +303,8 @@ describe("General", function () {
     const amount = 2
     const ticketPriceStable = 200n
 
-    await tokenStable.connect(buyer).approve(event.escrow, ethers.parseEther("1000000"))
-    await tokenDOT.connect(buyer).approve(event.escrow, ethers.parseEther("1000000"))
+    await tokenStable.connect(buyer).approve(event[0].escrow, ethers.parseEther("1000000"))
+    await tokenDOT.connect(buyer).approve(event[0].escrow, ethers.parseEther("1000000"))
     await platform.connect(buyer).buyTicket(buyer.address, eventId, ticketType, tokenUsedStable, amount)
 
     const ticketType2 = 1
@@ -318,28 +318,27 @@ describe("General", function () {
     await platform.connect(buyer).buyTicket(buyer.address, eventId, ticketType2, tokenUsedNative, amount, {value: ticketPriceNative + fee})
 
     await platform.connect(creator).cancelEvent(eventId) 
-    const eventCancelled = await events.getEventById(1)
-    expect(eventCancelled.cancelled).to.be.equal(true)
+    const eventCancelled = await events.getEventByRange(1, 1)
+    expect(eventCancelled[0].cancelled).to.be.equal(true)
 
     const balanceStableBuyerBefore = await tokenStable.balanceOf(buyer.address)
-    const balanceStableEscrowBefore = await tokenStable.balanceOf(event.escrow)
+    const balanceStableEscrowBefore = await tokenStable.balanceOf(event[0].escrow)
     const balanceDOTBuyerBefore = await tokenDOT.balanceOf(buyer.address)
-    const balanceDOTEscrowBefore = await tokenDOT.balanceOf(event.escrow)
+    const balanceDOTEscrowBefore = await tokenDOT.balanceOf(event[0].escrow)
     const balanceNativeBuyerBefore = await ethers.provider.getBalance(buyer.address)
-    const balanceNativeEscrowBefore = await ethers.provider.getBalance(event.escrow)
+    const balanceNativeEscrowBefore = await ethers.provider.getBalance(event[0].escrow)
 
-    const escrow = new ethers.Contract(event.escrow, escrowABI.abi, buyer)
+    const escrow = new ethers.Contract(event[0].escrow, escrowABI.abi, buyer)
     const txMined = await (await escrow.returnFunds()).wait()
     const gasSpent = BigInt(txMined ? txMined.gasUsed * txMined.gasPrice : 0)
 
     expect(await tokenStable.balanceOf(buyer.address)).to.be.equal(balanceStableBuyerBefore + ticketPriceStable)
-    expect(await tokenStable.balanceOf(event.escrow)).to.be.equal(balanceStableEscrowBefore - ticketPriceStable)
+    expect(await tokenStable.balanceOf(event[0].escrow)).to.be.equal(balanceStableEscrowBefore - ticketPriceStable)
     expect(await tokenDOT.balanceOf(buyer.address)).to.be.equal(balanceDOTBuyerBefore + ticketPriceDOT)
-    expect(await tokenDOT.balanceOf(event.escrow)).to.be.equal(balanceDOTEscrowBefore - ticketPriceDOT)
+    expect(await tokenDOT.balanceOf(event[0].escrow)).to.be.equal(balanceDOTEscrowBefore - ticketPriceDOT)
     expect(await ethers.provider.getBalance(buyer.address)).to.be.equal(balanceNativeBuyerBefore + ticketPriceNative - gasSpent)
-    expect(await ethers.provider.getBalance(event.escrow)).to.be.equal(balanceNativeEscrowBefore - ticketPriceNative)
+    expect(await ethers.provider.getBalance(event[0].escrow)).to.be.equal(balanceNativeEscrowBefore - ticketPriceNative)
   });
-
 
 });
 

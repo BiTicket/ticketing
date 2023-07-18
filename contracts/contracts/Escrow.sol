@@ -97,8 +97,8 @@ contract Escrow is IEscrow, PlatformGated {
   }
 
   function returnFunds() external {
-    Event memory event_ = eventsContract.getEventById(eventId);
-    if (!event_.cancelled)
+    Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
+    if (!event_[0].cancelled)
       revert EventNotCancelled();
 
     uint256 balance = balances[msg.sender][0];
@@ -122,9 +122,9 @@ contract Escrow is IEscrow, PlatformGated {
   function checkWithdraw(uint256 amount, uint8 tokenUsed) internal view {
     if (msg.sender != seller)
       revert NotSeller();
-    Event memory event_ = eventsContract.getEventById(eventId);
+    Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
     uint16 _percentageWithdraw = percentageWithdraw;
-    if (block.timestamp > event_.deadline)
+    if (block.timestamp > event_[0].deadline)
       _percentageWithdraw = 10000;
 
     uint256 balance;
@@ -138,7 +138,7 @@ contract Escrow is IEscrow, PlatformGated {
     if (amount > balance * _percentageWithdraw / 10000)  
       revert MaximumWithdrawalExcedeed();
       
-    if (event_.cancelled)
+    if (event_[0].cancelled)
       revert EventCancelled();
   }
 }

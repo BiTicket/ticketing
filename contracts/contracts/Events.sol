@@ -13,6 +13,7 @@ contract Events is ERC721, IEvents, PlatformGated {
   bytes16 private constant _SYMBOLS = "0123456789abcdef";
 
   error InvalidEventId(uint256 eventId);
+  error InvalidEventRange(uint256 eventIdFrom, uint256 eventIdTo);
   error InvalidLength();
   error EventCancelled();
   error MessageAlreadyUsed();
@@ -139,9 +140,14 @@ contract Events is ERC721, IEvents, PlatformGated {
     emit CancelEvent(eventId);
   }
 
-  function getEventById(uint256 eventId) public view returns (Event memory) {
-    _checkEventId(eventId);
-    return events[eventId];
+  function getEventByRange(uint256 eventIdFrom, uint256 eventIdTo) public view returns (Event[] memory) {
+    if (eventIdFrom > eventIdTo)
+      revert InvalidEventRange(eventIdFrom, eventIdTo);
+    Event[] memory events_ = new Event[](eventIdTo - eventIdFrom + 1);
+    for (uint256 id = eventIdFrom; id <= eventIdTo; id++)  {
+      events_[id - eventIdFrom]  = events[id];
+    }
+    return events_;
   }
 
   function tokenURI(uint256 eventId) public view  override returns (string memory) {

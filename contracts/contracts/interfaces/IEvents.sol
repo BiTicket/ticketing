@@ -32,7 +32,7 @@ interface IEvents {
     uint16 platformFee
   ) external;
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) external;
-  function getEventById(uint256 eventId) external view returns (Event memory);
+  function getEventByRange(uint256 eventIdFrom, uint256 eventIdTo) external view returns (Event[] memory);
   function cancelEvent(uint256 eventId) external;
 }
 

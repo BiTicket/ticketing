@@ -25,12 +25,15 @@ contract Platform is Ownable {
   error PlatformWalletNotSet();
   error InvalidAmount();
 
+  event TicketBought(address indexed user, uint256 indexed eventId, uint256 indexed ticketType);
+
   IEvents eventsContract;
   IUsers usersContract;
   address public platformWallet;
   uint16 public platformFee; // Two decimal places (10% = 1000)
   IERC20 public immutable tokenStable; 
   IERC20 public immutable tokenDOT; 
+  mapping (address user => uint256[] events) public attendancesList;
 
   constructor(address tokenStable_, address tokenDOT_) payable {
     tokenStable = IERC20(tokenStable_);
@@ -66,46 +69,46 @@ contract Platform is Ownable {
       revert AddressZero();
     if (amount == 0)
       revert InvalidAmount();
-    Event memory event_ = eventsContract.getEventById(eventId);
-    if (event_.cancelled)
+    Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
+    if (event_[0].cancelled)
       revert EventCancelled();
-    if (block.timestamp >= event_.deadline)
-      revert EventDeadlineReached(block.timestamp, event_.deadline);
+    if (block.timestamp >= event_[0].deadline)
+      revert EventDeadlineReached(block.timestamp, event_[0].deadline);
 
-    ITickets ticketsContract = ITickets(event_.tickets);
+    ITickets ticketsContract = ITickets(event_[0].tickets);
     TicketInfo memory ticketInfo = ticketsContract.getTicketByType(ticketType);
 
     if (ticketsContract.getTotalSupply(ticketType) + amount > ticketInfo.maxSupply) 
       revert MaxSupplyExceeded();
     
-    if (event_.platformFee != 0 && platformWallet == address(0))
+    if (event_[0].platformFee != 0 && platformWallet == address(0))
       revert PlatformWalletNotSet();
 
     if (tokenUsed == 0) { // Stable
       uint256 price = ticketInfo.prices[0];
       if (price == 0)
         revert TokenNotSupported();
-      uint256 fee = price * amount * event_.platformFee / 10000;
+      uint256 fee = price * amount * event_[0].platformFee / 10000;
       if (fee > 0)
         tokenStable.transferFrom(user, platformWallet, fee);
-      IEscrow(event_.escrow).depositStable(user, price * amount);   
+      IEscrow(event_[0].escrow).depositStable(user, price * amount);   
     } 
 
     if (tokenUsed == 1) { // DOT
       uint256 price = ticketInfo.prices[1];
       if (price == 0)
         revert TokenNotSupported();
-      uint256 fee = price * amount * event_.platformFee / 10000;
+      uint256 fee = price * amount * event_[0].platformFee / 10000;
       if (fee > 0)
         tokenDOT.transferFrom(user, platformWallet, fee);
-      IEscrow(event_.escrow).depositDOT(user, price * amount);   
+      IEscrow(event_[0].escrow).depositDOT(user, price * amount);   
     } 
 
     if (tokenUsed == 2) { // GLMR
       uint256 price = ticketInfo.prices[2];
       if (price == 0)
         revert TokenNotSupported();
-      uint256 fee = price * amount * event_.platformFee / 10000;
+      uint256 fee = price * amount * event_[0].platformFee / 10000;
       if (msg.value != (price * amount) + fee)
         revert IncorrectSentFunds();
       if (fee > 0) {
@@ -113,9 +116,10 @@ contract Platform is Ownable {
         if (!sent)
           revert CannotSendFunds();      
       }
-      IEscrow(event_.escrow).depositNative{value: msg.value - fee}(user); 
-      } 
+      IEscrow(event_[0].escrow).depositNative{value: msg.value - fee}(user); 
+    }
     ticketsContract.mint(user, ticketType, amount);
+    emit TicketBought(user, eventId, ticketType);
   }
 
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) external onlyUser {
@@ -129,8 +133,8 @@ contract Platform is Ownable {
   }
 
   function cancelEvent(uint256 eventId) external onlyUser {
-    Event memory event_ = eventsContract.getEventById(eventId);
-    if (msg.sender != event_.creator)
+    Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
+    if (msg.sender != event_[0].creator)
       revert NotCreator();
     eventsContract.cancelEvent(eventId);
   } 
@@ -157,6 +161,10 @@ contract Platform is Ownable {
     if (_platformWallet == address(0))
       revert AddressZero();
     platformWallet = _platformWallet;
+  }
+
+  function getEventsByUser(address user) external {
+
   }
 
   modifier onlyUser() {
