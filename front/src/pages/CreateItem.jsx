@@ -6,10 +6,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Select from "react-select";
 import { Web3Storage, File } from 'web3.storage';
-//import Events from "../abi/Events";
 import Platform from "../abi/Platform";
 import { useAccount } from "wagmi";
-//import web3 from '../utils/web3.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -231,22 +231,8 @@ const CreateItem = () => {
       deadline: futureDate
     };
 
-    console.log(newEvent);
-
-    //reister user
-    try{
-      Platform.methods.upsertUser('https://' + cid + '.ipfs.w3s.link').send({
-        from: address, // Use the first account from MetaMask or any other wallet
-        gas: 5000000, // Adjust the gas limit as per your contract's requirements
-
-      })
-
-    }catch(error)
-    {
-      console.log(error);
-    }
-
-
+    //TODO: check if user exist
+    
     try{
       await Platform.methods.createEvent(newEvent).send({
         from: address, // Use the first account from MetaMask or any other wallet
@@ -258,6 +244,16 @@ const CreateItem = () => {
       console.log(error);
     }
     
+    toast("🦄 Wow you have created an event!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
     
 
   }
@@ -301,6 +297,18 @@ const CreateItem = () => {
   return (
     <div className="create-item">
       <Header />
+      <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
       <section className="flat-title-page inner">
         <div className="overlay"></div>
         <div className="themesflat-container">
