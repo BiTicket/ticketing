@@ -1,7 +1,7 @@
 import { CONTRACT_ADDRESSES } from '@thirdweb-dev/sdk';
 import web3 from '../utils/web3';
 
-const CONTRACT_ABI = "0x897F9122591E2E615d2Dc6242Ff0c1Fe532D8f26";
+const CONTRACT_ADDRESS = "0x897F9122591E2E615d2Dc6242Ff0c1Fe532D8f26";
 
 const CONTRACT_ABI = [
     {
@@ -337,4 +337,4 @@ const CONTRACT_ABI = [
     }
   ];
 
-  export default new web3.eth.Contract(CONTRACT_ADDRESSES, CONTRACT_ABI);
+  export default new web3.eth.Contract(CONTRACT_ABI,CONTRACT_ADDRESS);

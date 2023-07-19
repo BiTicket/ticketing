@@ -6,7 +6,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Select from "react-select";
 import { Web3Storage, File } from 'web3.storage';
-import Events from "../abi/Events";
+//import Events from "../abi/Events";
+import Platform from "../abi/Platform";
 import { useAccount } from "wagmi";
 //import web3 from '../utils/web3.js';
 
@@ -212,23 +213,42 @@ const CreateItem = () => {
     //const ticketsMetadataUris = ticketsMetadataUris();
     //const cidTicketsMetadataUris = await client2.put(ticketsMetadataUris);
 
-    const currentDate = new Date();
-    const futureDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+    //const currentDate = new Date();
+    //const futureDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+    const futureDate = Math.floor(new Date().getTime() / 1000) + 4000000;
 
     var newEvent = {
       creator: address,
       eventMetadataUri: 'https://' + cid + '.ipfs.w3s.link', 
       NFTMetadataUri: 'https://' + cidNFTMetadataUri + '.ipfs.w3s.link', 
-      ticketsMetadataUris: ['https://' + cid + '.ipfs.w3s.link', 'https://' + cid + '.ipfs.w3s.link'], 
-      ticketsNFTMetadataUris: [], 
-      prices: [paymentCurrency, priceValue],  
-      maxSupplies: [10,totaltickets], 
-      deadline: futureDate.getTime()
+      //
+      ticketsMetadataUris: ['https://' + cid + '.ipfs.w3s.link'], 
+      // json name, description, image
+      ticketsNFTMetadataUris: ['https://' + cid + '.ipfs.w3s.link'], 
+      // 0:USDTprice, 1:DOTprice, 2:GrimmerPrice
+      prices: [parseInt(priceValue),parseInt(priceValue),parseInt(priceValue)],  
+      maxSupplies: [parseInt(totaltickets)], 
+      deadline: futureDate
+    };
+
+    console.log(newEvent);
+
+    //reister user
+    try{
+      Platform.methods.upsertUser('https://' + cid + '.ipfs.w3s.link').send({
+        from: address, // Use the first account from MetaMask or any other wallet
+        gas: 5000000, // Adjust the gas limit as per your contract's requirements
+
+      })
+
+    }catch(error)
+    {
+      console.log(error);
     }
 
 
     try{
-      await Events.methods.createEvent(newEvent).send({
+      await Platform.methods.createEvent(newEvent).send({
         from: address, // Use the first account from MetaMask or any other wallet
         gas: 5000000, // Adjust the gas limit as per your contract's requirements
       });
