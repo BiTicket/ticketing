@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 import {
   configureChains, createConfig, WagmiConfig
@@ -16,7 +17,6 @@ import {
   } from 'wagmi/chains';
 
 
-
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
   [moonbaseAlpha],
   [publicProvider()]
@@ -24,7 +24,7 @@ export const { chains, publicClient, webSocketPublicClient } = configureChains(
 
 export const { connectors } = getDefaultWallets({
   appName: "Rainbowkit-Wagmi-Demo-React",
-  projectId: 'YOUR_PROJECT_ID',
+  projectId: process.env.REACT_APP_WALLETCONNECTID,
   chains,
 });
 
