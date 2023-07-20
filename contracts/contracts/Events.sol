@@ -42,7 +42,7 @@ contract Events is ERC721, IEvents, PlatformGated {
     address tokenStable, 
     address tokenDOT, 
     uint16 platformFee
-  ) public onlyPlatform {
+  ) public onlyPlatform returns (uint256) {
     if (
       createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length || 
       createEventParams.prices.length != createEventParams.maxSupplies.length * 3
@@ -90,8 +90,8 @@ contract Events is ERC721, IEvents, PlatformGated {
     _mint(createEventParams.creator, totalEvents);
     
     ++totalEvents;
-    
     emit NewEvent(newEvent, totalEvents);
+    return totalEvents-1;
   }
 
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) public onlyPlatform {

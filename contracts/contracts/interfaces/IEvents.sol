@@ -30,7 +30,7 @@ interface IEvents {
     address tokenStable, 
     address tokenDOT, 
     uint16 platformFee
-  ) external;
+  ) external returns (uint256);
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) external;
   function getEventByRange(uint256 eventIdFrom, uint256 eventIdTo) external view returns (Event[] memory);
   function cancelEvent(uint256 eventId) external;

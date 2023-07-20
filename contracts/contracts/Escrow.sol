@@ -55,8 +55,8 @@ contract Escrow is IEscrow, PlatformGated {
     tokenDOT = IERC20(_tokenDOT);
   }
 
-  function depositStable(address user, uint256 amount) public onlyPlatform {
-    if (!tokenStable.transferFrom(user, address(this), amount))
+  function depositStable(address user, uint256 amount, address payer) public onlyPlatform {
+    if (!tokenStable.transferFrom(payer, address(this), amount))
       revert CannotSendFunds();
     balances[user][0] += amount;
     emit NewDepositStable(user, amount);

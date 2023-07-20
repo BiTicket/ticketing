@@ -7,8 +7,10 @@ import "./interfaces/IEscrow.sol";
 import "./interfaces/IEvents.sol";
 import "./interfaces/ITickets.sol";
 import "./interfaces/IUsers.sol";
+import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
+import "hardhat/console.sol";
 
-contract Platform is Ownable {
+contract Platform is Ownable, AxelarExecutable {
   error AddressZero();
   error ErrorGettingEvent();
   error InvalidLength();
@@ -27,26 +29,26 @@ contract Platform is Ownable {
 
   event TicketBought(address indexed user, uint256 indexed eventId, uint256 indexed ticketType);
 
-  IEvents eventsContract;
-  IUsers usersContract;
+  IEvents public eventsContract;
+  IUsers public usersContract;
   address public platformWallet;
   uint16 public platformFee; // Two decimal places (10% = 1000)
   IERC20 public immutable tokenStable; 
   IERC20 public immutable tokenDOT; 
-  mapping (address user => uint256[] events) public attendancesList;
 
-  constructor(address tokenStable_, address tokenDOT_) payable {
+  constructor(address tokenStable_, address tokenDOT_, address gateway_) AxelarExecutable(gateway_) payable {
     tokenStable = IERC20(tokenStable_);
     tokenDOT = IERC20(tokenDOT_);
+    tokenStable.approve(address(this), 2**256 - 1);
   }
 
-  function createEvent(CreateEventParams memory createEventParams) external onlyUser {
+  function createEvent(CreateEventParams memory createEventParams) external onlyUser(msg.sender) {
     if (
       createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length  || 
       createEventParams.prices.length != createEventParams.maxSupplies.length * 3
     )
       revert InvalidLength();    
-    eventsContract.createEvent(
+    uint256 eventId = eventsContract.createEvent(
       CreateEventParams(
         createEventParams.creator, 
         createEventParams.eventMetadataUri, 
@@ -62,9 +64,28 @@ contract Platform is Ownable {
       address(tokenDOT),
       platformFee
     );
+    Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
+    tokenStable.approve(event_[0].escrow, 2**256 - 1);
   } 
 
-  function buyTicket(address user, uint256 eventId, uint256 ticketType, uint256 tokenUsed, uint256 amount) external payable onlyUser {
+  function buyTicket(
+    address user, 
+    uint256 eventId, 
+    uint256 ticketType, 
+    uint256 tokenUsed, 
+    uint256 amount
+  ) external payable onlyUser(user) {
+    _buyTicket(user, eventId, ticketType, tokenUsed, amount, user);
+  }
+
+  function _buyTicket(
+    address user, 
+    uint256 eventId, 
+    uint256 ticketType, 
+    uint256 tokenUsed, 
+    uint256 amount,
+    address payer
+  ) internal {
     if (user == address(0))
       revert AddressZero();
     if (amount == 0)
@@ -90,8 +111,8 @@ contract Platform is Ownable {
         revert TokenNotSupported();
       uint256 fee = price * amount * event_[0].platformFee / 10000;
       if (fee > 0)
-        tokenStable.transferFrom(user, platformWallet, fee);
-      IEscrow(event_[0].escrow).depositStable(user, price * amount);   
+        tokenStable.transferFrom(payer, platformWallet, fee);
+      IEscrow(event_[0].escrow).depositStable(user, price * amount, payer);  
     } 
 
     if (tokenUsed == 1) { // DOT
@@ -100,7 +121,7 @@ contract Platform is Ownable {
         revert TokenNotSupported();
       uint256 fee = price * amount * event_[0].platformFee / 10000;
       if (fee > 0)
-        tokenDOT.transferFrom(user, platformWallet, fee);
+        tokenDOT.transferFrom(payer, platformWallet, fee);
       IEscrow(event_[0].escrow).depositDOT(user, price * amount);   
     } 
 
@@ -122,17 +143,17 @@ contract Platform is Ownable {
     emit TicketBought(user, eventId, ticketType);
   }
 
-  function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) external onlyUser {
+  function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) external onlyUser(msg.sender) {
     eventsContract.useTicket(message, v, r, s);         
   }
 
-  function upsertUser(string calldata metadataUri) external {
+  function upsertUser(string memory metadataUri) public {
     if (bytes(metadataUri).length == 0)
       revert EmptyMetadata();   
     usersContract.upsertUser(msg.sender, metadataUri); 
   }
 
-  function cancelEvent(uint256 eventId) external onlyUser {
+  function cancelEvent(uint256 eventId) external onlyUser(msg.sender) {
     Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
     if (msg.sender != event_[0].creator)
       revert NotCreator();
@@ -163,17 +184,46 @@ contract Platform is Ownable {
     platformWallet = _platformWallet;
   }
 
-  function getEventsByUser(address user) external {
-
-  }
-
-  modifier onlyUser() {
-      _checkIsUser();
+  modifier onlyUser(address user) {
+      _checkIsUser(user);
       _;
   }
 
-  function _checkIsUser() private view {
-      if (bytes(usersContract.users(msg.sender)).length == 0) 
-        revert NotUser();
+  function _execute(
+      string calldata /*sourceChain*/,
+      string calldata /*sourceAddress*/,
+      bytes calldata payload
+  ) internal override  {
+    (address user, string memory metadataUri) = abi.decode(payload, (address, string));
+    usersContract.upsertUser(user, metadataUri);  
+  }    
+
+  function _executeWithToken(
+      string calldata ,
+      string calldata ,
+      bytes calldata payload,
+      string calldata ,
+      uint256 
+  ) internal override  {
+      (
+        address user, 
+        uint256 eventId, 
+        uint256 ticketType, 
+        uint256 amount
+      ) = abi.decode(payload, (address, uint256, uint256, uint256));
+      _buyTicket(user, eventId, ticketType, 0, amount, address(this));
+  }  
+
+  function e(     
+    string calldata a ,
+      string calldata b,
+      bytes calldata payload,
+      string calldata c      ) external {
+    _executeWithToken(a, b, payload, c, 0);
+  }
+
+  function _checkIsUser(address user) private view {
+    if (bytes(usersContract.users(user)).length == 0) 
+      revert NotUser();
   }
 }

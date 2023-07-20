@@ -40,8 +40,9 @@ describe("General", function () {
     factoryAddress = await factory.getAddress()
     console.log("Factory deployed to:", factoryAddress);
 
+    const axelarGateway = "0x5769D84DD62a6fD969856c75c7D321b84d455929"
     const Platform = await ethers.getContractFactory("Platform");
-    platform = await Platform.deploy(tokenStableAddress, tokenDOTAddress);
+    platform = await Platform.deploy(tokenStableAddress, tokenDOTAddress, axelarGateway);
     platformAddress = await platform.getAddress();
     console.log("Platform deployed to:", platformAddress);
   
