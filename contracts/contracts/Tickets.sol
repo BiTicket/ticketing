@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "./PlatformGated.sol";
 import "./interfaces/ITickets.sol";
 
+/// @title Smart Contract for BiTicket Tickets
+/// @author Eduardo Mannarino
 contract Tickets is ITickets, ERC1155Supply, PlatformGated {
   error InvalidLength();
   error InvalidTicketType();
@@ -39,6 +41,10 @@ contract Tickets is ITickets, ERC1155Supply, PlatformGated {
     totalTicketsType = ticketMetadataUris.length;
   }
 
+  /// @notice Mint Tickets NFT
+  /// @param to address of the user
+  /// @param ticketType Type of the ticket to buy
+  /// @param amount amount of tickets to buy
   function mint(address to, uint256 ticketType, uint256 amount) public onlyPlatform {
     if (to == address(0))
       revert AddressZero();
@@ -51,14 +57,20 @@ contract Tickets is ITickets, ERC1155Supply, PlatformGated {
     emit TicketsMinted(to, ticketType, amount);
   }
 
+  /// @notice Get info of a ticket type
+  /// @param ticketType Type of the ticket 
   function getTicketByType(uint256 ticketType) public view returns (TicketInfo memory) {
     return ticketsType[ticketType];
   }
 
+  /// @notice Get total supply (tickets sold) for a ticket type
+  /// @param ticketType Type of the ticket 
   function getTotalSupply(uint256 ticketType) public view returns (uint256) {
     return totalSupply(ticketType);
   } 
 
+  /// @notice Get NFT uri for a ticket type
+  /// @param ticketType Type of the ticket 
   function uri(uint256 ticketType) public view virtual override returns (string memory) {
     if (ticketType > totalTicketsType)
       revert InvalidTicketType();

@@ -6,6 +6,9 @@ import "./interfaces/IEvents.sol";
 import "./PlatformGated.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+/// @title Smart Contract for BiTicket Escrow
+/// @author Eduardo Mannarino
+/// @notice One Escrow contract for Event
 contract Escrow is IEscrow, PlatformGated {
   error InvalidAddress();
   error InvalidPercentage(uint32 percentageWithdraw);
@@ -55,13 +58,21 @@ contract Escrow is IEscrow, PlatformGated {
     tokenDOT = IERC20(_tokenDOT);
   }
 
-  function depositStable(address user, uint256 amount, address payer) public onlyPlatform {
+  /// @notice Deposit into the escrow using Token 0 (Token Stable)
+  /// @param user Address of user that buys.
+  /// @param amount Amount of Token to Deposit
+  /// @param user Address of payer
+  /// @dev Payer must differ user to supports Cross Chain buys.
+    function depositStable(address user, uint256 amount, address payer) public onlyPlatform {
     if (!tokenStable.transferFrom(payer, address(this), amount))
       revert CannotSendFunds();
     balances[user][0] += amount;
     emit NewDepositStable(user, amount);
   }
 
+  /// @notice Deposit into the escrow using Token 1 (Token DOT)
+  /// @param user Address of user that buys.
+  /// @param amount Amount of Token to Deposit
   function depositDOT(address user, uint256 amount) public onlyPlatform {
     if (!tokenDOT.transferFrom(user, address(this), amount))
       revert CannotSendFunds();
@@ -69,11 +80,15 @@ contract Escrow is IEscrow, PlatformGated {
     emit NewDepositDOT(user, amount);
   }
 
+  /// @notice Deposit into the escrow using Token 2 (Token Native)
+  /// @param user Address of user that buys.
   function depositNative(address user) public payable onlyPlatform {
     balances[user][2] += msg.value;
     emit NewDepositNative(user, msg.value);
   }
 
+  /// @notice Allows Seller to Withdraw Token Stable following the rules
+  /// @param amount Amount of Token to Deposit
   function withdrawStable(uint256 amount) external {
     checkWithdraw(amount, 0);
     if (!tokenStable.transfer(seller, amount))
@@ -81,6 +96,8 @@ contract Escrow is IEscrow, PlatformGated {
     emit NewWithdrawStable(amount);
   }
 
+  /// @notice Allows Seller to Withdraw Token DOT following the rules
+  /// @param amount Amount of Token to Deposit
   function withdrawDOT(uint256 amount) external {
     checkWithdraw(amount, 1);
     if (!tokenDOT.transfer(seller, amount))
@@ -88,6 +105,8 @@ contract Escrow is IEscrow, PlatformGated {
     emit NewWithdrawDOT(amount);
   }
 
+  /// @notice Allows Seller to Withdraw Token Native following the rules
+  /// @param amount Amount of Token to Deposit
   function withdrawNative(uint256 amount) external {
     checkWithdraw(amount, 2);
     (bool sent, ) = seller.call{value: amount}("");
@@ -96,6 +115,7 @@ contract Escrow is IEscrow, PlatformGated {
     emit NewWithdrawNative(amount);
   }
 
+  /// @notice Allows buyers to withdraw tokens if event is cancelled
   function returnFunds() external {
     Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
     if (!event_[0].cancelled)

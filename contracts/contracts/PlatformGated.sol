@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/utils/Context.sol";
 
 error NotPlatform();
 
+/// @title Smart Contract for BiTicket Platform Managing
+/// @author Eduardo Mannarino
 contract PlatformGated is Context {
     address private _platform;
 

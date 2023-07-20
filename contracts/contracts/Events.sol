@@ -9,6 +9,8 @@ import "./interfaces/IEvents.sol";
 import "./interfaces/IFactory.sol";
 
 
+/// @title Smart Contract for BiTicket Events
+/// @author Eduardo Mannarino
 contract Events is ERC721, IEvents, PlatformGated {
   bytes16 private constant _SYMBOLS = "0123456789abcdef";
 
@@ -37,7 +39,12 @@ contract Events is ERC721, IEvents, PlatformGated {
     factory = IFactory(_factory);
   } 
 
-  function createEvent(
+  /// @notice Creates an Event 
+  /// @param createEventParams Set of Events Configuration
+  /// @param tokenStable Address of Token Stable
+  /// @param tokenDOT Address of Token DOT
+  /// @param platformFee Platform fee for buying tickets (Two decimals places: 10% = 1000)
+function createEvent(
     CreateEventParams memory createEventParams, 
     address tokenStable, 
     address tokenDOT, 
@@ -94,6 +101,11 @@ contract Events is ERC721, IEvents, PlatformGated {
     return totalEvents-1;
   }
 
+  /// @notice Allows creator to use tickets and mark it as used
+  /// @param message Message with the necessary information (address of contract, eventId, tokenType, nonce)
+  /// @param v Component v of the signature
+  /// @param r Component r of the signature
+  /// @param s Component s of the signature
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) public onlyPlatform {
     if (usedMessages[message])
       revert MessageAlreadyUsed();
@@ -133,6 +145,8 @@ contract Events is ERC721, IEvents, PlatformGated {
     emit TicketUsed(messageSigner, eventId, ticketType);
   }
 
+  /// @notice Allows creator to cancel an event
+  /// @param eventId Id of the Event to cancel
   function cancelEvent(uint256 eventId) public onlyPlatform {
     _checkEventId(eventId);
     Event storage event_ = events[eventId];
@@ -140,6 +154,9 @@ contract Events is ERC721, IEvents, PlatformGated {
     emit CancelEvent(eventId);
   }
 
+  /// @notice Getter functions to obtain Events filtered by range of Id
+  /// @param eventIdFrom Filter from this Event Id
+  /// @param eventIdTo Filter to (inclusive) this Event Id
   function getEventByRange(uint256 eventIdFrom, uint256 eventIdTo) public view returns (Event[] memory) {
     if (eventIdFrom > eventIdTo)
       revert InvalidEventRange(eventIdFrom, eventIdTo);
@@ -150,17 +167,26 @@ contract Events is ERC721, IEvents, PlatformGated {
     return events_;
   }
 
+  /// @notice Get the NFT Metadata link
+  /// @param eventId Event Id
   function tokenURI(uint256 eventId) public view  override returns (string memory) {
     _checkEventId(eventId);
     Event memory event_ = events[eventId];
     return event_.NFTMetadataUri;
   }
 
+  /// @notice Checks for valid Event Id
+  /// @param eventId Event Id to check
   function _checkEventId(uint256 eventId) internal view {
     if (eventId >= totalEvents)
       revert InvalidEventId(eventId);
   }
-
+  
+  /// @notice Function to convert byte encoded data to string
+  /// @param value Value to convert
+  /// @param length Length of the convert data (PadLeft with 00) 
+  /// @param isAddress If isAddress prepend 0x 
+  /// @dev This function is used to recover the original string signed by user
   function _toHexString(uint256 value, uint256 length, bool isAddress) internal pure returns (string memory) {
     bytes memory buffer = new bytes(2 * length + (isAddress ? 2 : 0));
     buffer[0] = '0';

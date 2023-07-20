@@ -10,6 +10,9 @@ import "./interfaces/IUsers.sol";
 import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
 import "hardhat/console.sol";
 
+/// @title Smart Contract for BiTicket Platform
+/// @author Eduardo Mannarino
+/// @notice This is the entrypoint for interacting with the others SC
 contract Platform is Ownable, AxelarExecutable {
   error AddressZero();
   error ErrorGettingEvent();
@@ -42,6 +45,8 @@ contract Platform is Ownable, AxelarExecutable {
     tokenStable.approve(address(this), 2**256 - 1);
   }
 
+  /// @notice Creates an Event 
+  /// @param createEventParams Set of Events Configuration
   function createEvent(CreateEventParams memory createEventParams) external onlyUser(msg.sender) {
     if (
       createEventParams.ticketsMetadataUris.length * 3 != createEventParams.prices.length  || 
@@ -68,6 +73,12 @@ contract Platform is Ownable, AxelarExecutable {
     tokenStable.approve(event_[0].escrow, 2**256 - 1);
   } 
 
+  /// @notice Buy Tickets
+  /// @param user address of the user who will receive the ticket
+  /// @param eventId Id of the Event
+  /// @param ticketType Ticket Type to be bought
+  /// @param tokenUsed Token used to pay (0: TokenStable - 1: TokenDOT - 2: Token Native)
+  /// @param amount Amount of tickets to buy
   function buyTicket(
     address user, 
     uint256 eventId, 
@@ -78,6 +89,13 @@ contract Platform is Ownable, AxelarExecutable {
     _buyTicket(user, eventId, ticketType, tokenUsed, amount, user);
   }
 
+  /// @notice Internal function to buy
+  /// @param user address of the user who will receive the ticket
+  /// @param eventId Id of the Event
+  /// @param ticketType Ticket Type to be bought
+  /// @param tokenUsed Token used to pay (0: TokenStable - 1: TokenDOT - 2: Token Native)
+  /// @param amount Amount of tickets to buy
+  /// @param payer address of the payer
   function _buyTicket(
     address user, 
     uint256 eventId, 
@@ -143,16 +161,25 @@ contract Platform is Ownable, AxelarExecutable {
     emit TicketBought(user, eventId, ticketType);
   }
 
+  /// @notice Allows creator to use tickets and mark it as used
+  /// @param message Message with the necessary information (address of contract, eventId, tokenType, nonce)
+  /// @param v Component v of the signature
+  /// @param r Component r of the signature
+  /// @param s Component s of the signature
   function useTicket(bytes calldata message, uint8 v, bytes32 r, bytes32 s) external onlyUser(msg.sender) {
     eventsContract.useTicket(message, v, r, s);         
   }
 
+  /// @notice Allows user to register or update the data
+  /// @param metadataUri Link to Metadata of the info
   function upsertUser(string memory metadataUri) public {
     if (bytes(metadataUri).length == 0)
       revert EmptyMetadata();   
     usersContract.upsertUser(msg.sender, metadataUri); 
   }
 
+  /// @notice Allows creator to cancel an event
+  /// @param eventId Id of the Event to be cancelled
   function cancelEvent(uint256 eventId) external onlyUser(msg.sender) {
     Event[] memory event_ = eventsContract.getEventByRange(eventId, eventId);
     if (msg.sender != event_[0].creator)
@@ -160,35 +187,46 @@ contract Platform is Ownable, AxelarExecutable {
     eventsContract.cancelEvent(eventId);
   } 
 
-  // OWNER FUNCTIONS
+  /// @notice Set the Events Contract
+  /// @param _eventsContract Address of the Events Contract
   function setEventsContract(address _eventsContract) external onlyOwner {
     if (_eventsContract == address(0))
       revert AddressZero();
     eventsContract = IEvents(address(_eventsContract));
   }
 
+  /// @notice Set the Users Contract
+  /// @param _usersContract Address of the Users Contract
   function setUsersContract(address _usersContract) external onlyOwner {
     if (_usersContract == address(0))
       revert AddressZero();
     usersContract = IUsers(address(_usersContract));
   }
+
+  /// @notice Set the Platform Fee
+  /// @param _platformFee Platform fee (Two decimals places: 10% = 1000)
   function setPlatformFee(uint16 _platformFee) external onlyOwner {
     if (platformFee >= 3000)
       revert InvalidFee();
     platformFee = _platformFee;
   }
 
+  /// @notice Set the Platform Wallet
+  /// @param _platformWallet Platform Wallet that recollects fees
   function setPlatformWallet(address _platformWallet) external onlyOwner {
     if (_platformWallet == address(0))
       revert AddressZero();
     platformWallet = _platformWallet;
   }
 
+  /// @notice Modifier to check only user interactions
   modifier onlyUser(address user) {
       _checkIsUser(user);
       _;
   }
 
+  /// @notice Function allow Cross Chain users registering/updating info
+  /// @param payload Payload thar contains info of the user
   function _execute(
       string calldata /*sourceChain*/,
       string calldata /*sourceAddress*/,
@@ -198,6 +236,8 @@ contract Platform is Ownable, AxelarExecutable {
     usersContract.upsertUser(user, metadataUri);  
   }    
 
+  /// @notice Function allow Cross Chain buying tickets
+  /// @param payload Payload thar contains info of the user adn ticket to buy
   function _executeWithToken(
       string calldata ,
       string calldata ,
@@ -214,14 +254,8 @@ contract Platform is Ownable, AxelarExecutable {
       _buyTicket(user, eventId, ticketType, 0, amount, address(this));
   }  
 
-  function e(     
-    string calldata a ,
-      string calldata b,
-      bytes calldata payload,
-      string calldata c      ) external {
-    _executeWithToken(a, b, payload, c, 0);
-  }
-
+  /// @notice Function to check Valid Users
+  /// @param user address of the user to check
   function _checkIsUser(address user) private view {
     if (bytes(usersContract.users(user)).length == 0) 
       revert NotUser();
