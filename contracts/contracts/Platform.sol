@@ -8,7 +8,6 @@ import "./interfaces/IEvents.sol";
 import "./interfaces/ITickets.sol";
 import "./interfaces/IUsers.sol";
 import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
-import "hardhat/console.sol";
 
 /// @title Smart Contract for BiTicket Platform
 /// @author Eduardo Mannarino
