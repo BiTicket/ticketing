@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Accordion } from "react-bootstrap-accordion";
 import ExploreItem from "./ExploreItem";
 import todayPickData from "../../../assets/fake-data/data-today-pick";
+import Events from "../../../abi/Events";
+import { Web3Storage, File, makeStorageClient } from 'web3.storage';
 
 const Explore = (props) => {
   const data = props.data;
+  const dataEvent = props.myData;
+  
   return (
     <section className="tf-explore tf-section">
       <div className="themesflat-container">
@@ -41,7 +45,7 @@ const Explore = (props) => {
           </div>
 
           <div className="col-xl-9 col-lg-9 col-md-12">
-            <ExploreItem data={todayPickData} />
+            <ExploreItem data={dataEvent} />
           </div>
         </div>
       </div>

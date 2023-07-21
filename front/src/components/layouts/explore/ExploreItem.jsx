@@ -1,6 +1,11 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import CardModal from "../CardModal";
+import { Web3Storage, File, makeStorageClient } from 'web3.storage';
+//import Platform from "../abi/Platform";
+//import Events from "../abi/Events"
+import Events from "../../../abi/Events";
+
 
 const ExploreItem = (props) => {
   const data = props.data;
@@ -11,6 +16,8 @@ const ExploreItem = (props) => {
   };
 
   const [modalShow, setModalShow] = useState(false);
+  
+
   return (
     <Fragment>
       <div className="explore">
