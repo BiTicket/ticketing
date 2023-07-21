@@ -219,16 +219,17 @@ const CreateItem = () => {
 
     var newEvent = {
       creator: address,
-      eventMetadataUri: 'https://' + cid + '.ipfs.w3s.link', 
-      NFTMetadataUri: 'https://' + cidNFTMetadataUri + '.ipfs.w3s.link', 
+      eventMetadataUri: cid, 
+      NFTMetadataUri: cidNFTMetadataUri, 
       //
-      ticketsMetadataUris: ['https://' + cid + '.ipfs.w3s.link'], 
+      ticketsMetadataUris: [cid], 
       // json name, description, image
-      ticketsNFTMetadataUris: ['https://' + cid + '.ipfs.w3s.link'], 
+      ticketsNFTMetadataUris: [cid], 
       // 0:USDTprice, 1:DOTprice, 2:GrimmerPrice
       prices: [parseInt(priceValue),parseInt(priceValue),parseInt(priceValue)],  
       maxSupplies: [parseInt(totaltickets)], 
-      deadline: futureDate
+      deadline: futureDate,
+      percentageWithdraw:1000
     };
 
     //TODO: check if user exist
@@ -269,10 +270,10 @@ const CreateItem = () => {
 
     setProperty({
       ...property,
-      eventMetadataUri: 'https://' + files[0].cid + '.ipfs.w3s.link',
+      eventMetadataUri: files[0].cid,
     });
-    setImage('https://' + files[0].cid + '.ipfs.w3s.link');
-    console.log('https://' + files[0].cid + '.ipfs.w3s.link');
+    setImage(files[0].cid);
+    console.log(files[0].cid);
     for (const file of files) {
       console.log(`${file.cid} ${file.name} ${file.size}`)
     }
@@ -287,8 +288,8 @@ const CreateItem = () => {
     const files = await res.files();
 
 
-    setPlaceLayout('https://' + files[0].cid + '.ipfs.w3s.link');
-    console.log('https://' + files[0].cid + '.ipfs.w3s.link');
+    setPlaceLayout(files[0].cid);
+    console.log(files[0].cid);
     for (const file of files) {
       console.log(`${file.cid} ${file.name} ${file.size}`)
     }
