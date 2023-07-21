@@ -1,18 +1,23 @@
-import React, {useState} from "react";
+import React,{useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import avt from "../assets/images/people/profile.jpg";
-import { Web3Storage, File } from 'web3.storage';
+import { Web3Storage, File, makeStorageClient } from 'web3.storage';
 import Platform from "../abi/Platform";
+import Users from "../abi/Users";
 import { useAccount } from "wagmi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from '@emotion/react';
 
 
 const EditProfile = () => {
   const { address, isConnected } = useAccount();
+  const [userData, setUserData] = useState([]);
   const [imageProfile, setImageProfile] = useState("");
+  const [imageToShowProfile, setImageToShowProfile] = useState("");
   const [nameProfile, setNameProfile] = useState('');
   const [customUrl, setCustomUrl] = useState("");
   const [emailProfile, setEmailProfile] = useState("");
@@ -20,9 +25,16 @@ const EditProfile = () => {
   const [discord, setDiscord] = useState("");
   const [twitter, setTwitter] = useState("");
   const [facebook, setFacebook] = useState("");
+  let [loading, setLoading] = useState(false);
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   const handleNameProfile = (e) => {
-    setImageProfile(e.target.value);
+    setNameProfile(e.target.value);
   };
   const handleCustomUrl = (e) => {
     setCustomUrl(e.target.value);
@@ -64,10 +76,11 @@ const EditProfile = () => {
     const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
     const eventupsertUser = eventUpsertUser();
     const cid = await client.put(eventupsertUser);
+    setLoading(!loading);
 
     //reister user
     try{
-      await Platform.methods.upsertUser('https://' + cid + '.ipfs.w3s.link').send({
+      await Platform.methods.upsertUser(cid).send({
         from: address, // Use the first account from MetaMask or any other wallet
         gas: 5000000, // Adjust the gas limit as per your contract's requirements
 
@@ -88,24 +101,58 @@ const EditProfile = () => {
       progress: undefined,
       theme: "light",
       });
-
-    
+      setLoading(!loading);
   }
 
   const handleImageProdile = async (e) => {
     e.preventDefault();
     const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
     const rootCid = await client.put(e.target.files);
-    const info = await client.status(rootCid);
     const res = await client.get(rootCid);
     const files = await res.files();
 
-
-    setImageProfile('https://' + files[0].cid + '.ipfs.w3s.link');
+    setImageProfile(files[0].cid);
     for (const file of files) {
       console.log(`${file.cid} ${file.name} ${file.size}`)
     }
   };
+
+  useEffect(() => {
+    const retrieveFiles = async () => {
+      const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
+      const cid = await Users.methods.users(address).call();
+      const res = await client.get(cid);
+      console.log(`Got a response! [${res.status}] ${res.statusText}`)
+      if (!res.ok) {
+        throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+      }
+    
+      // unpack File objects from the response
+      const files = await res.files()
+      for (const file of files) {
+        console.log(`${file.cid} -- ${file.path} -- ${file.size}`)
+      }
+      //const jsonData = await files[0].json();
+      console.log(files);
+      const response = await fetch(`https://ipfs.io/ipfs/${files[0].cid}`);
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error('Failed to fetch JSON from IPFS');
+      }
+      // Parse the JSON data from the response
+      const jsonData = await response.json();
+      console.log(jsonData);
+      setNameProfile(jsonData.name);
+      setCustomUrl(jsonData.customUrl);
+      setEmailProfile(jsonData.email);
+      setBioProfile(jsonData.bio);
+      setDiscord(jsonData.discord);
+      setTwitter(jsonData.twitter);
+      setFacebook(jsonData.facebook);
+      setImageToShowProfile(`https://${jsonData.image}.ipfs.w3s.link`);
+    }
+    retrieveFiles();
+  },[]);
   
   return (
     <div>
@@ -122,6 +169,10 @@ const EditProfile = () => {
       pauseOnHover
       theme="light"
       />
+      <div>
+        <ClipLoader color={'#36D7B7'} loading={loading} css={override} size={150} />
+        {!loading && <p>Data has been loaded!</p>}
+      </div>
       <section className="flat-title-page inner">
         <div className="overlay"></div>
         <div className="themesflat-container">
@@ -151,7 +202,7 @@ const EditProfile = () => {
             <div className="col-xl-3 col-lg-4 col-md-6 col-12">
               <div className="sc-card-profile text-center">
                 <div className="card-media">
-                  <img id="profileimg" src={avt} alt="Ticketing" />
+                  <img id="profileimg" src={imageToShowProfile || avt} alt="Ticketing" />
                 </div>
                 <div id="upload-profile">
                   <Link to="#" className="btn-upload">
@@ -178,13 +229,14 @@ const EditProfile = () => {
                       <h4 className="title-create-item">Account info</h4>
                       <fieldset>
                         <h4 className="title-infor-account">Display name</h4>
-                        <input type="text" placeholder="Bon Jovi" onChange={(e) => handleNameProfile(e)} required />
+                        <input type="text" placeholder="Bon Jovi" value={nameProfile} onChange={(e) => handleNameProfile(e)} required />
                       </fieldset>
                       <fieldset>
                         <h4 className="title-infor-account">Custom URL</h4>
                         <input
                           type="text"
                           placeholder="Ticketing.Bon Jovi.com/"
+                          value={customUrl}
                           onChange={(e) => handleCustomUrl(e)}
                           required
                         />
@@ -194,13 +246,14 @@ const EditProfile = () => {
                         <input
                           type="email"
                           placeholder="Enter your email"
+                          value={emailProfile}
                           onChange={(e) => handleEmailProfile(e)}
                           required
                         />
                       </fieldset>
                       <fieldset>
                         <h4 className="title-infor-account">Bio</h4>
-                        <textarea tabIndex="4" rows="5" onChange={(e) => handleBioProfile(e)} required></textarea>
+                        <textarea tabIndex="4" rows="5" value={bioProfile} onChange={(e) => handleBioProfile(e)} required></textarea>
                       </fieldset>
                     </div>
                     <div className="info-social">
@@ -210,37 +263,40 @@ const EditProfile = () => {
                         <input
                           type="text"
                           placeholder="Facebook username"
+                          value={facebook}
                           onChange={(e) => handleFacebook(e)}
                           required
                         />
-                        <Link to="#" className="connect">
+                        {/* <Link to="#" className="connect">
                           <i className="fab fa-facebook"></i>Connect to face
                           book
-                        </Link>
+                        </Link> */}
                       </fieldset>
                       <fieldset>
                         <h4 className="title-infor-account">Twitter</h4>
                         <input
                           type="text"
                           placeholder="Twitter username"
+                          value={twitter}
                           onChange={(e) => handleTwitter(e)}
                           required
                         />
-                        <Link to="#" className="connect">
+                        {/* <Link to="#" className="connect">
                           <i className="fab fa-twitter"></i>Connect to Twitter
-                        </Link>
+                        </Link> */}
                       </fieldset>
                       <fieldset>
                         <h4 className="title-infor-account">Discord</h4>
                         <input
                           type="text"
                           placeholder="Discord username"
+                          value={discord}
                           onChange={(e) => handleDiscord(e)}
                           required
                         />
-                        <Link to="#" className="connect">
+                        {/* <Link to="#" className="connect">
                           <i className="icon-fl-vt"></i>Connect to Discord
-                        </Link>
+                        </Link> */}
                       </fieldset>
                       <fieldset>
                         <h4 className="title-infor-account">
@@ -249,6 +305,7 @@ const EditProfile = () => {
                         <input
                           type="text"
                           disabled
+                          value={address}
                           placeholder="0x6b4eyPy46b4yx2327ye46b4oe46b4e4"
                           required
                         />
