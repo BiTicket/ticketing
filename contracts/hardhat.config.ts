@@ -44,6 +44,7 @@ const config: HardhatUserConfig = {
     apiKey: {
       moonbaseAlpha: `${process.env.MOONBASE_API_KEY}`,
       bscTestnet: `${process.env.BSCTESTNET_API_KEY}`,
+      polygonMumbai: `${process.env.MUMBAI_API_KEY}`
     }
   }  
 };
