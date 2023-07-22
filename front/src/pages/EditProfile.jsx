@@ -25,6 +25,7 @@ const EditProfile = () => {
   const [twitter, setTwitter] = useState("");
   const [facebook, setFacebook] = useState("");
   let [loading, setLoading] = useState(false);
+  let [bothOk, setBothOk] = useState(false);
 
   const override = css`
     display: block;
@@ -83,20 +84,21 @@ const EditProfile = () => {
   };
 
   const handleSubmit = async (e) => {
+    setBothOk(true);
+    setLoading(true);
     e.preventDefault();
     const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
     const eventupsertUser = eventUpsertUser();
-    const cid = await client.put(eventupsertUser);
-    setLoading(!loading);
-
-    //reister user
     try {
+      const cid = await client.put(eventupsertUser);
+      //register user
       await Platform.methods.upsertUser(cid).send({
         from: address, // Use the first account from MetaMask or any other wallet
         gas: 5000000, // Adjust the gas limit as per your contract's requirements
       });
     } catch (error) {
       console.log(error);
+      setBothOk(false);
     }
 
     toast("🦄 You have updated your data!", {
@@ -109,7 +111,7 @@ const EditProfile = () => {
       progress: undefined,
       theme: "light",
     });
-    setLoading(!loading);
+    setLoading(false);
   };
 
   const handleImageProdile = async (e) => {
@@ -133,6 +135,9 @@ const EditProfile = () => {
       const cid = await Users.methods.users(address).call();
       const res = await client.get(cid);
       console.log(`Got a response! [${res.status}] ${res.statusText}`);
+      if (res.status == 404) {
+        return;
+      }
       if (!res.ok) {
         throw new Error(
           `failed to get ${cid} - [${res.status}] ${res.statusText}`
@@ -181,15 +186,6 @@ const EditProfile = () => {
         pauseOnHover
         theme="light"
       />
-      <div>
-        <ClipLoader
-          color={"#36D7B7"}
-          loading={loading}
-          css={override}
-          size={150}
-        />
-        {!loading && <p>Data has been loaded!</p>}
-      </div>
       <section className="flat-title-page inner">
         <div className="overlay"></div>
         <div className="themesflat-container">
@@ -341,9 +337,28 @@ const EditProfile = () => {
                       handleSubmit(e);
                     }}
                     type="submit"
+                    disabled={loading}
                   >
                     Update Profile
+                    <div>
+                      <ClipLoader
+                        color={"#36D7B7"}
+                        loading={loading}
+                        css={override}
+                        size={10}
+                      />
+                    </div>
                   </button>
+                  {loading && bothOk && (
+                    <p>We are submiting your data, please wait.</p>
+                  )}
+                  {loading && !bothOk && (
+                    <p>
+                      There was an error while uploading your data, try again or
+                      contact us.
+                    </p>
+                  )}
+                  {!loading && bothOk && <p>Data has been loaded!</p>}
                 </form>
               </div>
             </div>

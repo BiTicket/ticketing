@@ -104,18 +104,6 @@ const menus = [
       },
     ],
   },
-  {
-    id: 7,
-    name: "Contact",
-    links: "/contact",
-    namesub: [
-      {
-        id: 2,
-        sub: "Contact",
-        links: "/contact",
-      },
-    ],
-  },
 ];
 
 export default menus;

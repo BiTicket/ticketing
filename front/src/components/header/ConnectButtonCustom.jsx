@@ -43,31 +43,29 @@ const ConnectButtonCustom = () => {
                     <span>Wallet connect</span>
                   </Link>
                 );
-              }
-
-              if (chain.unsupported) {
+              } else if (chain.unsupported) {
                 return (
                   <button onClick={openChainModal} type="button">
                     Wrong network
                   </button>
                 );
+              } else {
+                return (
+                  <div style={{ display: "flex", gap: 12 }}>
+                    <Link
+                      onClick={openAccountModal}
+                      className="sc-button header-slider style style-1 wallet fl-button pri-1"
+                    >
+                      <span>
+                        {account.displayName}
+                        {account.displayBalance
+                          ? ` (${account.displayBalance})`
+                          : ""}
+                      </span>
+                    </Link>
+                  </div>
+                );
               }
-
-              return (
-                <div style={{ display: "flex", gap: 12 }}>
-                  <Link
-                    onClick={openAccountModal}
-                    className="sc-button header-slider style style-1 wallet fl-button pri-1"
-                  >
-                    <span>
-                      {account.displayName}
-                      {account.displayBalance
-                        ? ` (${account.displayBalance})`
-                        : ""}
-                    </span>
-                  </Link>
-                </div>
-              );
             })()}
           </div>
         );
