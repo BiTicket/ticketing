@@ -7,7 +7,6 @@ import widgetSidebarData from "../assets/fake-data/data-widget-sidebar";
 import { Web3Storage, File, makeStorageClient } from 'web3.storage';
 import Platform from "../abi/Platform";
 import Events from "../abi/Events";
-import { CoinGeckoClient } from 'coingecko-api-v3';
 
 const Explore = () => {
   const [eventsList, setEventsList] = useState([{}]);
