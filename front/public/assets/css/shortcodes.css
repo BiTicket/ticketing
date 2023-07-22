@@ -4922,6 +4922,7 @@ button.accordion-button {
   margin-bottom: 34px;
 }
 
+.form-create-item .tf-button-submit,
 .form-profile .tf-button-submit {
   background-color: rgba(81, 66, 252, 0.1);
   border: none;
@@ -4931,17 +4932,20 @@ button.accordion-button {
   padding: 14px 41px 12px 41px;
 }
 
+.form-create-item .tf-button-submit:hover,
 .form-profile .tf-button-submit:hover {
   background-color: #5142fc;
   color: #fff;
 }
 
+.is_dark .form-create-item .tf-button-submit,
 .is_dark .form-profile .tf-button-submit {
   border: 2px solid #fff;
   color: #fff;
   background: transparent none repeat scroll 0 0;
 }
 
+.is_dark .form-create-item .tf-button-submit:hover,
 .is_dark .form-profile .tf-button-submit:hover {
   border-color: transparent;
   outline: 0 none;

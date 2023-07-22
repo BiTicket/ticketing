@@ -5,18 +5,18 @@ import Footer from "../components/footer/Footer";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Select from "react-select";
-import { Web3Storage, File } from 'web3.storage';
+import { Web3Storage, File } from "web3.storage";
 import Platform from "../abi/Platform";
 import { useAccount } from "wagmi";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
 const CreateItem = () => {
   const { address, isConnected } = useAccount();
   const [imageEvent, setImage] = useState("");
-  const [titleValue, setTitleValue] = useState('');
+  const [titleValue, setTitleValue] = useState("");
   const [activeTabIndex, setActiveTabIndex] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
   const [paymentCurrency, setPaymentCurrency] = useState(0);
@@ -32,15 +32,23 @@ const CreateItem = () => {
   const [willNFTAvailable, setWillNFTAvailable] = useState("");
   const [category, setCategory] = useState("");
   const [property, setProperty] = useState({
-    creator: '',
-    eventMetadataUri:'', 
-    NFTMetadataUri: '', 
-    ticketsMetadataUris: [], 
-    ticketsNFTMetadataUris: [], 
-    prices: [],  
-    maxSupplies: [], 
-    deadline: 0
+    creator: "",
+    eventMetadataUri: "",
+    NFTMetadataUri: "",
+    ticketsMetadataUris: [],
+    ticketsNFTMetadataUris: [],
+    prices: [],
+    maxSupplies: [],
+    deadline: 0,
   });
+  let [loading, setLoading] = useState(false);
+  let [bothOk, setBothOk] = useState(false);
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   const options_transferable = [
     { value: false, label: "No, it can not be transfered to others" },
@@ -116,7 +124,7 @@ const CreateItem = () => {
 
   const handlesPaymentCurrency = (e) => {
     setPaymentCurrency(e.target.value);
-  }
+  };
 
   const handleDescriptionChange = (e) => {
     setDescriptionValue(e.target.value);
@@ -128,40 +136,44 @@ const CreateItem = () => {
 
   const handleDetailsChange = (e) => {
     setDetailsValue(e.target.value);
-  }
+  };
 
   const handleInstagramChange = (e) => {
     setInstagram(e.target.value);
-  }
+  };
 
   const handleTwitterChange = (e) => {
     setTwitter(e.target.value);
-  }
-  const handleFacebookChange = (e) => { 
+  };
+  const handleFacebookChange = (e) => {
     setFacebook(e.target.value);
-  }
+  };
   const handleTotalTicketChange = (e) => {
     setTotalTickets(e.target.value);
-  }
+  };
   const handleLimitTicketChange = (e) => {
     setLimitTickets(e.target.value);
-  }
+  };
 
-   // NFT metada event => Artist, place, etc
+  // NFT metada event => Artist, place, etc
   const eventMetaDataUri = () => {
     // You can create File objects from a Blob of binary data
     // see: https://developer.mozilla.org/en-US/docs/Web/API/Blob
     // Here we're just storing a JSON object, but you can store images,
     // audio, or whatever you want!
-    const obj = { NameArtist: "Add real value", Place: 'place where event happen', Image: 'https:ipfs' }
-    const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
-  
+    const obj = {
+      NameArtist: "Add real value",
+      Place: "place where event happen",
+      Image: "https:ipfs",
+    };
+    const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
+
     const files = [
-      new File(['contents-of-file-1'], 'plain-utf8.txt'),
-      new File([blob], 'hello.json')
-    ]
-    return files
-  }
+      new File(["contents-of-file-1"], "plain-utf8.txt"),
+      new File([blob], "hello.json"),
+    ];
+    return files;
+  };
 
   //  standard event NFT metadata => Name, Description, Image, etc
   const eventNftMetaDataUri = () => {
@@ -169,15 +181,21 @@ const CreateItem = () => {
     // see: https://developer.mozilla.org/en-US/docs/Web/API/Blob
     // Here we're just storing a JSON object, but you can store images,
     // audio, or whatever you want!
-    const nftMetaData = { Title: titleValue, Description: descriptionValue, Image: imageEvent }
-    const blob = new Blob([JSON.stringify(nftMetaData)], { type: 'application/json' })
-  
+    const nftMetaData = {
+      Title: titleValue,
+      Description: descriptionValue,
+      Image: imageEvent,
+    };
+    const blob = new Blob([JSON.stringify(nftMetaData)], {
+      type: "application/json",
+    });
+
     const files = [
-      new File(['contents-of-file-1'], 'plain-utf8.txt'),
-      new File([blob], 'hello.json')
-    ]
-    return files
-  }
+      new File(["contents-of-file-1"], "plain-utf8.txt"),
+      new File([blob], "hello.json"),
+    ];
+    return files;
+  };
 
   // Array of data specific tickets => Type of ticket, location, etc.
   const ticketsMetadataUris = () => {
@@ -185,79 +203,89 @@ const CreateItem = () => {
     // see: https://developer.mozilla.org/en-US/docs/Web/API/Blob
     // Here we're just storing a JSON object, but you can store images,
     // audio, or whatever you want!
-    const obj = { Name: titleValue, Details: detailsValue, place: placeLayout, instagram: instagram, twitter: twitter, facebook: facebook }
-    const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
-  
+    const obj = {
+      Name: titleValue,
+      Details: detailsValue,
+      place: placeLayout,
+      instagram: instagram,
+      twitter: twitter,
+      facebook: facebook,
+    };
+    const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
+
     const files = [
-      new File(['contents-of-file-1'], 'plain-utf8.txt'),
-      new File([blob], 'hello.json')
-    ]
-    return files
-  }
+      new File(["contents-of-file-1"], "plain-utf8.txt"),
+      new File([blob], "hello.json"),
+    ];
+    return files;
+  };
 
   // Array metadata standard  ticket => Name, Description, Image, etc
-  const ticketsNFTMetadataUris = () => {}
-
+  const ticketsNFTMetadataUris = () => {};
 
   const handleSubmit = async (e) => {
+    setBothOk(true);
+    setLoading(true);
     e.preventDefault();
-    const client2 = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
-    
+    const client2 = new Web3Storage({
+      token: process.env.REACT_APP_WEBSTORAGE,
+    });
+
     const eventMetadataUri = eventMetaDataUri();
     const cid = await client2.put(eventMetadataUri);
 
     const eventNftMetadataUri = eventNftMetaDataUri();
-    const cidNFTMetadataUri = await client2.put(eventNftMetadataUri);
+    try {
+      const cidNFTMetadataUri = await client2.put(eventNftMetadataUri);
 
-    //data metadata tickets
-    //const ticketsMetadataUris = ticketsMetadataUris();
-    //const cidTicketsMetadataUris = await client2.put(ticketsMetadataUris);
+      //data metadata tickets
+      //const ticketsMetadataUris = ticketsMetadataUris();
+      //const cidTicketsMetadataUris = await client2.put(ticketsMetadataUris);
 
-    //const currentDate = new Date();
-    //const futureDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
-    const futureDate = Math.floor(new Date().getTime() / 1000) + 4000000;
+      //const currentDate = new Date();
+      //const futureDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+      const futureDate = Math.floor(new Date().getTime() / 1000) + 4000000;
 
-    var newEvent = {
-      creator: address,
-      eventMetadataUri: cid, 
-      NFTMetadataUri: cidNFTMetadataUri, 
-      //
-      ticketsMetadataUris: [cid], 
-      // json name, description, image
-      ticketsNFTMetadataUris: [cid], 
-      // 0:USDTprice, 1:DOTprice, 2:GrimmerPrice
-      prices: [parseInt(priceValue),parseInt(priceValue),parseInt(priceValue)],  
-      maxSupplies: [parseInt(totaltickets)], 
-      deadline: futureDate,
-      percentageWithdraw:1000
-    };
+      var newEvent = {
+        creator: address,
+        eventMetadataUri: cid,
+        NFTMetadataUri: cidNFTMetadataUri,
+        //
+        ticketsMetadataUris: [cid],
+        // json name, description, image
+        ticketsNFTMetadataUris: [cid],
+        // 0:USDTprice, 1:DOTprice, 2:GrimmerPrice
+        prices: [
+          parseInt(priceValue),
+          parseInt(priceValue),
+          parseInt(priceValue),
+        ],
+        maxSupplies: [parseInt(totaltickets)],
+        deadline: futureDate,
+        percentageWithdraw: 1000,
+      };
 
-    //TODO: check if user exist
-    
-    try{
+      //TODO: check if user exist
       await Platform.methods.createEvent(newEvent).send({
         from: address, // Use the first account from MetaMask or any other wallet
         gas: 5000000, // Adjust the gas limit as per your contract's requirements
       });
-  
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
+      setBothOk(false);
     }
-    
-    toast("🦄 Wow you have created an event!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
-    
 
-  }
+    if (bothOk) {
+      toast("🦄 You have created an event!", {
+        type: "success",
+      });
+    } else {
+      toast("The form has missing info! Review it and try again", {
+        type: "error",
+      });
+    }
+    setLoading(false);
+  };
 
   const handleImage = async (e) => {
     e.preventDefault();
@@ -267,7 +295,6 @@ const CreateItem = () => {
     const res = await client.get(rootCid);
     const files = await res.files();
 
-
     setProperty({
       ...property,
       eventMetadataUri: files[0].cid,
@@ -275,7 +302,7 @@ const CreateItem = () => {
     setImage(files[0].cid);
     console.log(files[0].cid);
     for (const file of files) {
-      console.log(`${file.cid} ${file.name} ${file.size}`)
+      console.log(`${file.cid} ${file.name} ${file.size}`);
     }
   };
 
@@ -287,11 +314,10 @@ const CreateItem = () => {
     const res = await client.get(rootCid);
     const files = await res.files();
 
-
     setPlaceLayout(files[0].cid);
     console.log(files[0].cid);
     for (const file of files) {
-      console.log(`${file.cid} ${file.name} ${file.size}`)
+      console.log(`${file.cid} ${file.name} ${file.size}`);
     }
   };
 
@@ -299,16 +325,16 @@ const CreateItem = () => {
     <div className="create-item">
       <Header />
       <ToastContainer
-      position="top-center"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
+        position="top-right"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
       />
       <section className="flat-title-page inner">
         <div className="overlay"></div>
@@ -355,9 +381,11 @@ const CreateItem = () => {
                   </label>
                   <div className="flat-tabs tab-create-item">
                     <h4 className="title-create-item">Title</h4>
-                    <input type="text"
-                     onChange={(e) => handleTitleChange(e)}
-                     placeholder="Item Name" />
+                    <input
+                      type="text"
+                      onChange={(e) => handleTitleChange(e)}
+                      placeholder="Item Name"
+                    />
 
                     <h4 className="title-create-item">Prices</h4>
                     <Tabs>
@@ -401,11 +429,13 @@ const CreateItem = () => {
                   </div>
 
                   <h4 className="title-create-item">Description</h4>
-                  <textarea placeholder="e.g. “This is very limited item”"
-                     onChange={(e) => handleDescriptionChange(e)}></textarea>
+                  <textarea
+                    placeholder="e.g. “This is very limited item”"
+                    onChange={(e) => handleDescriptionChange(e)}
+                  ></textarea>
 
                   <h4 className="title-create-item">Details</h4>
-                  <textarea 
+                  <textarea
                     placeholder="e.g. “This is very limited item”"
                     onChange={(e) => handleDetailsChange(e)}
                   ></textarea>
@@ -426,56 +456,42 @@ const CreateItem = () => {
                   </label>
                   <h4 className="title-create-item">Social Media</h4>
                   <div className="row-form style-1 social-media-group">
-                    <input type="text" placeholder="Instagram" onChange={(e) => handleInstagramChange(e)} />
-                    <input type="text" placeholder="Twitter" onChange={(e) => handleTwitterChange(e)} />
-                    <input type="text" placeholder="Facebook" onChange={(e)=>handleFacebookChange(e)} />
+                    <input
+                      type="text"
+                      placeholder="Instagram"
+                      onChange={(e) => handleInstagramChange(e)}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Twitter"
+                      onChange={(e) => handleTwitterChange(e)}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Facebook"
+                      onChange={(e) => handleFacebookChange(e)}
+                    />
                   </div>
                   <div className="row-form">
                     <div className="inner-row-form">
                       <h4 className="title-create-item">Total tickets</h4>
-                      <input type="text" placeholder="e.g. “35000”" onChange={(e) => handleTotalTicketChange(e)} />
+                      <input
+                        type="text"
+                        placeholder="e.g. “35000”"
+                        onChange={(e) => handleTotalTicketChange(e)}
+                      />
                     </div>
                     <div className="inner-row-form">
                       <h4 className="title-create-item">
                         Limit ticket per wallet
                       </h4>
-                      <input type="text" placeholder="e.g. “3”" onChange={(e) => handleLimitTicketChange(e)} />
+                      <input
+                        type="text"
+                        placeholder="e.g. “3”"
+                        onChange={(e) => handleLimitTicketChange(e)}
+                      />
                     </div>
                   </div>
-                  {/* <div className="row-form">
-                    <h4 className="title-create-item">Other details</h4>
-                    <div className="select-row">
-                      <div className="inner-row-form style-3">
-                        <span>Ticket transferable?</span>
-                        <Select
-                          theme={theme}
-                          placeholder={"Ticket transferable?"}
-                          defaultValue={selectedOption}
-                          onChange={setSelectedOption}
-                          options={options_transferable}
-                        />
-                      </div>
-                      <div className="inner-row-form style-3">
-                        <span>Will be a NFT available?</span>
-                        <Select
-                          theme={theme}
-                          placeholder={"Ticket transferable?"}
-                          defaultValue={selectedOption}
-                          onChange={setSelectedOption}
-                          options={options_visual}
-                        />
-                      </div>
-                      <div className="inner-row-form style-3">
-                        <span>Category?</span>
-                        <Select
-                          theme={theme}
-                          defaultValue={selectedOption}
-                          onChange={setSelectedOption}
-                          options={options_Category}
-                        />
-                      </div>
-                    </div>
-                  </div> */}
                   <div className="row">
                     <div className="col-12">
                       <button
@@ -484,9 +500,28 @@ const CreateItem = () => {
                         onClick={(e) => {
                           handleSubmit(e);
                         }}
+                        disabled={loading}
                       >
                         Create event
-                      </button>{" "}
+                        <div>
+                          <ClipLoader
+                            color={"#36D7B7"}
+                            loading={loading}
+                            css={override}
+                            size={10}
+                          />
+                        </div>
+                      </button>
+                      {loading && bothOk && (
+                        <p>We are submiting your data, please wait.</p>
+                      )}
+                      {loading && !bothOk && (
+                        <p>
+                          There was an error while uploading your data, try
+                          again or contact us.
+                        </p>
+                      )}
+                      {!loading && bothOk && <p>Data has been loaded!</p>}
                     </div>
                   </div>
                 </form>
