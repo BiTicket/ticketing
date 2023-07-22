@@ -569,7 +569,9 @@ const CreateItem = () => {
                           again or contact us.
                         </p>
                       )}
-                      {!loading && bothOk && <p>Data has been loaded!</p>}
+                      {!loading && bothOk && (
+                        <p>Data has been submitted successfully!</p>
+                      )}
                     </div>
                   </div>
                 </form>
