@@ -36,13 +36,12 @@ const Explore = () => {
     return jsonData;
   }
 
-  const buildEvent = async (event) => {
+  const buildEvent = async (index, event) => {
     let myeventData = await retrieveNFTMetadataUri(event.NFTMetadataUri);
     let myTicketData = await retrieveNFTMetadataUri(event.eventMetadataUri);
-    console.log(event);
-    console.log(myTicketData);
-    console.log(myeventData);
+    
     return {
+      id:index,
       img: `https://ipfs.io/ipfs/${myeventData.Image}`,
       imgAuthor: `https://ipfs.io/ipfs/${myeventData.Image}`,
       title: myeventData.Title,
@@ -59,12 +58,14 @@ const Explore = () => {
 
   const retrieveEvents = async () => {
     const eventList = [];
+    let index =2;
     const totalEvents = await Events.methods.totalEvents().call();
     // for demo propose, hadcode the range
-    const events = await Events.methods.getEventByRange(2,totalEvents-1).call();
+    const events = await Events.methods.getEventByRange(index,totalEvents-1).call();
     console.log(events);
     for(const element of events){
-      eventList.push(await buildEvent(element));
+      eventList.push(await buildEvent(index,element));
+      index++;
     }
 
     return eventList;
