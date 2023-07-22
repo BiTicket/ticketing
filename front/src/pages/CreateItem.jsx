@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Select from "react-select";
 import { Web3Storage, File } from "web3.storage";
+import web3 from "../utils/web3";
 import Platform from "../abi/Platform";
 import { useAccount } from "wagmi";
 import { ToastContainer, toast } from "react-toastify";
@@ -144,7 +145,7 @@ const CreateItem = () => {
   };
 
   const handlePriceChange = (e) => {
-    setPriceValue(e.target.value);
+    setPriceValue(web3.utils.toWei(e.target.value));
   };
 
   const handleDetailsChange = (e) => {
@@ -209,7 +210,8 @@ const CreateItem = () => {
       instagram: instagram,
       twitter: twitter,
       facebook: facebook,
-      category: category
+      category: category,
+      limitTickets: limitTickets,
     };
     const blob = new Blob([JSON.stringify(nftMetaData)], {
       type: "application/json",

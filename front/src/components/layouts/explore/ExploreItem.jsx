@@ -9,7 +9,7 @@ import Events from "../../../abi/Events";
 
 const ExploreItem = (props) => {
   const data = props.data;
-
+ 
   const [visible, setVisible] = useState(6);
   const showMoreItems = () => {
     setVisible((prevValue) => prevValue + 6);
@@ -30,25 +30,25 @@ const ExploreItem = (props) => {
               key={index}
             >
               <div className="card-media">
-                <Link to="/item-details">
+                <Link to={`/item-details?id=${item.id}`} >
                   <img src={item.img} alt="Ticketing" />
                 </Link>
-                <div className="button-place-bid">
+                {/* <div className="button-place-bid">
                   <button
                     onClick={() => setModalShow(true)}
                     className="sc-button style-place-bid style bag fl-button pri-3"
                   >
                     <span>Buy now</span>
                   </button>
-                </div>
-                <Link to="/login" className="wishlist-button heart">
+                </div> */}
+                <Link to={"/login"} className="wishlist-button heart">
                   <span className="number-like">{item.wishlist}</span>
                 </Link>
                 <div className="coming-soon">{item.feature}</div>
               </div>
               <div className="card-title">
                 <h5>
-                  <Link to="/item-details">"{item.title}"</Link>
+                  <Link to={`/item-details?id=${item.id}`}>"{item.title}"</Link>
                 </h5>
               </div>
               <div className="meta-info">
@@ -74,9 +74,9 @@ const ExploreItem = (props) => {
                     <span>= {item.priceChange}</span>
                   </div>
                 </div>
-                <Link to="/activity" className="view-history reload">
+                {/* <Link to="/activity" className="view-history reload">
                   View Data
-                </Link>
+                </Link> */}
               </div>
             </div>
           ))}
