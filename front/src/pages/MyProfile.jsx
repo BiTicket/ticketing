@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import CardModal from "../components/layouts/CardModal";
-
+import { useAccount } from "wagmi";
 import avt from "../assets/images/people/profile.jpg";
 import img1 from "../assets/images/people/01.jpg";
 import imgCollection1 from "../assets/images/categories/concert2.png";
@@ -17,6 +17,10 @@ import img4 from "../assets/images/people/04.jpg";
 import imgCollection4 from "../assets/images/avatar/avt-18.jpg";
 import img5 from "../assets/images/people/05.jpg";
 import imgCollection5 from "../assets/images/avatar/avt-18.jpg";
+import { Web3Storage, File, makeStorageClient } from 'web3.storage';
+
+import Events from "../abi/Events";
+import Platform from "../abi/Platform";
 
 const MyProfile = () => {
   const [menuTab] = useState([
@@ -33,88 +37,121 @@ const MyProfile = () => {
       name: "MY COLLECTIONS",
     },
   ]);
-  const [panelTab] = useState([
-    {
+
+  
+
+  const [panelTab, setPanelTab] = useState([]);
+  const { address, isConnected } = useAccount();
+  const [event, setEvent] = useState({});
+  const [visible, setVisible] = useState(8);
+  
+  const showMoreItems = () => {
+    setVisible((prevValue) => prevValue + 4);
+  };
+
+  const [modalShow, setModalShow] = useState(false);
+
+  const retrieveNFTMetadataUri = async (NFTMetadataUri) => {
+    const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
+    const cid = NFTMetadataUri;
+    const res = await client.get(NFTMetadataUri);
+    
+    if (!res.ok) {
+      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+    }
+  
+    // unpack File objects from the response
+    const files = await res.files()
+    
+    const response = await fetch(`https://ipfs.io/ipfs/${files[0].cid}`);
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error('Failed to fetch JSON from IPFS');
+    }
+    // Parse the JSON data from the response
+    const jsonData = await response.json();
+    return jsonData;
+  }
+
+  const buildEvent = async (index, event) => {
+    let myeventData = await retrieveNFTMetadataUri(event.NFTMetadataUri);
+    let myTicketData = await retrieveNFTMetadataUri(event.eventMetadataUri);
+    
+    return {
+      id:index,
+      img: `https://ipfs.io/ipfs/${myeventData.Image}`,
+      imgAuthor: `https://ipfs.io/ipfs/${myeventData.Image}`,
+      title: myeventData.Title,
+      price: '12 USDT',// TODO: harcodeo price because I can't find in SM `${event.Price} USDT`, 
+      nameAuthor: myeventData.nameCreator || 'John Doe',
+      description: myeventData.Details,
+      category: myeventData.category || 'Music',
+      collection: myeventData.collectin,
+      nameArtist: myTicketData.NameArtist || 'John Doe',
+      tags:'USDT',
+      priceChange: `3 DOT`,
+      limitTicket: event.limitTicket || 100,
+      wishlist: 100,
+      imgCollection: `https://ipfs.io/ipfs/${myeventData.Image}`,
+      nameCollection: myeventData.Title,
+      deadline: event.deadline,
+      owner:event.creator,
+      cancelled: event.cancelled
+    };
+
+  };
+
+  const retrieveEvents = async () => {
+    let eventList = [];
+    let index = 2;
+    const totalEvents = await Events.methods.totalEvents().call();
+    // for demo propose, hadcode the range
+    const events = await Events.methods.getEventByRange(index,totalEvents-1).call();
+    for(const element of events){
+      eventList.push(await buildEvent(index,element));
+      index++;
+    }
+    
+
+    return eventList;
+  };
+
+  const cancelEvent = async (e, eventId) => {
+    e.preventDefault();
+    const platform = await Platform.methods.cancelEvent(eventId).send({from:address});
+  };
+
+  //return events
+  useEffect(()=> {
+    let tabArray = [];
+    let myEvent =[];
+    const fetchData = async () => {
+      const arrayEvents = await retrieveEvents();
+      setEvent(arrayEvents.filter(x=>x.owner == address));
+    }
+    fetchData();
+    
+    //harcode assisted events
+    if(event.length > 0){
+    setPanelTab([{
       id: 1,
       dataContent: [
-        {
-          title: "Metallica",
-          tags: "CON",
-          imgAuthor: img1,
-          nameAuthor: "Tour Concert",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
-          wishlist: "100",
-          imgCollection: imgCollection1,
-          nameCollection: "Creative Art 3D",
-        },
         {
           title: "Motocross competition",
           tags: "Sports",
           imgAuthor: img2,
           nameAuthor: "X Games",
-          price: "4.89 ETH",
+          price: "1 DOT",
           priceChange: "$12.246",
           wishlist: "100",
           imgCollection: imgCollection2,
           nameCollection: "Creative Art 3D",
         },
       ],
-    },
-    {
-      id: 2,
-      dataContent: [
-        {
-          id: 2,
-          title: "The RenaiXance Rising the sun ",
-          tags: "bsc",
-          imgAuthor: img3,
-          nameAuthor: "FIFA",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
-          wishlist: "100",
-          imgCollection: imgCollection2,
-          nameCollection: "Creative Art 3D",
-        },
-        {
-          id: 3,
-          title: "The RenaiXance Rising the sun ",
-          tags: "bsc",
-          imgAuthor: img3,
-          nameAuthor: "FIFA",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
-          wishlist: "100",
-          imgCollection: imgCollection3,
-          nameCollection: "Creative Art 3D",
-        },
-        {
-          id: 4,
-          title: "The RenaiXance Rising the sun ",
-          tags: "bsc",
-          imgAuthor: img4,
-          nameAuthor: "FIFA",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
-          wishlist: "100",
-          imgCollection: imgCollection4,
-          nameCollection: "Creative Art 3D",
-        },
-        {
-          id: 5,
-          title: "The RenaiXance Rising the sun ",
-          tags: "bsc",
-          imgAuthor: img5,
-          nameAuthor: "FIFA",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
-          wishlist: "100",
-          imgCollection: imgCollection5,
-          nameCollection: "Creative Art 3D",
-        },
-      ],
-    },
-    {
+    },{
+      id:2,
+      dataContent: event
+    },{
       id: 3,
       dataContent: [
         {
@@ -123,46 +160,17 @@ const MyProfile = () => {
           tags: "bsc",
           imgAuthor: img1,
           nameAuthor: "FIFA",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
+          price: "4.89 DOT",
+          priceChange: "$80",
           wishlist: "100",
           imgCollection: imgCollection1,
           nameCollection: "Creative Art 3D",
-        },
-        {
-          id: 3,
-          title: "NFT 2",
-          tags: "bsc",
-          imgAuthor: img3,
-          nameAuthor: "FIFA",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
-          wishlist: "100",
-          imgCollection: imgCollection3,
-          nameCollection: "Creative Art 3D",
-        },
-        {
-          id: 4,
-          title: "NFT 3",
-          tags: "bsc",
-          imgAuthor: img4,
-          nameAuthor: "FIFA",
-          price: "4.89 ETH",
-          priceChange: "$12.246",
-          wishlist: "100",
-          imgCollection: imgCollection4,
-          nameCollection: "Creative Art 3D",
-        },
-      ],
-    },
-  ]);
-
-  const [visible, setVisible] = useState(8);
-  const showMoreItems = () => {
-    setVisible((prevValue) => prevValue + 4);
-  };
-
-  const [modalShow, setModalShow] = useState(false);
+        }]
+      }]
+    );
+    }
+    
+  },[event]);
 
   return (
     <div className="author">
@@ -244,7 +252,7 @@ const MyProfile = () => {
                                 <div className="card-media">
                                   <Link
                                     to={
-                                      index != 1 ? "/item-details" : "/escrow"
+                                      index != 1 ? `/item-details?eventId=${data.id}` : `/escrow?eventId=${data.id}`
                                     }
                                   >
                                     <img
@@ -254,12 +262,27 @@ const MyProfile = () => {
                                   </Link>
                                   <div className="button-place-bid ">
                                     {index == 1 ? (
-                                      <Link
-                                        to="/escrow"
+                                      <>
+                                        <Link
+                                          to={`/escrow?eventId=${data.id}`}
+                                          className="sc-button style-place-bid style bag fl-button pri-3"
+                                        >
+                                          <span>See escrow</span>
+                                        </Link>
+                                        <br/>
+                                        {
+                                        data.cancelled ==true ?
+                                        <></>
+                                        :
+                                        <button
+                                        onClick={(e) => cancelEvent(e,data.id)}
                                         className="sc-button style-place-bid style bag fl-button pri-3"
-                                      >
-                                        <span>See escrow</span>
-                                      </Link>
+                                        >
+                                          <span>Cancel event</span>
+                                        </button>
+                                        }
+                                      </>
+                                      
                                     ) : (
                                       <button
                                         onClick={() => setModalShow(true)}
@@ -304,7 +327,13 @@ const MyProfile = () => {
                                       </h6>
                                     </div>
                                   </div>
+                                  {
+                                  data.cancelled ==true ? 
+                                    <div className="tags">Cancelled</div>
+                                   : 
                                   <div className="tags">{data.tags}</div>
+                                  
+                                }
                                 </div>
                                 <div className="card-bottom style-explode">
                                   <div className="price">

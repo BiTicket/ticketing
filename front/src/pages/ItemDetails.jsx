@@ -23,8 +23,10 @@ import imgdetail1 from "../assets/images/events/01.jpg";
 import { Web3Storage, File, makeStorageClient } from 'web3.storage';
 import Events from "../abi/Events";
 import Platform from "../abi/Platform";
+import web3 from "../utils/web3";
 
 const ItemDetails02 = () => {
+  /* global BigInt */
   const [dataHistory] = useState([
     {
       img: img1,
@@ -116,10 +118,14 @@ const ItemDetails02 = () => {
     if(isConnected) {
       try
       {
-        await Platform.methods.buyTicket(address,event.id,0,2,1).send(
+        console.log(event)
+        let price1 = BigInt(event.price) * BigInt(1100);
+        let price2 = price1 / BigInt(1000);
+
+        await Platform.methods.buyTicket(address,eventId,0,2,1).send(
           {
             from: address, 
-            value: 11000
+            value: price2.toString()
           });
       }
       catch (error) {
@@ -144,13 +150,13 @@ const ItemDetails02 = () => {
   const buildEvent = async (index, event) => {
     let myeventData = await retrieveNFTMetadataUri(event.NFTMetadataUri);
     let myTicketData = await retrieveNFTMetadataUri(event.eventMetadataUri);
-    console.log(event);
+    console.log(myeventData);
     return {
       id:index,
       img: `https://ipfs.io/ipfs/${myeventData.Image}`,
       imgAuthor: `https://ipfs.io/ipfs/${myeventData.Image}`,
       title: myeventData.Title,
-      price: '12 USDT',// TODO: harcodeo price because I can't find in SM `${event.Price} USDT`, 
+      price: myeventData.priceTicket, 
       nameAuthor: myeventData.nameCreator || 'John Doe',
       description: myeventData.Details,
       category: myeventData.category || 'Music',

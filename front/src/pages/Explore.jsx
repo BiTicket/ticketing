@@ -7,6 +7,7 @@ import widgetSidebarData from "../assets/fake-data/data-widget-sidebar";
 import { Web3Storage, File, makeStorageClient } from 'web3.storage';
 import Platform from "../abi/Platform";
 import Events from "../abi/Events";
+import web3 from "../utils/web3";
 
 const Explore = () => {
   const [eventsList, setEventsList] = useState([{}]);
@@ -39,13 +40,13 @@ const Explore = () => {
   const buildEvent = async (index, event) => {
     let myeventData = await retrieveNFTMetadataUri(event.NFTMetadataUri);
     let myTicketData = await retrieveNFTMetadataUri(event.eventMetadataUri);
-    
+    myeventData.priceTicket = myeventData.priceTicket || '100000000000000';
     return {
       id:index,
       img: `https://ipfs.io/ipfs/${myeventData.Image}`,
       imgAuthor: `https://ipfs.io/ipfs/${myeventData.Image}`,
       title: myeventData.Title,
-      price: '12 USDT',// TODO: harcodeo price because I can't find in SM `${event.Price} USDT`, 
+      price:  web3.utils.fromWei(myeventData.priceTicket, 'ether') || .01,// TODO: harcodeo price because I can't find in SM `${event.Price} USDT`, 
       nameAuthor: myeventData.nameCreator || 'John Doe',
       tags:'USDT',
       priceChange: `3 DOT`,
@@ -62,7 +63,6 @@ const Explore = () => {
     const totalEvents = await Events.methods.totalEvents().call();
     // for demo propose, hadcode the range
     const events = await Events.methods.getEventByRange(index,totalEvents-1).call();
-    console.log(events);
     for(const element of events){
       eventList.push(await buildEvent(index,element));
       index++;
