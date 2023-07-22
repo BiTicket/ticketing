@@ -101,16 +101,16 @@ const EditProfile = () => {
       setBothOk(false);
     }
 
-    toast("🦄 You have updated your data!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    if (bothOk) {
+      toast("🦄 You have updated your data!", {
+        type: "success",
+      });
+    } else {
+      toast("The form has missing info! Review it and try again", {
+        type: "error",
+      });
+    }
+
     setLoading(false);
   };
 
@@ -184,7 +184,7 @@ const EditProfile = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
       />
       <section className="flat-title-page inner">
         <div className="overlay"></div>

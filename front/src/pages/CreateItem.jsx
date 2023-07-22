@@ -10,6 +10,8 @@ import Platform from "../abi/Platform";
 import { useAccount } from "wagmi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
 const CreateItem = () => {
   const { address, isConnected } = useAccount();
@@ -39,6 +41,14 @@ const CreateItem = () => {
     maxSupplies: [],
     deadline: 0,
   });
+  let [loading, setLoading] = useState(false);
+  let [bothOk, setBothOk] = useState(false);
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   const options_transferable = [
     { value: false, label: "No, it can not be transfered to others" },
@@ -214,6 +224,8 @@ const CreateItem = () => {
   const ticketsNFTMetadataUris = () => {};
 
   const handleSubmit = async (e) => {
+    setBothOk(true);
+    setLoading(true);
     e.preventDefault();
     const client2 = new Web3Storage({
       token: process.env.REACT_APP_WEBSTORAGE,
@@ -223,56 +235,56 @@ const CreateItem = () => {
     const cid = await client2.put(eventMetadataUri);
 
     const eventNftMetadataUri = eventNftMetaDataUri();
-    const cidNFTMetadataUri = await client2.put(eventNftMetadataUri);
-
-    //data metadata tickets
-    //const ticketsMetadataUris = ticketsMetadataUris();
-    //const cidTicketsMetadataUris = await client2.put(ticketsMetadataUris);
-
-    //const currentDate = new Date();
-    //const futureDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
-    const futureDate = Math.floor(new Date().getTime() / 1000) + 4000000;
-
-    var newEvent = {
-      creator: address,
-      eventMetadataUri: cid,
-      NFTMetadataUri: cidNFTMetadataUri,
-      //
-      ticketsMetadataUris: [cid],
-      // json name, description, image
-      ticketsNFTMetadataUris: [cid],
-      // 0:USDTprice, 1:DOTprice, 2:GrimmerPrice
-      prices: [
-        parseInt(priceValue),
-        parseInt(priceValue),
-        parseInt(priceValue),
-      ],
-      maxSupplies: [parseInt(totaltickets)],
-      deadline: futureDate,
-      percentageWithdraw: 1000,
-    };
-
-    //TODO: check if user exist
-
     try {
+      const cidNFTMetadataUri = await client2.put(eventNftMetadataUri);
+
+      //data metadata tickets
+      //const ticketsMetadataUris = ticketsMetadataUris();
+      //const cidTicketsMetadataUris = await client2.put(ticketsMetadataUris);
+
+      //const currentDate = new Date();
+      //const futureDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+      const futureDate = Math.floor(new Date().getTime() / 1000) + 4000000;
+
+      var newEvent = {
+        creator: address,
+        eventMetadataUri: cid,
+        NFTMetadataUri: cidNFTMetadataUri,
+        //
+        ticketsMetadataUris: [cid],
+        // json name, description, image
+        ticketsNFTMetadataUris: [cid],
+        // 0:USDTprice, 1:DOTprice, 2:GrimmerPrice
+        prices: [
+          parseInt(priceValue),
+          parseInt(priceValue),
+          parseInt(priceValue),
+        ],
+        maxSupplies: [parseInt(totaltickets)],
+        deadline: futureDate,
+        percentageWithdraw: 1000,
+      };
+
+      //TODO: check if user exist
       await Platform.methods.createEvent(newEvent).send({
         from: address, // Use the first account from MetaMask or any other wallet
         gas: 5000000, // Adjust the gas limit as per your contract's requirements
       });
     } catch (error) {
       console.log(error);
+      setBothOk(false);
     }
 
-    toast("🦄 You have created an event!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    if (bothOk) {
+      toast("🦄 You have created an event!", {
+        type: "success",
+      });
+    } else {
+      toast("The form has missing info! Review it and try again", {
+        type: "error",
+      });
+    }
+    setLoading(false);
   };
 
   const handleImage = async (e) => {
@@ -313,8 +325,8 @@ const CreateItem = () => {
     <div className="create-item">
       <Header />
       <ToastContainer
-        position="top-center"
-        autoClose={5000}
+        position="top-right"
+        autoClose={10000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -322,7 +334,7 @@ const CreateItem = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
       />
       <section className="flat-title-page inner">
         <div className="overlay"></div>
@@ -488,9 +500,28 @@ const CreateItem = () => {
                         onClick={(e) => {
                           handleSubmit(e);
                         }}
+                        disabled={loading}
                       >
                         Create event
-                      </button>{" "}
+                        <div>
+                          <ClipLoader
+                            color={"#36D7B7"}
+                            loading={loading}
+                            css={override}
+                            size={10}
+                          />
+                        </div>
+                      </button>
+                      {loading && bothOk && (
+                        <p>We are submiting your data, please wait.</p>
+                      )}
+                      {loading && !bothOk && (
+                        <p>
+                          There was an error while uploading your data, try
+                          again or contact us.
+                        </p>
+                      )}
+                      {!loading && bothOk && <p>Data has been loaded!</p>}
                     </div>
                   </div>
                 </form>
