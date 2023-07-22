@@ -3,8 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import menus from "../../pages/menu";
 import DarkMode from "./DarkMode";
 import logodark from "../../assets/images/logo/logo_dark.png";
-import avt from "../../assets/images/avatar/avt-2.jpg";
-import coin from "../../assets/images/logo/coin.svg";
 import ConnectButtonCustom from "./ConnectButtonCustom";
 
 const HeaderHome = () => {
@@ -179,51 +177,6 @@ const HeaderHome = () => {
                 <div className="flat-search-btn flex">
                   <div className="sc-btn-top mg-r-12" id="site-header">
                     <ConnectButtonCustom />
-                  </div>
-
-                  <div className="admin_active" id="header_admin">
-                    <div className="header_avatar">
-                      <div className="price">
-                        <span>
-                          2.45 <strong>ETH</strong>{" "}
-                        </span>
-                      </div>
-                      <img className="avatar" src={avt} alt="avatar" />
-                      <div className="avatar_popup mt-20">
-                        <div className="d-flex align-items-center copy-text justify-content-between">
-                          <span> 13b9ebda035r178... </span>
-                          <Link to="/" className="ml-2">
-                            <i className="fal fa-copy"></i>
-                          </Link>
-                        </div>
-                        <div className="d-flex align-items-center mt-10">
-                          <img className="coin" src={coin} alt="/" />
-                          <div className="info ml-10">
-                            <p className="text-sm font-book text-gray-400">
-                              Balance
-                            </p>
-                            <p className="w-full text-sm font-bold text-green-500">
-                              16.58 ETH
-                            </p>
-                          </div>
-                        </div>
-                        <div className="hr"></div>
-                        <div className="links mt-20">
-                          <Link to="#">
-                            <i className="fab fa-accusoft"></i>{" "}
-                            <span> My items</span>
-                          </Link>
-                          <a className="mt-10" href="/edit-profile">
-                            <i className="fas fa-pencil-alt"></i>{" "}
-                            <span> Edit Profile</span>
-                          </a>
-                          <a className="mt-10" href="/login" id="logout">
-                            <i className="fal fa-sign-out"></i>{" "}
-                            <span> Logout</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
