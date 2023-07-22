@@ -25,6 +25,7 @@ const EditProfile = () => {
   const [twitter, setTwitter] = useState("");
   const [facebook, setFacebook] = useState("");
   let [loading, setLoading] = useState(false);
+  let [loadingUserData, setLoadingUserData] = useState(false);
   let [bothOk, setBothOk] = useState(false);
 
   const override = css`
@@ -76,10 +77,7 @@ const EditProfile = () => {
       type: "application/json",
     });
 
-    const files = [
-      new File(["contents-of-file-1"], "plain-utf8.txt"),
-      new File([blob], "hello.json"),
-    ];
+    const files = [new File([blob], "userdata.json")];
     return files;
   };
 
@@ -91,39 +89,38 @@ const EditProfile = () => {
     const eventupsertUser = eventUpsertUser();
     try {
       const cid = await client.put(eventupsertUser);
-      //register user
-      await Platform.methods.upsertUser(cid).send({
+      //register/update user
+      const reg = await Platform.methods.upsertUser(cid).send({
         from: address, // Use the first account from MetaMask or any other wallet
         gas: 5000000, // Adjust the gas limit as per your contract's requirements
       });
-    } catch (error) {
-      console.log(error);
-      setBothOk(false);
-    }
-
-    if (bothOk) {
       toast("🦄 You have updated your data!", {
         type: "success",
       });
-    } else {
+    } catch (error) {
       toast("The form has missing info! Review it and try again", {
         type: "error",
       });
+      console.log("Error while registering user", error);
+      setBothOk(false);
     }
 
     setLoading(false);
   };
 
-  const handleImageProdile = async (e) => {
+  const handleImageProfile = async (e) => {
     e.preventDefault();
     const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
     const rootCid = await client.put(e.target.files);
     const res = await client.get(rootCid);
-    const files = await res.files();
-
-    setImageProfile(files[0].cid);
-    for (const file of files) {
-      console.log(`${file.cid} ${file.name} ${file.size}`);
+    try {
+      const files = await res.files();
+      setImageProfile(files[0].cid);
+      for (const file of files) {
+        console.log(`${file.cid} ${file.name} ${file.size}`);
+      }
+    } catch {
+      console.log("Error while uploading image");
     }
   };
 
@@ -144,32 +141,40 @@ const EditProfile = () => {
         );
       }
 
-      // unpack File objects from the response
-      const files = await res.files();
-      for (const file of files) {
-        console.log(`${file.cid} -- ${file.path} -- ${file.size}`);
+      try {
+        // unpack File objects from the response
+        const files = await res.files();
+        for (const file of files) {
+          console.log(`${file.cid} -- ${file.path} -- ${file.size}`);
+        }
+        //const jsonData = await files[0].json();
+        console.log(files);
+        const response = await fetch(`https://ipfs.io/ipfs/${files[0].cid}`);
+        // Check if the response is successful
+        if (!response.ok) {
+          throw new Error("Failed to fetch JSON from IPFS");
+        }
+        // Parse the JSON data from the response
+        const jsonData = await response.json();
+        console.log("UserData:", jsonData);
+        setNameProfile(jsonData.name);
+        setCustomUrl(jsonData.customUrl);
+        setEmailProfile(jsonData.email);
+        setBioProfile(jsonData.bio);
+        setDiscord(jsonData.discord);
+        setTwitter(jsonData.twitter);
+        setFacebook(jsonData.facebook);
+        if (jsonData.image) {
+          setImageToShowProfile(`https://${jsonData.image}.ipfs.w3s.link`);
+        }
+      } catch {
+        console.log("Error while retrieving user data");
       }
-      //const jsonData = await files[0].json();
-      console.log(files);
-      const response = await fetch(`https://ipfs.io/ipfs/${files[0].cid}`);
-      // Check if the response is successful
-      if (!response.ok) {
-        throw new Error("Failed to fetch JSON from IPFS");
-      }
-      // Parse the JSON data from the response
-      const jsonData = await response.json();
-      console.log(jsonData);
-      setNameProfile(jsonData.name);
-      setCustomUrl(jsonData.customUrl);
-      setEmailProfile(jsonData.email);
-      setBioProfile(jsonData.bio);
-      setDiscord(jsonData.discord);
-      setTwitter(jsonData.twitter);
-      setFacebook(jsonData.facebook);
-      setImageToShowProfile(`https://${jsonData.image}.ipfs.w3s.link`);
+      setLoadingUserData(false);
     };
+    setLoadingUserData(true);
     retrieveFiles();
-  }, []);
+  }, [address]);
 
   return (
     <div>
@@ -192,7 +197,15 @@ const EditProfile = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Edit Profile</h1>
+                <h1 className="heading text-center">
+                  Edit Profile
+                  <ClipLoader
+                    color={"#36D7B7"}
+                    loading={loadingUserData}
+                    css={override}
+                    size={30}
+                  />
+                </h1>
               </div>
               <div className="breadcrumbs style2">
                 <ul>
@@ -229,7 +242,7 @@ const EditProfile = () => {
                     id="tf-upload-img"
                     type="file"
                     name="profile"
-                    onChange={(e) => handleImageProdile(e)}
+                    onChange={(e) => handleImageProfile(e)}
                     required=""
                   />
                 </div>
@@ -258,7 +271,7 @@ const EditProfile = () => {
                         <h4 className="title-infor-account">Custom URL</h4>
                         <input
                           type="text"
-                          placeholder="Ticketing.Bon Jovi.com/"
+                          placeholder="ticketing.com/me"
                           value={customUrl}
                           onChange={(e) => handleCustomUrl(e)}
                           required
