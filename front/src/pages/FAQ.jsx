@@ -9,28 +9,23 @@ const FAQ = () => {
     {
       key: "0",
       show: "show",
-      title: "What is an Ticket?",
+      title: "What is an BiTicket?",
       text: "Tickets or non-fungible tokens, are cryptographic assets on blockchain with unique identification codes and metadata that distinguish them from each other. Tickets are unique and not mutually interchangeable, which means no two Tickets are the same.",
     },
     {
       key: "1",
-      title: "Customer support is available ?",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
+      title: "Customer support is available?",
+      text: "We are committed to providing you with the best service. Our customer support team is available to help you at all times.",
     },
     {
       key: "2",
       title: "How do I find my transaction hash?",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
+      text: "Look up the transaction in your wallet or blockchain explorer to find the unique hash that identifies the transaction. 🔄💳",
     },
     {
       key: "3",
       title: "What are gas fees on Ticketing?",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
-    },
-    {
-      key: "4",
-      title: "What is the effective staking amount?",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
+      text: "Gas fees are fees paid in cryptocurrency to process transactions on a blockchain network, such as Moonbeam. 💸🔥",
     },
   ]);
   return (
@@ -67,9 +62,7 @@ const FAQ = () => {
                 Frequently Asked Questions
               </h2>
               <h5 className="sub-title help-center mg-bt-32 ">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
-                deleniti asperiores sit.
+                We are here to help you. Please read our FAQ or contact us.
               </h5>
             </div>
             <div className="col-md-12">

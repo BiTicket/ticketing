@@ -15,40 +15,25 @@ const HelpCenter = () => {
       icon: img1,
       title: "Getting Started",
       description:
-        "Dolor lacinia? Donec nulla, deleniti, dis arcu pharetra maecenas dapibus ante nemo! Wisi?",
+        "Click the button above to connect your wallet. Once connected you can start creating collections and items on the blockchain!",
     },
     {
       icon: img2,
       title: "Creating",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+      description: "Create your own personalized events@.",
     },
     {
       icon: img3,
       title: "Buying",
-      description:
-        "Metus corrupti itaque reiciendis, provident condimentum, reprehenderit numquam, mi",
+      description: "Buy tickets for your favorite events in a secure way.",
     },
     {
       icon: img4,
       title: "Selling",
-      description:
-        "Sollicitudin iure conubia vivamus habitasse aptent, eligendi deserunt excepteur tellus non",
+      description: "Sell your tickets to the community and earn money.",
     },
     {
       classnone: "no-box-shadown mgbt-0 none",
-    },
-    {
-      icon: img5,
-      title: "Partners",
-      description:
-        "Purus irure lacinia eiusmod inventore bibendum habitant potenti non sint rem! Felis, asper",
-    },
-    {
-      icon: img6,
-      title: "Developers",
-      description:
-        "Varius culpa, aspernatur accusantium? Corporis rhoncus, voluptatibus incididunt, velit",
     },
   ]);
   return (
@@ -85,9 +70,7 @@ const HelpCenter = () => {
                 How Can We Help You?
               </h2>
               <h5 className="sub-title help-center mg-bt-32 ">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
-                deleniti asperiores sit.
+                Search our help center for quick answers.
               </h5>
               <form action="#" className="help-center-form">
                 <input

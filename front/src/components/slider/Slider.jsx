@@ -75,12 +75,11 @@ const Slider = () => {
             <div className="content col-12 col-lg-6">
               <h2 className="heading mt-15">Discover, find,</h2>
               <h1 className="heading mb-style">
-                <span className="tf-text s1">Sell extraordinary</span>
+                <span className="tf-text s1">and live</span>
               </h1>
               <h1 className="heading">Monster Tickets</h1>
               <p className="sub-heading mt-19 mb-40">
-                Marketplace for monster character cllections non fungible token
-                Tickets
+                Marketplace For Tickets events Non Fungible Token Tickets
               </p>
               <div className="flat-bt-slider flex style2">
                 <Link
