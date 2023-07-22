@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logodark from "../../assets/images/logo/logo_dark.png";
-import logofooter from "../../assets/images/logo/logo2.png";
+import logodark from "../../assets/images/logo/logo_dark_footer.png";
 const Footer = () => {
   const accountList = [
     {
-      title: "Collection",
-      link: "/wallet-connect",
+      title: "My Profile",
+      link: "/my-profile",
     },
     {
-      title: "Author Profile",
+      title: "Edit Profile",
       link: "/edit-profile",
     },
     {
@@ -23,7 +22,7 @@ const Footer = () => {
       link: "/help-center",
     },
     {
-      title: "Item Details",
+      title: "Event Details",
       link: "/item-details",
     },
     {
@@ -41,10 +40,6 @@ const Footer = () => {
       link: "/contact",
     },
     {
-      title: "Our Blog",
-      link: "/blog",
-    },
-    {
       title: "FAQ",
       link: "/faq",
     },
@@ -52,27 +47,19 @@ const Footer = () => {
   const socialList = [
     {
       icon: "fab fa-twitter",
-      link: "#",
-    },
-    {
-      icon: "fab fa-facebook",
-      link: "#",
+      link: "https://twitter.com/BiTicket",
     },
     {
       icon: "fab fa-telegram-plane",
-      link: "#",
+      link: "https://t.me/+Lj-VwkqF_eRkNDYx",
     },
     {
       icon: "fab fa-youtube",
-      link: "#",
+      link: "https://www.youtube.com/channel/UCkcap3gQKp8NICMnSKoZzbQ",
     },
     {
-      icon: "icon-fl-tik-tok-2",
-      link: "#",
-    },
-    {
-      icon: "icon-fl-vt",
-      link: "#",
+      icon: "fab fa-discord",
+      link: "https://discord.gg/mapwbeVc",
     },
   ];
 
@@ -112,12 +99,6 @@ const Footer = () => {
                       className="logo-dark"
                       id="logo_footer"
                       src={logodark}
-                      alt="ticket-gaming"
-                    />
-                    <img
-                      className="logo-light"
-                      id="logo_footer"
-                      src={logofooter}
                       alt="ticket-gaming"
                     />
                   </Link>
@@ -167,7 +148,7 @@ const Footer = () => {
             </div>
             <div className="col-lg-3 col-md-6 col-sm-7 col-12">
               <div className="widget widget-subcribe">
-                <h5 className="title-widget">Subscribe Us</h5>
+                <h5 className="title-widget">Get the latest updates</h5>
                 <div className="form-subcribe">
                   <form
                     id="subscribe-form"
@@ -205,67 +186,6 @@ const Footer = () => {
         </div>
       </footer>
       {isVisible && <Link onClick={scrollToTop} to="#" id="scroll-top"></Link>}
-
-      <div
-        className="modal fade popup"
-        id="popup_bid"
-        tabIndex="-1"
-        role="dialog"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <div className="modal-body space-y-20 pd-40">
-              <h3>Place a Bid</h3>
-              <p className="text-center">
-                You must bid at least{" "}
-                <span className="price color-popup">4.89 ETH</span>
-              </p>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="00.00 ETH"
-              />
-              <p>
-                Enter quantity. <span className="color-popup">5 available</span>
-              </p>
-              <input type="number" className="form-control" placeholder="1" />
-              <div className="hr"></div>
-              <div className="d-flex justify-content-between">
-                <p> You must bid at least:</p>
-                <p className="text-right price color-popup"> 4.89 ETH </p>
-              </div>
-              <div className="d-flex justify-content-between">
-                <p> Service free:</p>
-                <p className="text-right price color-popup"> 0,89 ETH </p>
-              </div>
-              <div className="d-flex justify-content-between">
-                <p> Total bid amount:</p>
-                <p className="text-right price color-popup"> 4 ETH </p>
-              </div>
-              <Link
-                to="#"
-                className="btn btn-primary"
-                data-toggle="modal"
-                data-target="#popup_bid_success"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                {" "}
-                Place a bid
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
