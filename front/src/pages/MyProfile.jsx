@@ -235,26 +235,39 @@ const MyProfile = () => {
                       <TabPanel key={index}>
                         {item.dataContent
                           .slice(0, visible)
-                          .map((data, index) => (
+                          .map((data, int_index) => (
                             <div
-                              key={index}
+                              key={int_index}
                               className="col-xl-3 col-lg-4 col-md-6 col-12"
                             >
                               <div className="sc-card-product explode ">
                                 <div className="card-media">
-                                  <Link to="/item-details">
+                                  <Link
+                                    to={
+                                      index != 1 ? "/item-details" : "/escrow"
+                                    }
+                                  >
                                     <img
                                       src={data.imgCollection}
                                       alt="Ticketing"
                                     />
                                   </Link>
                                   <div className="button-place-bid ">
-                                    <button
-                                      onClick={() => setModalShow(true)}
-                                      className="sc-button style-place-bid style bag fl-button pri-3"
-                                    >
-                                      <span>Buy now</span>
-                                    </button>
+                                    {index == 1 ? (
+                                      <Link
+                                        to="/escrow"
+                                        className="sc-button style-place-bid style bag fl-button pri-3"
+                                      >
+                                        <span>See escrow</span>
+                                      </Link>
+                                    ) : (
+                                      <button
+                                        onClick={() => setModalShow(true)}
+                                        className="sc-button style-place-bid style bag fl-button pri-3"
+                                      >
+                                        <span>Buy now</span>
+                                      </button>
+                                    )}
                                   </div>
                                   <Link
                                     to="/login"

@@ -13,12 +13,14 @@ import NoResult from "./NoResult";
 import FAQ from "./FAQ";
 import Contact from "./Contact";
 import MyProfile from "./MyProfile";
+import EscrowCreator from "./EscrowCreator";
 
 const routes = [
   { path: "/", component: <Home /> },
   { path: "/explore", component: <Explore /> },
   { path: "/item-details", component: <ItemDetails /> },
   { path: "/activity", component: <Activity /> },
+  { path: "/escrow", component: <EscrowCreator /> },
   { path: "/help-center", component: <HelpCenter /> },
   { path: "/author", component: <Author /> },
   { path: "/my-profile", component: <MyProfile /> },

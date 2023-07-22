@@ -38,6 +38,11 @@ const menus = [
         sub: "Event Activity",
         links: "/activity",
       },
+      {
+        id: 2,
+        sub: "Escrow",
+        links: "/escrow",
+      },
     ],
   },
   {
