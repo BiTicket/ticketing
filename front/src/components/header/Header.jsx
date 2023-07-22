@@ -8,8 +8,7 @@ import logodark from "../../assets/images/logo/logo_dark.png";
 import logodark2x from "../../assets/images/logo/logo_dark@2x.png";
 import imgsun from "../../assets/images/icon/sun.png";
 import avt from "../../assets/images/avatar/avt-2.jpg";
-
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import ConnectButtonCustom from "./ConnectButtonCustom";
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -151,13 +150,7 @@ const Header = () => {
                     </div>
                   </div>
                   <div className="sc-btn-top mg-r-12" id="site-header">
-                    <ConnectButton />
-                    {/* <Link
-                      to="/wallet-connect"
-                      className="sc-button header-slider style style-1 wallet fl-button pri-1"
-                    >
-                      <span>Wallet connect</span>
-                    </Link> */}
+                    <ConnectButtonCustom />
                   </div>
 
                   <div className="admin_active" id="header_admin">
