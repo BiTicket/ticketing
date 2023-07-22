@@ -40,7 +40,7 @@
     "web-vitals": "^2.1.4",
     "web3": "^1.7.4",
     "web3.storage": "^4.5.4",
-    "ethers": "^6.6.2"
+    "ethers": "^5.0.0"
   },
   "scripts": {
     "start": "react-app-rewired start",

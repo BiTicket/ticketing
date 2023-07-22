@@ -85,7 +85,7 @@ const EscrowCreator = () => {
   const validateTicket = async (e, index) => {
     const updateDataBoxMessage = dataBox.map(async (item, i) => {
       if (i == index) {
-        const sig = ethers.Signature.from(item.message);
+        const sig = ethers.utils.splitSignature(item.message);
         await Platform.methods.useTicket(item.message,sig.v, sig.r, sig.s).send({from: address});
         return item;
       }
@@ -102,12 +102,12 @@ const EscrowCreator = () => {
   const autorizeTicket = async (e, index) => {
     //eventId, Event.address
     e.preventDefault();
-    const eventIdBytes = ethers.zeroPadValue(ethers.toBeHex(eventId), 4);
-	  const ticketTypeBytes = ethers.zeroPadValue(ethers.toBeHex(0), 4);
+    const eventIdBytes = ethers.utils.hexZeroPad(ethers.utils.hexlify(eventId), 4);
+	  const ticketTypeBytes = ethers.utils.hexZeroPad(ethers.utils.hexlify(0), 4);
 	  const nonce =  Math.floor(Math.random() * 4294967295);
-	  const nonceBytes = ethers.zeroPadValue(ethers.toBeHex(nonce), 4);
+	  const nonceBytes = ethers.utils.hexZeroPad(ethers.utils.hexlify(nonce), 4);
     
-    const message = ethers.concat([CONTRACT_ADDRESS, eventIdBytes, ticketTypeBytes, nonceBytes])
+    const message = ethers.utils.hexConcat([CONTRACT_ADDRESS, eventIdBytes, ticketTypeBytes, nonceBytes])
     
     const signature = await signMessage({
       message: message,
