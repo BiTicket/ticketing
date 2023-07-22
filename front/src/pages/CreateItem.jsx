@@ -186,10 +186,7 @@ const CreateItem = () => {
     };
     const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
 
-    const files = [
-      new File(["contents-of-file-1"], "plain-utf8.txt"),
-      new File([blob], "hello.json"),
-    ];
+    const files = [new File([blob], "eventData.json")];
     return files;
   };
 
@@ -218,10 +215,7 @@ const CreateItem = () => {
       type: "application/json",
     });
 
-    const files = [
-      new File(["contents-of-file-1"], "plain-utf8.txt"),
-      new File([blob], "hello.json"),
-    ];
+    const files = [new File([blob], "eventData.json")];
     return files;
   };
 
@@ -243,16 +237,8 @@ const CreateItem = () => {
     };
     const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
 
-    const files = [
-      new File(["contents-of-file-1"], "plain-utf8.txt"),
-      new File([blob], "hello.json"),
-    ];
+    const files = [new File([blob], "eventData.json")];
     return files;
-  };
-
-  // Array metadata standard  ticket => Name, Description, Image, etc
-  const ticketsNFTMetadataUris = () => {
-
   };
 
   const handleSubmit = async (e) => {
@@ -274,7 +260,6 @@ const CreateItem = () => {
     const cidTicketsMetadataUris = await client2.put(ticketsMetadataUri);
 
     try {
-      
       //TODO: limit data hardcoded/ check for demo.
       const futureDate = Math.floor(new Date().getTime() / 1000) + 4000000;
 
@@ -302,20 +287,17 @@ const CreateItem = () => {
         from: address, // Use the first account from MetaMask or any other wallet
         gas: 5000000, // Adjust the gas limit as per your contract's requirements
       });
-    } catch (error) {
-      console.log(error);
-      setBothOk(false);
-    }
-
-    if (bothOk) {
       toast("🦄 You have created an event!", {
         type: "success",
       });
-    } else {
+    } catch (error) {
+      console.log("Error: ", error);
+      setBothOk(false);
       toast("The form has missing info! Review it and try again", {
         type: "error",
       });
     }
+
     setLoading(false);
   };
 
@@ -327,12 +309,14 @@ const CreateItem = () => {
     const res = await client.get(rootCid);
     const files = await res.files();
 
+    console.log("info: ", info);
+
     setProperty({
       ...property,
       eventMetadataUri: files[0].cid,
     });
     setImage(files[0].cid);
-    console.log(files[0].cid);
+    console.log("File cid: ", files[0].cid);
     for (const file of files) {
       console.log(`${file.cid} ${file.name} ${file.size}`);
     }
@@ -345,9 +329,10 @@ const CreateItem = () => {
     const info = await client.status(rootCid);
     const res = await client.get(rootCid);
     const files = await res.files();
+    console.log("info", info);
 
     setPlaceLayout(files[0].cid);
-    console.log(files[0].cid);
+    console.log("File cid: ", files[0].cid);
     for (const file of files) {
       console.log(`${file.cid} ${file.name} ${file.size}`);
     }
@@ -539,9 +524,7 @@ const CreateItem = () => {
                       />
                     </div>
                     <div className="inner-row-form">
-                      <h4 className="title-create-item">
-                        Category
-                      </h4>
+                      <h4 className="title-create-item">Category</h4>
                       <input
                         type="text"
                         placeholder="e.g. “Sports”"
@@ -549,9 +532,7 @@ const CreateItem = () => {
                       />
                     </div>
                     <div className="inner-row-form">
-                      <h4 className="title-create-item">
-                        Collection
-                      </h4>
+                      <h4 className="title-create-item">Collection</h4>
                       <input
                         type="text"
                         placeholder="e.g. “Name of NFT collection"
@@ -567,7 +548,7 @@ const CreateItem = () => {
                         onClick={(e) => {
                           handleSubmit(e);
                         }}
-                        disabled={loading}
+                        disabled={loading || !titleValue || !priceValue}
                       >
                         Create event
                         <div>
