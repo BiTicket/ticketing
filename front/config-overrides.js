@@ -42,6 +42,7 @@ module.exports = function override(config) {
       {
         module: /node_modules\/safe-json-utils/,
       },
+      /Failed to parse source map/,
     ],
   };
 };
