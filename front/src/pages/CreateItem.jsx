@@ -19,6 +19,8 @@ const CreateItem = () => {
   const [titleValue, setTitleValue] = useState("");
   const [activeTabIndex, setActiveTabIndex] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
+  const [NameArtist, setNameArtist] = useState("");
+  const [placeHappen, setPlaceHappen] = useState("");
   const [paymentCurrency, setPaymentCurrency] = useState(0);
   const [priceValue, setPriceValue] = useState(0);
   const [detailsValue, setDetailsValue] = useState("");
@@ -27,10 +29,12 @@ const CreateItem = () => {
   const [twitter, setTwitter] = useState("");
   const [facebook, setFacebook] = useState("");
   const [totaltickets, setTotalTickets] = useState("");
+  const [creatorOfShow, setCreatorOfShow] = useState("");
   const [limitTickets, setLimitTickets] = useState("");
   const [transferable, setTransferable] = useState("");
   const [willNFTAvailable, setWillNFTAvailable] = useState("");
   const [category, setCategory] = useState("");
+  const [collection, setCollection] = useState("");
   const [property, setProperty] = useState({
     creator: "",
     eventMetadataUri: "",
@@ -118,6 +122,15 @@ const CreateItem = () => {
     },
   });
 
+  const handleCollectionTicketChange = (e) => {
+    setCollection(e.target.value);
+  };
+  const handleCategoryTicketChange = (e) => {
+    setCategory(e.target.value);
+  };
+  const handleCreatorChange = (e) => {
+    setCreatorOfShow(e.target.value);
+  };
   const handleTitleChange = (e) => {
     setTitleValue(e.target.value);
   };
@@ -154,6 +167,9 @@ const CreateItem = () => {
   const handleLimitTicketChange = (e) => {
     setLimitTickets(e.target.value);
   };
+  const handleNameArtistChange = (e) => {
+    setNameArtist(e.target.value);
+  };
 
   // NFT metada event => Artist, place, etc
   const eventMetaDataUri = () => {
@@ -162,9 +178,10 @@ const CreateItem = () => {
     // Here we're just storing a JSON object, but you can store images,
     // audio, or whatever you want!
     const obj = {
-      NameArtist: "Add real value",
-      Place: "place where event happen",
-      Image: "https:ipfs",
+      NameArtist: NameArtist,
+      Place: placeHappen,
+      Image: placeLayout,
+      paymentCurrency: paymentCurrency,
     };
     const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
 
@@ -185,6 +202,14 @@ const CreateItem = () => {
       Title: titleValue,
       Description: descriptionValue,
       Image: imageEvent,
+      Details: detailsValue,
+      place: placeLayout,
+      nameCreator: creatorOfShow,
+      collectin: collection,
+      instagram: instagram,
+      twitter: twitter,
+      facebook: facebook,
+      category: category
     };
     const blob = new Blob([JSON.stringify(nftMetaData)], {
       type: "application/json",
@@ -207,6 +232,8 @@ const CreateItem = () => {
       Name: titleValue,
       Details: detailsValue,
       place: placeLayout,
+      nameCreator: creatorOfShow,
+      collectin: collection,
       instagram: instagram,
       twitter: twitter,
       facebook: facebook,
@@ -221,7 +248,9 @@ const CreateItem = () => {
   };
 
   // Array metadata standard  ticket => Name, Description, Image, etc
-  const ticketsNFTMetadataUris = () => {};
+  const ticketsNFTMetadataUris = () => {
+
+  };
 
   const handleSubmit = async (e) => {
     setBothOk(true);
@@ -235,15 +264,15 @@ const CreateItem = () => {
     const cid = await client2.put(eventMetadataUri);
 
     const eventNftMetadataUri = eventNftMetaDataUri();
+    const cidNFTMetadataUri = await client2.put(eventNftMetadataUri);
+
+    //data metadata tickets
+    const ticketsMetadataUri = ticketsMetadataUris();
+    const cidTicketsMetadataUris = await client2.put(ticketsMetadataUri);
+
     try {
-      const cidNFTMetadataUri = await client2.put(eventNftMetadataUri);
-
-      //data metadata tickets
-      //const ticketsMetadataUris = ticketsMetadataUris();
-      //const cidTicketsMetadataUris = await client2.put(ticketsMetadataUris);
-
-      //const currentDate = new Date();
-      //const futureDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+      
+      //TODO: limit data hardcoded/ check for demo.
       const futureDate = Math.floor(new Date().getTime() / 1000) + 4000000;
 
       var newEvent = {
@@ -251,7 +280,7 @@ const CreateItem = () => {
         eventMetadataUri: cid,
         NFTMetadataUri: cidNFTMetadataUri,
         //
-        ticketsMetadataUris: [cid],
+        ticketsMetadataUris: [cidTicketsMetadataUris],
         // json name, description, image
         ticketsNFTMetadataUris: [cid],
         // 0:USDTprice, 1:DOTprice, 2:GlimmerPrice
@@ -386,7 +415,12 @@ const CreateItem = () => {
                       onChange={(e) => handleTitleChange(e)}
                       placeholder="Item Name"
                     />
-
+                    <h4 className="title-create-item">Name of Artist</h4>
+                    <input
+                      type="text"
+                      onChange={(e) => handleNameArtistChange(e)}
+                      placeholder="Item Name"
+                    />
                     <h4 className="title-create-item">Prices</h4>
                     <Tabs>
                       <TabList>
@@ -489,6 +523,36 @@ const CreateItem = () => {
                         type="text"
                         placeholder="e.g. “3”"
                         onChange={(e) => handleLimitTicketChange(e)}
+                      />
+                    </div>
+                  </div>
+                  <div className="row-form">
+                    <div className="inner-row-form">
+                      <h4 className="title-create-item">Creator</h4>
+                      <input
+                        type="text"
+                        placeholder="e.g. “Fifa”"
+                        onChange={(e) => handleCreatorChange(e)}
+                      />
+                    </div>
+                    <div className="inner-row-form">
+                      <h4 className="title-create-item">
+                        Category
+                      </h4>
+                      <input
+                        type="text"
+                        placeholder="e.g. “Sports”"
+                        onChange={(e) => handleCategoryTicketChange(e)}
+                      />
+                    </div>
+                    <div className="inner-row-form">
+                      <h4 className="title-create-item">
+                        Collection
+                      </h4>
+                      <input
+                        type="text"
+                        placeholder="e.g. “Name of NFT collection"
+                        onChange={(e) => handleCollectionTicketChange(e)}
                       />
                     </div>
                   </div>

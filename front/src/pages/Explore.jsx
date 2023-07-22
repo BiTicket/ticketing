@@ -7,6 +7,7 @@ import widgetSidebarData from "../assets/fake-data/data-widget-sidebar";
 import { Web3Storage, File, makeStorageClient } from 'web3.storage';
 import Platform from "../abi/Platform";
 import Events from "../abi/Events";
+import { CoinGeckoClient } from 'coingecko-api-v3';
 
 const Explore = () => {
   const [eventsList, setEventsList] = useState([{}]);
@@ -47,7 +48,7 @@ const Explore = () => {
       imgAuthor: `https://ipfs.io/ipfs/${myeventData.Image}`,
       title: myeventData.Title,
       price: '12 USDT',// TODO: harcodeo price because I can't find in SM `${event.Price} USDT`, 
-      nameAuthor: "FIFA",
+      nameAuthor: myeventData.nameCreator || 'John Doe',
       tags:'USDT',
       priceChange: `3 DOT`,
       wishlist: 100,
