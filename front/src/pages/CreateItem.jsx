@@ -254,7 +254,7 @@ const CreateItem = () => {
         ticketsMetadataUris: [cid],
         // json name, description, image
         ticketsNFTMetadataUris: [cid],
-        // 0:USDTprice, 1:DOTprice, 2:GrimmerPrice
+        // 0:USDTprice, 1:DOTprice, 2:GlimmerPrice
         prices: [
           parseInt(priceValue),
           parseInt(priceValue),
@@ -394,7 +394,7 @@ const CreateItem = () => {
                           <span className="icon-fl-tag"></span>USDT
                         </Tab>
                         <Tab onClick={() => handlesPaymentCurrency(1)}>
-                          <span className="icon-fl-clock"></span>GRIMMER
+                          <span className="icon-fl-clock"></span>GLIMMER
                         </Tab>
                         <Tab onClick={() => handlesPaymentCurrency(2)}>
                           <span className="icon-fl-icon-22"></span>DOT
@@ -410,7 +410,7 @@ const CreateItem = () => {
                         />
                       </TabPanel>
                       <TabPanel>
-                        <h4 className="title-create-item">Price in GRIMMER</h4>
+                        <h4 className="title-create-item">Price in GLIMMER</h4>
                         <input
                           type="text"
                           onChange={(e) => handlePriceChange(e)}

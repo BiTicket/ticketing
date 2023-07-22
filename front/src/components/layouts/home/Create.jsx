@@ -11,21 +11,21 @@ const Create = () => {
     {
       title: "Add Your Tickets",
       description:
-        "Sed ut perspiciatis un de omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.",
+        "Ticketing provides a more interactive and personalized experience for users by allowing them to create, personalize and share exclusive tickets for their events through the BiTicket platform.",
       icon: icon3,
       colorbg: "icon-color3",
     },
     {
       title: "Create Your Collection",
       description:
-        "Setting up your Ticket collection and creating Tickets on Tickets is easy! This guide explains how to set up your first collection",
+        "This feature makes it easy for users to have full control over their NFT tickets, allowing them to manage their events and enjoy a more interactive and personalized experience within the BiTicket platform.",
       icon: icon2,
       colorbg: "icon-color2",
     },
     {
       title: "Set Up Your Wallet",
       description:
-        "Wallet that is functional for Ticket purchasing. You may have a Coinbase account at this point, but very few are actually set up to buy an Ticket.",
+        'The "Set Up Your Wallet" feature is critical to ensuring transparency and security in transactions and provides users with a reliable and convenient way to participate in the exciting world of NFT tickets within BiTicket.',
       icon: icon1,
       colorbg: "icon-color1",
     },
@@ -48,11 +48,10 @@ const Create = () => {
                 Create And Sell Your Tickets
               </h2>
               <p className="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Sollicitudin morbi donec venenatis sed eget pellentesque viverra
-                ut. Elementum nam praesent mauris auctor amet, pulvinar
-                adipiscing ultricies ut. Id dignissim tristique ultrices arcu
-                tempor. Aenean quam odio fringilla amet, imperdiet.
+                Ticketing allows event organizers to create custom NFT tickets
+                for their events and offer them for sale on the platform.
+                Organizers can define details such as name, date, location,
+                prices, and design options for their tickets.
               </p>
             </div>
           </div>

@@ -123,8 +123,9 @@ const Footer = () => {
                   </Link>
                 </div>
                 <p className="sub-widget-logo">
-                  Lorem ipsum dolor sit amet,consectetur adipisicing elit. Quis
-                  non, fugit totam vel laboriosam vitae.
+                  Biticket is a platform based on blockchain technology that is
+                  dedicated to the issuance, sale, resale, and verification of
+                  digital tickets using non-fungible.
                 </p>
               </div>
             </div>
