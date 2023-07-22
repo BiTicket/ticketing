@@ -206,6 +206,7 @@ const CreateItem = () => {
       Details: detailsValue,
       place: placeLayout,
       nameCreator: creatorOfShow,
+      priceTicket: web3.utils.toWei(priceValue, "wei"),
       collectin: collection,
       instagram: instagram,
       twitter: twitter,
@@ -287,9 +288,9 @@ const CreateItem = () => {
         ticketsNFTMetadataUris: [cid],
         // 0:USDTprice, 1:DOTprice, 2:GlimmerPrice
         prices: [
-          parseInt(priceValue),
-          parseInt(priceValue),
-          parseInt(priceValue),
+          0,
+          0,
+          priceValue,
         ],
         maxSupplies: [parseInt(totaltickets)],
         deadline: futureDate,

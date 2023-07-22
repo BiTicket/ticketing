@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import CreateItem from "../components/layouts/CreateItem";
-
+import { useLocation } from 'react-router-dom';
 import img1 from "../assets/images/people/01.jpg";
 import img2 from "../assets/images/people/02.jpg";
 import img3 from "../assets/images/people/03.jpg";
@@ -14,9 +14,13 @@ import icon1 from "../assets/images/icon/Wallet.png";
 import icon2 from "../assets/images/icon/Category.png";
 import icon3 from "../assets/images/icon/Image2.png";
 import icon4 from "../assets/images/icon/Bookmark.png";
+import { useAccount } from "wagmi";
+import Platform from "../abi/Platform";
 
 const EscrowCreator = () => {
-  const [dataBox] = useState([
+  const { address, isConnected } = useAccount();
+  const [events, setEvents] = useState([]);
+  const [dataBox, setDataBox] = useState([
     {
       img: img1,
       attendee: "Monica Lucas",
@@ -108,6 +112,29 @@ const EscrowCreator = () => {
   const showMoreItems = () => {
     setVisible((prevValue) => prevValue + 5);
   };
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const eventId = queryParams.get('eventId');
+  console.log(eventId);
+  const retrieveAttends = async () => {
+    const eventList = [];
+    let index =2;
+    await Platform.getPastEvents('TicketBought', { filter: {eventId:eventId}, fromBlock: 4756531,
+      toBlock: 'latest'},function(error, even){ 
+        console.log(even)
+        setEvents(even); 
+    });
+  };
+
+  //return events
+  useEffect(()=> {
+    const fetchAttends = async() => {
+      await retrieveAttends();
+    }
+    fetchAttends();
+  },[]);
+
   return (
     <div>
       <Header />
