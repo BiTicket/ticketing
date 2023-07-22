@@ -7,14 +7,14 @@ const heroSliderData = [
   {
     title_1: "Discover, and collect",
     title_2: "extraordinary",
-    title_3: "Monster Tickets",
+    title_3: "unforgettable events",
     description: "Marketplace For Tickets events Non Fungible Token Tickets",
     class: "center",
   },
   {
     title_1: "Discover, and collect",
     title_2: "extraordinary",
-    title_3: "Monster Tickets",
+    title_3: "unforgettable events",
     description: "Marketplace For Tickets events Non Fungible Token Tickets",
     img: img1,
     imgbg: imgbg1,
@@ -23,7 +23,7 @@ const heroSliderData = [
   {
     title_1: "Discover, and collect",
     title_2: "extraordinary",
-    title_3: "Monster Tickets",
+    title_3: "unforgettable events",
     description: "Marketplace For Tickets events Non Fungible Token Tickets",
     img: img2,
     imgbg: imgbg2,

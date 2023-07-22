@@ -77,7 +77,7 @@ const Slider = () => {
               <h1 className="heading mb-style">
                 <span className="tf-text s1">and live</span>
               </h1>
-              <h1 className="heading">Monster Tickets</h1>
+              <h1 className="heading">unforgettable events</h1>
               <p className="sub-heading mt-19 mb-40">
                 Marketplace For Tickets events Non Fungible Token Tickets
               </p>
