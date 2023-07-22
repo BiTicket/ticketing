@@ -119,10 +119,13 @@ const ItemDetails02 = () => {
       try
       {
         console.log(event)
+        let price1 = BigInt(event.price) * BigInt(1100);
+        let price2 = price1 / BigInt(1000);
+
         await Platform.methods.buyTicket(address,eventId,0,2,1).send(
           {
             from: address, 
-            value: BigInt(event.price) * BigInt(1100) / BigInt(1000)
+            value: price2.toString()
           });
       }
       catch (error) {

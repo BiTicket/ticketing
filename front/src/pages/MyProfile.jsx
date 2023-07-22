@@ -20,6 +20,7 @@ import imgCollection5 from "../assets/images/avatar/avt-18.jpg";
 import { Web3Storage, File, makeStorageClient } from 'web3.storage';
 
 import Events from "../abi/Events";
+import Platform from "../abi/Platform";
 
 const MyProfile = () => {
   const [menuTab] = useState([
@@ -94,7 +95,8 @@ const MyProfile = () => {
       imgCollection: `https://ipfs.io/ipfs/${myeventData.Image}`,
       nameCollection: myeventData.Title,
       deadline: event.deadline,
-      owner:event.creator
+      owner:event.creator,
+      cancelled: event.cancelled
     };
 
   };
@@ -112,6 +114,11 @@ const MyProfile = () => {
     
 
     return eventList;
+  };
+
+  const cancelEvent = async (e, eventId) => {
+    e.preventDefault();
+    const platform = await Platform.methods.cancelEvent(eventId).send({from:address});
   };
 
   //return events
@@ -245,7 +252,7 @@ const MyProfile = () => {
                                 <div className="card-media">
                                   <Link
                                     to={
-                                      index != 1 ? "/item-details" : "/escrow"
+                                      index != 1 ? `/item-details?eventId=${data.id}` : `/escrow?eventId=${data.id}`
                                     }
                                   >
                                     <img
@@ -255,12 +262,27 @@ const MyProfile = () => {
                                   </Link>
                                   <div className="button-place-bid ">
                                     {index == 1 ? (
-                                      <Link
-                                        to={`/escrow?eventId=${data.id}`}
+                                      <>
+                                        <Link
+                                          to={`/escrow?eventId=${data.id}`}
+                                          className="sc-button style-place-bid style bag fl-button pri-3"
+                                        >
+                                          <span>See escrow</span>
+                                        </Link>
+                                        <br/>
+                                        {
+                                        data.cancelled ==true ?
+                                        <></>
+                                        :
+                                        <button
+                                        onClick={(e) => cancelEvent(e,data.id)}
                                         className="sc-button style-place-bid style bag fl-button pri-3"
-                                      >
-                                        <span>See escrow</span>
-                                      </Link>
+                                        >
+                                          <span>Cancel event</span>
+                                        </button>
+                                        }
+                                      </>
+                                      
                                     ) : (
                                       <button
                                         onClick={() => setModalShow(true)}
@@ -305,7 +327,13 @@ const MyProfile = () => {
                                       </h6>
                                     </div>
                                   </div>
+                                  {
+                                  data.cancelled ==true ? 
+                                    <div className="tags">Cancelled</div>
+                                   : 
                                   <div className="tags">{data.tags}</div>
+                                  
+                                }
                                 </div>
                                 <div className="card-bottom style-explode">
                                   <div className="price">

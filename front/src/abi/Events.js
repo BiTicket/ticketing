@@ -1,6 +1,6 @@
 import web3 from '../utils/web3';
 
-const CONTRACT_ADDRESS = "0xa209bA65ac79D8CB4ED08618f25de6a99e10cdF3";
+export const CONTRACT_ADDRESS = "0xa209bA65ac79D8CB4ED08618f25de6a99e10cdF3";
 
 const CONTRACT_ABI = [
   {

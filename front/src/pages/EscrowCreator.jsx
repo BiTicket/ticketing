@@ -15,83 +15,23 @@ import icon2 from "../assets/images/icon/Category.png";
 import icon3 from "../assets/images/icon/Image2.png";
 import icon4 from "../assets/images/icon/Bookmark.png";
 import { useAccount } from "wagmi";
+import { signMessage } from '@wagmi/core';
+import web3 from '../utils/web3';
 import Platform from "../abi/Platform";
+import Events, {CONTRACT_ADDRESS} from "../abi/Events";
+import { Web3Storage, File, makeStorageClient } from 'web3.storage';
+import { ethers } from "ethers";
+import { CONTRACT_ABI_SCROW } from "../abi/Scrow";
 
 const EscrowCreator = () => {
   const { address, isConnected } = useAccount();
   const [events, setEvents] = useState([]);
-  const [dataBox, setDataBox] = useState([
-    {
-      img: img1,
-      attendee: "Monica Lucas",
-      status: "Purchased ticket",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-1",
-    },
-    {
-      img: img2,
-      attendee: "Lewis Hamilton",
-      status: "Got NFT",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-2",
-    },
-    {
-      img: img3,
-      attendee: "Jhon Doe",
-      status: "started following",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-3",
-    },
-    {
-      img: img4,
-      attendee: "Sarah Doe",
-      status: "started following",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-4",
-    },
-    {
-      img: img5,
-      attendee: "Alex Doe",
-      status: "Purchased ticket",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-5",
-    },
-    {
-      img: img1,
-      attendee: "Monica Lucas",
-      status: "Purchased ticket",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-1",
-    },
-    {
-      img: img2,
-      attendee: "Alejandro",
-      status: "Transfered ticket",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-2",
-    },
-    {
-      img: img3,
-      attendee: "Calvin Harris",
-      status: "Purchased ticket",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-3",
-    },
-    {
-      img: img4,
-      attendee: "Sheila Doe",
-      status: "started following",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-4",
-    },
-    {
-      img: img5,
-      attendee: "Wayne Doe",
-      status: "sGot NFT",
-      time: "At 2:30 PM on 19th June, 2021",
-      icon: "icon-5",
-    },
-  ]);
+  const [dataBox, setDataBox] = useState([]);
+  const [eventDetail, setEventDetail] = useState({});
+  const [scrow_address, setScrowAddress] = useState('');
+  const [deadline, setDeadline] = useState('');
+  const [widthDrawAmount, setwidthDrawAmount] = useState(0);
+  const [eventIsCancelled, setEventIsCancelled] = useState(false);
 
   const data = [
     {
@@ -122,9 +62,152 @@ const EscrowCreator = () => {
     let index =2;
     await Platform.getPastEvents('TicketBought', { filter: {eventId:eventId}, fromBlock: 4756531,
       toBlock: 'latest'},function(error, even){ 
-        console.log(even)
+        if(even){
+          let index=0;
+          even.forEach(element => {
+            setDataBox((prevValue) => [...prevValue, {
+              img: img1,
+              attendee: element.address,
+              status: "Purchased ticket",
+              time: "At 2:30 PM on 19th June, 2021",
+              blocknumber : element.blockNumber,
+              icon: "icon-1",
+              index: index,
+              message: undefined
+            }]);
+            index++;
+          });
+        }
         setEvents(even); 
     });
+  };
+
+  const validateTicket = async (e, index) => {
+    const updateDataBoxMessage = dataBox.map(async (item, i) => {
+      if (i == index) {
+        const sig = ethers.Signature.from(item.message);
+        await Platform.methods.useTicket(item.message,sig.v, sig.r, sig.s).send({from: address});
+        return item;
+      }
+      return item;
+    });
+  };
+
+  const handleWithdrawValueChange = (e) => {
+    setwidthDrawAmount(e.target.value);
+  }
+
+  
+
+  const autorizeTicket = async (e, index) => {
+    //eventId, Event.address
+    e.preventDefault();
+    const eventIdBytes = ethers.zeroPadValue(ethers.toBeHex(eventId), 4);
+	  const ticketTypeBytes = ethers.zeroPadValue(ethers.toBeHex(0), 4);
+	  const nonce =  Math.floor(Math.random() * 4294967295);
+	  const nonceBytes = ethers.zeroPadValue(ethers.toBeHex(nonce), 4);
+    
+    const message = ethers.concat([CONTRACT_ADDRESS, eventIdBytes, ticketTypeBytes, nonceBytes])
+    
+    const signature = await signMessage({
+      message: message,
+    });
+    const updateDataBoxMessage = dataBox.map((item, i) => {
+      if (i == index) {
+        item.message = signature;
+      }
+      return item;
+    });
+    setDataBox(updateDataBoxMessage);
+  };
+
+  const retrieveNFTMetadataUri = async (NFTMetadataUri) => {
+    console.log(NFTMetadataUri);
+    const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
+    const cid = NFTMetadataUri;
+    const res = await client.get(NFTMetadataUri);
+    console.log(`Got a response! [${res.status}] ${res.statusText}`)
+    if (!res.ok) {
+      throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+    }
+  
+    // unpack File objects from the response
+    const files = await res.files()
+    for (const file of files) {
+      console.log(`${file.cid} -- ${file.path} -- ${file.size}`)
+    }
+    const response = await fetch(`https://ipfs.io/ipfs/${files[0].cid}`);
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error('Failed to fetch JSON from IPFS');
+    }
+    // Parse the JSON data from the response
+    const jsonData = await response.json();
+    return jsonData;
+  }
+
+  const buildEvent = async (index, event) => {
+    let myeventData = await retrieveNFTMetadataUri(event.NFTMetadataUri);
+    let myTicketData = await retrieveNFTMetadataUri(event.eventMetadataUri);
+    setScrowAddress(event.escrow);
+    setDeadline(event.deadline);
+    setEventIsCancelled(event.cancelled);
+    return {
+      id:index,
+      img: `https://ipfs.io/ipfs/${myeventData.Image}`,
+      imgAuthor: `https://ipfs.io/ipfs/${myeventData.Image}`,
+      title: myeventData.Title,
+      price: myeventData.priceTicket, 
+      nameAuthor: myeventData.nameCreator || 'John Doe',
+      description: myeventData.Details,
+      category: myeventData.category || 'Music',
+      collection: myeventData.collectin,
+      nameArtist: myTicketData.NameArtist || 'John Doe',
+      tags:'USDT',
+      priceChange: `3 DOT`,
+      limitTicket: event.limitTicket || 100,
+      wishlist: 100,
+      imgCollection: `https://ipfs.io/ipfs/${myeventData.Image}`,
+      nameCollection: myeventData.Title,
+      deadline: event.deadline,
+      cancelled: event.cancelled
+    };
+    
+
+  };
+
+  const retrieveEvents = async () => {
+    let event = {};
+    const totalEvents = await Events.methods.totalEvents().call();
+    // for demo propose, hadcode the range
+    const events = await Events.methods.getEventByRange(eventId, totalEvents-1).call();
+    event = await buildEvent(0,events[0]);
+    
+
+    return event;
+  };
+
+  const WidthDraw = async (e) => {
+    e.preventDefault();
+    //if deadline is completed retire 
+    if(deadline < Date.now()){
+      const screwContract = new web3.eth.Contract(CONTRACT_ABI_SCROW,scrow_address);
+      const amountScrow = await web3.eth.getBalance(scrow_address);
+      await screwContract.methods.withdrawNative(amountScrow * 0.1).send({from: address});
+    }
+    else
+    {
+      //if deadline is not completed, only withdraw the amount
+      const screwContract = new web3.eth.Contract(CONTRACT_ABI_SCROW,scrow_address);
+      await screwContract.methods.withdrawNative(widthDrawAmount).send({from: address});
+    }
+  };
+
+  const ReturnFounds = async (e) => {
+    e.preventDefault();
+    const screwContract = new web3.eth.Contract(CONTRACT_ABI_SCROW,scrow_address);
+    const amountScrow = await web3.eth.getBalance(scrow_address);
+    await screwContract.methods.returnFunds().send({from: address});
   };
 
   //return events
@@ -132,7 +215,12 @@ const EscrowCreator = () => {
     const fetchAttends = async() => {
       await retrieveAttends();
     }
+    const fetchData = async () => {
+      const arrayEvents = await retrieveEvents();
+      setEventDetail(arrayEvents);
+    };
     fetchAttends();
+    fetchData();
   },[]);
 
   return (
@@ -154,7 +242,7 @@ const EscrowCreator = () => {
                   <li>
                     <Link to="#">Escrow</Link>
                   </li>
-                  <li>Formula 1 Singapure GP</li>
+                  <li>{eventDetail.title}</li>
                 </ul>
               </div>
             </div>
@@ -168,11 +256,10 @@ const EscrowCreator = () => {
             <div className="col-lg-3 col-md-12">
               <div className="heading-next-eventss style2 mg-t-3 mg-bt-22">
                 <h3 className="heading-fill mg-bt-16">
-                  Formula 1 Singapure GP
+                  {eventDetail.title}
                 </h3>
                 <p className="content">
-                  Here you can see the details of the escrow contract for the
-                  event.
+                 {eventDetail.description}
                 </p>
               </div>
             </div>
@@ -197,41 +284,44 @@ const EscrowCreator = () => {
                 interaction, after the event is finished.
               </p>
               <div className="row form-escrow-box">
+              {
+                                        eventIsCancelled ==false ?
                 <form action="#" className="sc-card-activity col-12 col-md-5">
                   <div className="form-escrow col-12">
                     <h4 className="title-escrow">Withdraw</h4>
                     <fieldset>
                       <h4 className="title-infor-account">Amount:</h4>
-                      <input type="text" placeholder="500" required />
+                      <input type="text" placeholder="500" onChange={(e) => handleWithdrawValueChange(e)} required />
                     </fieldset>
                     <button
                       className="tf-button-submit mg-t-15"
                       type="submit"
                       disabled={false}
+                      onClick={(e) => WidthDraw(e)}
                     >
                       Withdraw
                     </button>
                   </div>
                 </form>
+                :
+
                 <form
                   action="#"
                   className="sc-card-activity col-12 col-md-5 offset-md-1"
                 >
                   <div className="form-escrow col-12">
                     <h4 className="title-escrow">Transfer/send Founds</h4>
-                    <fieldset>
-                      <h4 className="title-infor-account">Amount:</h4>
-                      <input type="text" placeholder="1000" required />
-                    </fieldset>
                     <button
                       className="tf-button-submit mg-t-15"
                       type="submit"
+                      onClick={(e) => ReturnFounds(e)}
                       disabled={false}
                     >
                       Send
                     </button>
                   </div>
                 </form>
+                }
               </div>
             </div>
           </div>
@@ -257,10 +347,24 @@ const EscrowCreator = () => {
                         {item.status}{" "}
                         <span className="author">{item.author}</span>
                       </div>
-                      <div className="time">{item.time}</div>
+                      <div className="time">{item.blockNumber}</div>
                     </div>
                   </div>
-                  <div className={`button-active icon ${item.icon}`}></div>
+                  
+                  {
+                   item.message == undefined ? 
+                    <button className="tf-button-submit mg-t-15" onClick={(e) => autorizeTicket(e, item.index)}>
+                      Authorize ticket
+                    </button>
+                  :
+                   <button className="tf-button-submit mg-t-15" onClick={(e) => validateTicket(e, item.index)}>
+                      Use Ticket
+                    </button>
+                  }
+                  
+
+                  
+                  {/* <div className={`button-active icon ${item.icon}`}></div> */}
                 </div>
               ))}
               {visible < dataBox.length && (
