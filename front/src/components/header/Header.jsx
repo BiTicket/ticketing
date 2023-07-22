@@ -4,7 +4,7 @@ import menus from "../../pages/menu";
 import DarkMode from "./DarkMode";
 import logoheader from "../../assets/images/logo/logo.png";
 import logoheader2x from "../../assets/images/logo/logo@2x.png";
-import logodark from "../../assets/images/logo/logo_dark.png";
+import logodark from "../../assets/images/logo/logo_dark_header.png";
 import logodark2x from "../../assets/images/logo/logo_dark@2x.png";
 import imgsun from "../../assets/images/icon/sun.png";
 import avt from "../../assets/images/avatar/avt-2.jpg";

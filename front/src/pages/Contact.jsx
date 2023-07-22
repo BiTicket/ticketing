@@ -39,9 +39,8 @@ const Contact = () => {
                   Drop Up A Message
                 </h2>
                 <h5 className="sub-title ct style-1 pad-0-15">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
-                  deleniti asperiores sit.
+                  How can we help you? Please fill out the form below to get in
+                  touch with us.
                 </h5>
                 <div className="form-inner">
                   <form
