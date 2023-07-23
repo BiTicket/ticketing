@@ -4,16 +4,20 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import avt from "../assets/images/people/profile.jpg";
 import { Web3Storage, File, makeStorageClient } from "web3.storage";
-import Platform from "../abi/Platform";
+import web3 from '../utils/web3';
+import Platform, {CONTRACT_ADDRESS_PLATFORM} from "../abi/Platform";
 import Users from "../abi/Users";
-import { useAccount } from "wagmi";
+import Sender from "../abi/Sender";
+import { useAccount, useNetwork } from "wagmi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
+import {usePrepareSendTransaction, useSendTransaction} from "wagmi";
 
 const EditProfile = () => {
   const { address, isConnected } = useAccount();
+  const { network, chain } = useNetwork();
   const [userData, setUserData] = useState([]);
   const [imageProfile, setImageProfile] = useState("");
   const [imageToShowProfile, setImageToShowProfile] = useState("");
@@ -27,7 +31,9 @@ const EditProfile = () => {
   let [loading, setLoading] = useState(false);
   let [loadingUserData, setLoadingUserData] = useState(false);
   let [bothOk, setBothOk] = useState(false);
+  
 
+  
   const override = css`
     display: block;
     margin: 0 auto;
@@ -87,25 +93,58 @@ const EditProfile = () => {
     e.preventDefault();
     const client = new Web3Storage({ token: process.env.REACT_APP_WEBSTORAGE });
     const eventupsertUser = eventUpsertUser();
-    try {
+   
       const cid = await client.put(eventupsertUser);
-      //register/update user
-      const reg = await Platform.methods.upsertUser(cid).send({
-        from: address, // Use the first account from MetaMask or any other wallet
-        gas: 5000000, // Adjust the gas limit as per your contract's requirements
-      });
-      toast("🦄 You have updated your data!", {
-        type: "success",
-      });
-    } catch (error) {
-      toast("The form has missing info! Review it and try again", {
-        type: "error",
-      });
-      console.log("Error while registering user", error);
-      setBothOk(false);
-    }
+      
+      //check if i'm in moonbean or polygon
+      if(chain.id == 97){
+        try{
+            const destinationChain = "Moonbeam";
+            const destinationAddress = CONTRACT_ADDRESS_PLATFORM; // Moonbeam Platform Address
+            const metadata = cid; 
+            console.log("Sending to Moonbeam");
+            await Sender.methods.upsertUser(destinationChain, destinationAddress, metadata).send({
+              from: address, // Use the first account from MetaMask or any other wallet
+              value: '100000000000000000'
+            });
+            
 
-    setLoading(false);
+            toast("🦄 You have updated your data!", {
+              type: "success",
+            });
+          
+        }catch(error){
+          toast("The form has missing info! Review it and try again", {
+            type: "error",
+          });
+          console.log("Error while registering user", error);
+          setBothOk(false);
+        }
+        setLoading(false);
+      }
+      else
+      {
+        try {
+        //register/update user
+        const reg = await Platform.methods.upsertUser(cid).send({
+          from: address, // Use the first account from MetaMask or any other wallet
+          gas: 5000000, // Adjust the gas limit as per your contract's requirements
+        });
+        toast("🦄 You have updated your data!", {
+          type: "success",
+        });
+        } catch (error) {
+        toast("The form has missing info! Review it and try again", {
+          type: "error",
+        });
+        console.log("Error while registering user", error);
+        setBothOk(false);
+        }
+        setLoading(false);
+      }
+      
+
+    
   };
 
   const handleImageProfile = async (e) => {
@@ -173,7 +212,7 @@ const EditProfile = () => {
       setLoadingUserData(false);
     };
     setLoadingUserData(true);
-    retrieveFiles();
+    //retrieveFiles();
   }, [address]);
 
   return (

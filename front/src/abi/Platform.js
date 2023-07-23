@@ -1,6 +1,6 @@
 import web3 from '../utils/web3';
 
-const CONTRACT_ADDRESS = "0x9cbCa37781915FC9520C51a7B180657ffAFbB690";
+export const CONTRACT_ADDRESS_PLATFORM = "0x9cbCa37781915FC9520C51a7B180657ffAFbB690";
 
 const CONTRACT_ABI = [
   {
@@ -640,4 +640,4 @@ const CONTRACT_ABI = [
   }
 ];
 
-  export default new web3.eth.Contract(CONTRACT_ABI,CONTRACT_ADDRESS);
+  export default new web3.eth.Contract(CONTRACT_ABI,CONTRACT_ADDRESS_PLATFORM);
