@@ -1,7 +1,7 @@
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 import { injectedWallet } from "@rainbow-me/rainbowkit/wallets";
 import { configureChains, createConfig } from "wagmi";
-import { polygonMumbai } from "wagmi/chains";
+import { polygonMumbai, bscTestnet } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { unipassWallet } from "@unipasswallet/rainbowkit-plugin";
 
