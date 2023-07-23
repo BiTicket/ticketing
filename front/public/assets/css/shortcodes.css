@@ -4193,7 +4193,7 @@ section.today-picks {
   padding: 81px 0 80px;
 }
 
-.box-epxlore {
+.box-explore {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -4203,7 +4203,7 @@ section.today-picks {
   flex-wrap: wrap;
 }
 
-.box-epxlore .sc-card-product {
+.box-explore .sc-card-product {
   width: 31.5%;
 }
 
